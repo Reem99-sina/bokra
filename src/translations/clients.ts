@@ -1,13 +1,13 @@
 import { createI18nClient } from "next-international/client";
 
 const i18n = createI18nClient({
-  en: () => import("./locales/en"),
-  ar: () => import("./locales/ar"),
-});
+  en: () => import("@/translations/locales/en"),
+  ar: () => import("@/translations/locales/ar"),
+})
 
 const useTranslation = () => {
-  const t = i18n.useI18n();
-  const lang = i18n.useCurrentLocale();
+  const t =  i18n?.useI18n();
+  const lang = i18n?.useCurrentLocale();
   
   return {
     t,

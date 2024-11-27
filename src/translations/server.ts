@@ -1,10 +1,10 @@
-import "server-only";
+import "server-only"
 
 import { createI18nServer } from "next-international/server";
 
 const i18n = createI18nServer({
-  en: () => import("./locales/en"),
-  ar: () => import("./locales/ar"),
+  en: () => import("@/translations/locales/en"),
+  ar: () => import("@/translations/locales/ar"),
 });
 
 const getTranslation = async () => {

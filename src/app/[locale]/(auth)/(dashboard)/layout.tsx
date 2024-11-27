@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Footer } from "@/components/layout/footer/footer-component";
 import Header from "@/components/layout/header";
 import SideBar from "@/components/layout/sideBar";
@@ -7,7 +7,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function DashboardLayout({ children }: Props) {
+export default function Dashboard({ children }: Props) {
   return (
     <div className="flex min-h-screen w-full flex-col">
       <Header />
@@ -24,7 +24,7 @@ export default function DashboardLayout({ children }: Props) {
         </main>
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

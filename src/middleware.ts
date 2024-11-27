@@ -13,7 +13,7 @@ const I18nMiddleware = createI18nMiddleware({
 export function middleware(request: NextRequest) {
   return I18nMiddleware(request);
 }
-console.log( appConfig.DEFAULT_LOCALE," appConfig.DEFAULT_LOCALE,")
+
 export const config = {
   matcher: ["/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)"],
 };

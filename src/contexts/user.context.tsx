@@ -37,4 +37,3 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
     <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
   );
 };
-

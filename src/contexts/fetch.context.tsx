@@ -90,29 +90,28 @@ const createInstance = ({
   return instance;
 };
 export const FetchProvider: FC<{ children: ReactNode }> = ({ children }) => {
-    const refreshToken = "";
-    const { authData, logout } = useAuth();
-  
-    const api = useMemo(() => {
-      return createInstance({
-        url: API_URL as string,
-        refreshToken,
-        callback: () => {
-          // TODO: update auth data
-        },
-        logout: () => {
-          logout();
-        },
-        token: authData?.token,
-      });
-    }, [authData, refreshToken, logout]);
-  
-    const contextValue = useMemo(() => ({ api }), [api]);
-  
-    return (
-      <FetchContext.Provider value={contextValue}>
-        {children}
-      </FetchContext.Provider>
-    );
-  };
-  
+  const refreshToken = "";
+  const { authData, logout } = useAuth();
+
+  const api = useMemo(() => {
+    return createInstance({
+      url: API_URL as string,
+      refreshToken,
+      callback: () => {
+        // TODO: update auth data
+      },
+      logout: () => {
+        logout();
+      },
+      token: authData?.token,
+    });
+  }, [authData, refreshToken, logout]);
+
+  const contextValue = useMemo(() => ({ api }), [api]);
+
+  return (
+    <FetchContext.Provider value={contextValue}>
+      {children}
+    </FetchContext.Provider>
+  );
+};

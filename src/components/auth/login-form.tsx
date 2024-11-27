@@ -2,11 +2,12 @@
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IUserRequest } from "@/types/user.type";
-import { toast } from "react-toastify";
+
 import { useRouter } from "next/navigation";
 import { TextInput } from "../shared/form/text-input.component";
 import { useTranslation } from "@/translations/clients";
 import { Button } from "../shared/button.component";
+import toast from "react-hot-toast";
 
 export const LoginForm: React.FC = () => {
   const router = useRouter();

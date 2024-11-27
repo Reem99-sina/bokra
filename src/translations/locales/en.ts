@@ -1,3 +1,4 @@
+
 export default {
     login: "Login",
     use_email_or_phone: "You can use your email or mobile number",
