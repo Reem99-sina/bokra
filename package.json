@@ -23,7 +23,9 @@
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "react-hook-form": "^7.53.2",
     "react-hot-toast": "^2.4.1",
-    "react-paginate": "^8.2.0"
+    "react-modern-drawer": "^1.4.0",
+    "react-paginate": "^8.2.0",
+    "react-toastify": "^10.0.6"
   },
   "devDependencies": {
     "@types/node": "^20",

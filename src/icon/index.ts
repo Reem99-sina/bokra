@@ -7,3 +7,5 @@ export { default as Arrow } from "./arrow.svg";
 export { default as HideEye } from "./hide.svg";
 export { default as MandatoryIcon } from "./mandatory.svg";
 export { default as ShowEye } from "./show.svg";
+// export { default as Linkedin } from "./linkedin.svg";
+

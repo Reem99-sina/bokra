@@ -21,7 +21,7 @@ export const LoginForm: React.FC = () => {
   const { t, isRTL } = useTranslation();
 
   const onSubmit: SubmitHandler<IUserRequest> = async () => {
-    router.replace("/dashboard");
+    router.replace("/");
     toast.success("تم تسجيل الدخول بنجاح");
   };
 

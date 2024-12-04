@@ -1,13 +1,11 @@
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+'use client';
 
-export default async function Root() {
-  const cookieStore = await cookies();
-  const isToken = cookieStore.get('access_tokens');
 
-  if (isToken) {
-    redirect('/dashboard');
-  } else {
-    redirect('/login');
-  }
+
+export default function Home() {
+  return (
+    <main className="z-0  h-screen bg-[url('/landing-page.png')] bg-cover bg-fixed">
+    
+    </main>
+  );
 }

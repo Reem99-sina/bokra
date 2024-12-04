@@ -3,7 +3,6 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FC, SVGProps } from "react";
 
 export const LinkItemComponent = ({
   item,
@@ -17,8 +16,6 @@ export const LinkItemComponent = ({
   const pathname = usePathname();
 
   const isActive = pathname.includes(item.href);
-
-  const SvgIcon = item?.icon;
 
   return (
     <Link
