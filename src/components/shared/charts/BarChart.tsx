@@ -63,6 +63,7 @@ const BarChart: React.FC<BarChartProps> = ({ labels, dataValues }) => {
           stepSize: 100,
           callback: (tickValue: string | number) => {
             const value = Number(tickValue);
+            
             return value % 100 === 0 ? value : "";
           },
         },

@@ -87,6 +87,7 @@ const createInstance = ({
       return await Promise.reject(error?.response?.data);
     }
   );
+  
   return instance;
 };
 export const FetchProvider: FC<{ children: ReactNode }> = ({ children }) => {

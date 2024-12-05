@@ -4,7 +4,7 @@ const withSvgr = require("next-plugin-svgr");
 const nextConfig = {
   images: {
    
-  },
+  }
 };
 
 module.exports = withSvgr(nextConfig);

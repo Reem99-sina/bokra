@@ -3,13 +3,14 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ReactElement } from "react";
 
 export const LinkItemComponent = ({
   item,
 }: {
   item: {
     title: string;
-    icon?: any;
+    icon?: ReactElement;
     href: string;
   };
 }) => {

@@ -24,6 +24,7 @@ export function useAuthenticatedQuery<
       ? [...options.queryKey]
       : [options.queryKey]
     : [];
+    
   return useQuery({
     ...options,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -30,6 +30,7 @@ export const FooterCopyright = () => {
       ],
     },
   ];
+  
   return (
     <footer className=" bg-black  shadow">
       <div className="container mx-auto flex flex-col items-center justify-center ">
@@ -37,7 +38,7 @@ export const FooterCopyright = () => {
           {/* <img src="/valoro.png" alt="Logo" className="w-12 h-12 mr-2" /> */}
 
           <div className="py-5  flex justify-evenly w-full">
-            {social.map(({ title, child },index) => (
+            {social.map(({ title, child }) => (
               <div key={title}>
                 <p className="mb-[13px] text-md">{title}</p>
                 <div className="flex flex-col items-start justify-start underline text-sm gap-y-[13px] text-grayLight">

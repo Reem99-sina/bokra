@@ -17,6 +17,7 @@ import { MobileMenuDrawer } from "./mobile-menu";
 import { LoginForm } from "@/components/auth/login-form";
 import Image from "next/image";
 import { useRef, useState } from "react";
+
 interface linksProps {
   id: number;
   text: string;
@@ -58,6 +59,7 @@ export const Header = () => {
   const modalRef = useRef<ModalRef>(null);
   const drawerRef = useRef<DrawerRef>(null);
   const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
+
   return (
     <>
       <header>
@@ -88,7 +90,7 @@ export const Header = () => {
               </Link>
             </div>
             <div className="invisible ms-24 flex flex-row  sm:visible gap-x-8">
-              {links.map((link, index) => (
+              {links.map((link) => (
                 <div
                   key={link.id}
                   className="flex flex-row items-center font-sans "

@@ -7,10 +7,10 @@ import { TextInput } from "../shared/form/text-input.component";
 import { useTranslation } from "@/translations/clients";
 import { Button } from "../shared/button.component";
 import toast from "react-hot-toast";
-import Link from "next/link";
 import { FacebookIcon, GoogleIcon } from "@/icon";
+import Link from "next/link";
 
-export const LoginForm: React.FC = () => {
+export const RegisterForm: React.FC = () => {
   const router = useRouter();
 
   const {
@@ -23,7 +23,7 @@ export const LoginForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<IUserRequest> = async () => {
     router.replace("/");
-    toast.success("login successfully");
+    toast.success("register successfully");
   };
 
   return (
@@ -31,11 +31,11 @@ export const LoginForm: React.FC = () => {
       <div className="rounded-md border border-[#DCDFE4]">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex min-w-[568px] flex-col rounded-xl bg-white px-14 pb-6 pt-10"
+          className="flex w-[568px] flex-col rounded-xl bg-white px-14 pb-6 pt-10"
           autoComplete="off"
         >
           <span className="mb-4 text-center text-2xl font-black text-black">
-            {t("login")}
+            {t("register")}
           </span>
 
           <span className="text-center text-xs font-black leading-5 text-gray-500">
@@ -59,38 +59,32 @@ export const LoginForm: React.FC = () => {
             inputProps={{
               type: "password",
               placeholder: t("password"),
+
               ...register("password"),
             }}
             errorMessage={errors.password?.message}
           />
+
           <div className="my-2 flex flex-col gap-y-3">
             <div className="flex w-full">
               <Button
-                className="w-full justify-center rounded bg-black"
+                className="w-full justify-center rounded bg-black !px-3 !py-2 !font-bold"
                 type="submit"
-                text={t("login")}
+                text={t("register")}
               />
             </div>
-            <div className="flex  items-center justify-between">
-              <Link
-                className="text-center text-gray-500 underline my-2 text-xs"
-                href={"/register"}
-              >
-                {t("dontHaveAccount")}
-              </Link>
-              <Link
-                className="text-center text-gray-500 underline my-2 text-xs"
-                href={"/register"}
-              >
-                {t("forgetPassword")}
-              </Link>
-            </div>
+            <Link
+              className="text-center text-gray-500 underline"
+              href={"/login"}
+            >
+              {t("alreadyHaveAccount")}
+            </Link>
             <div className="flex w-full">
               <Button
                 className="w-full justify-center rounded bg-white border !text-black !text-base !px-3 !py-2 !font-bold"
                 type="submit"
                 startIcon={<FacebookIcon className="mx-3" />}
-                text={t("loginwithfacebook")}
+                text={t("registerwithfacebook")}
               />
             </div>
             <div className="flex w-full">
@@ -98,11 +92,10 @@ export const LoginForm: React.FC = () => {
                 className="w-full justify-center rounded bg-white border !text-black !text-base !px-3 !py-2 !font-bold"
                 type="submit"
                 startIcon={<GoogleIcon className="mx-3" />}
-                text={t("loginwithGoogle")}
+                text={t("registerwithGoogle")}
               />
             </div>
           </div>
-
           <div className="mb-1 mt-3 flex w-full items-center justify-evenly text-xs font-bold text-gray-500">
             <span>{t("privacy_settings")}</span>
             <span>|</span>

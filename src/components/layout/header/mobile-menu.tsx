@@ -43,9 +43,9 @@ export const MobileMenuDrawer = forwardRef<DrawerRef, Props>(
     const toggleProfileMenu = () => {
       setIsProfileMenuOpen(!isProfileMenuOpen);
     };
-    if (isLoadingUser) {
-      return <Spinner />;
-    }
+    // if (isLoadingUser) {
+    //   return <Spinner />;
+    // }
 
     return (
       <Drawer ref={ref} width={width} placement={placement}>
@@ -177,7 +177,7 @@ export const MobileMenuDrawer = forwardRef<DrawerRef, Props>(
                   تسجيل الدخول
                 </span>
               </button>
-              <span className=" mr-3 cursor-pointer  ">access</span>
+              <span className=" mr-3 cursor-pointer  ">{isLoadingUser?<Spinner/>:<></>}</span>
             </div>
           )}
           <div className=" mb-44  ms-8 bg-secondary2 text-white">

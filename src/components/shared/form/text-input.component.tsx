@@ -46,7 +46,7 @@ export const TextInput: FC<Props> = ({
       )}
       <div className="relative flex h-full items-center">
         <div
-          className="absolute left-3 top-1/2 -translate-y-1/2 transform cursor-pointer"
+          className="absolute right-3 top-1/2 -translate-y-1/2 transform cursor-pointer"
           onClick={
             inputProps.type === "password"
               ? togglePasswordVisibility
@@ -71,7 +71,7 @@ export const TextInput: FC<Props> = ({
           className={clsx(
             "block min-h-[53px]  w-full bg-white p-2.5 text-sm font-black text-secondary3",
             `border ${
-              errorMessage ? "border-error" : "border-blue-800"
+              errorMessage ? "border-error" : "border-black"
             } rounded-md `,
             "placeholder:text-sm placeholder:font-normal ",
             `${className ? className : "rounded-lg  px-4"}`

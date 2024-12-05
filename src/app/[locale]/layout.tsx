@@ -3,8 +3,6 @@ import "@/style/globals.css";
 import React from "react";
 import { Providers } from "../providers";
 import { Metadata } from "next";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer/footer-component";
 
 interface Props {
   children: React.ReactNode;
@@ -32,23 +30,8 @@ export default function RootLayout({ children, params: { locale } }: Props) {
       <body
       // className={clsx(locale === 'ar' ? arFont.className : enFont.className)}
       >
-        {/* <HolyLoader
-          color={colors.primary}
-          speed={250}
-          easing='linear'
-          showSpinner={false}
-        /> */}
-
         <div className="flex h-screen  w-screen   flex-col  overflow-x-hidden ">
-          <Providers>
-            <Header />
-
-            <div className="flex w-full flex-1 flex-col   justify-center bg-beige">
-              {children}
-            </div>
-
-            <Footer />
-          </Providers>
+          <Providers>{children}</Providers>
         </div>
       </body>
     </html>
