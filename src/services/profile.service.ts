@@ -26,7 +26,7 @@ export const useLoginMutation = () => {
   return useMutation<IUserResponse, null, IUserRequest>({
     mutationFn: (data) => {
       
-      return api.post("/admin/login", data, {
+      return api.post("/", data, {
         baseURL: config.NEXT_PUBLIC_BASE_URL,
       });
     },

@@ -1,18 +1,21 @@
-import React, { RefObject, forwardRef, useState } from "react";
-import clsx from "clsx";
-import { Drawer, DrawerRef } from "@/components/shared/drawer.component";
-import { Line } from "@/components/shared/line.component";
-import Link from "next/link";
-import { useTranslation } from "@/translations/clients";
-import { useUser } from "@/hooks/user.hooks";
-import { Spinner } from "@/components/shared/spinner.component";
-import { useAuth } from "@/hooks/auth.hook";
-import { ModalRef } from "@/components/shared/modal.component";
+import React, { RefObject, forwardRef, useState } from 'react';
+import clsx from 'clsx';
+import { Drawer, DrawerRef } from '@/components/shared/drawer.component';
+import { Line } from '@/components/shared/line.component';
+import Link from 'next/link';
+import { useTranslation } from '@/translations/clients';
+import { useUser } from '@/hooks/user.hooks';
+import { LuEarth } from 'react-icons/lu';
+import { IoIosSettings } from 'react-icons/io';
+import { useAuth } from '@/hooks/auth.hook';
+import { ModalRef } from '@/components/shared/modal.component';
+import { signOut, useSession } from 'next-auth/react';
+import { FaUser } from 'react-icons/fa';
 
 interface Props {
   title?: string;
   children: React.ReactNode;
-  placement?: "top" | "right" | "bottom" | "left";
+  placement?: 'top' | 'right' | 'bottom' | 'left';
   width?: number;
   Footer?: React.ReactNode;
   submitButtonOptions?: {
@@ -28,169 +31,165 @@ export const MobileMenuDrawer = forwardRef<DrawerRef, Props>(
     {
       modalRef,
       children,
-      placement = "left",
+      placement = 'left',
       width = 300,
       Footer,
       TopLeftComponent,
     },
-    ref
+    ref,
   ) => {
     const { logout } = useAuth();
-
-    const { user, isLoadingUser } = useUser();
-    const {  lang } = useTranslation();
+    const session = useSession();
+    const { user } = useUser();
+    const { lang, t, changeLanguage } = useTranslation();
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
     const toggleProfileMenu = () => {
       setIsProfileMenuOpen(!isProfileMenuOpen);
     };
-    // if (isLoadingUser) {
-    //   return <Spinner />;
-    // }
 
     return (
       <Drawer ref={ref} width={width} placement={placement}>
-        <div className=" h-screen w-full   bg-secondary2 ">
-          <div className="flex justify-between justify-items-start py-4 pe-3 ps-4 ">
-            <Link href={`/${lang}/`}>lan</Link>
-            <div className="flex flex-col gap-4">
-              {TopLeftComponent ? TopLeftComponent : "X"}
+        <div className=' h-screen w-full   bg-beige '>
+          <div className='flex justify-between justify-items-start py-4 pe-3 ps-4 text-black'>
+            <Link href={`/${lang}/`}>{lang}</Link>
+            <div className='flex cursor-pointer flex-col gap-4'>
+              <div
+                className='cursor-pointer'
+                onClick={() => modalRef.current?.close()}
+              >
+                {TopLeftComponent ? TopLeftComponent : 'X'}
+              </div>
               <div>
-                <div>
-                  <div className="flex  cursor-pointer items-center gap-2 rounded-none ">
-                    earth
-                  </div>
+                <div
+                  className='flex  cursor-pointer items-center gap-2 rounded-none '
+                  onClick={() => changeLanguage(lang == 'en' ? 'ar' : 'en')}
+                >
+                  <LuEarth />
                 </div>
               </div>
             </div>
           </div>
-          
+
           <Line />
 
-          {user ? (
-            <div className="  flex flex-1 flex-col overflow-y-scroll bg-secondary2 scrollbar-hide ">
-              <div className="ms-4 flex items-center">
+          {user || session ? (
+            <div className='flex flex-1 flex-col bg-beige '>
+              <div className='ms-4 flex items-center'>
                 <div>
                   <div
-                    className="mt-6  flex cursor-pointer items-center gap-2"
+                    className='  flex cursor-pointer items-center gap-2'
                     onClick={toggleProfileMenu}
                   >
-                    <div className="flex items-center">
-                      <span className="ml-4 cursor-pointer">
-                        {/* <Bell stroke={'white'} /> */}
-                      </span>
-                      user
+                    <div className='flex items-center'>
                       <p
                         className={clsx(
-                          "ml-4 mr-4 cursor-pointer text-xs text-white"
+                          'ml-4 mr-4 cursor-pointer text-xs text-black',
                         )}
                       >
-                        {user?.username}
+                        {user?.username || session?.data?.user?.name}
                       </p>
                     </div>
-                    {/* <ChevronDownIcon className={clsx('fill-white')} /> */}
                   </div>
 
                   {isProfileMenuOpen && (
-                    <div className="mt-4 w-56 rounded bg-[#F4F6F9] p-4 shadow-none">
+                    <div className='mt-4 w-56 rounded bg-[#F4F6F9] p-4 text-gray-500 shadow-none'>
                       <Link
-                        href="/account/profile"
+                        href='/account/profile'
                         onClick={() => {
                           (
                             ref as React.MutableRefObject<DrawerRef> | null
                           )?.current?.close();
                         }}
                       >
-                        <div className="rounded-none">
-                          <div className="relative flex flex-col items-center ">
+                        <div className='rounded-none'>
+                          <div className='relative flex flex-col items-start '>
                             image
-                            <p className={"mt-4 text-sm font-bold "}>
-                              {user?.username}
+                            <p className={'mt-4 text-sm font-bold '}>
+                              {user?.username || session?.data?.user?.name}
                             </p>
-                            <p>{user?.email}</p>
+                            <p>{user?.email || session?.data?.user?.email}</p>
                           </div>
                         </div>
                       </Link>
 
                       <div
-                        className="rounded-none"
+                        className='rounded-none'
                         onClick={() => {
                           (
                             ref as React.MutableRefObject<DrawerRef> | null
                           )?.current?.close();
                         }}
                       >
-                        <div className="my-2 flex flex-row rounded-none  text-sm  text-[#7B8494]">
-                          setting
+                        <div className='my-2 flex flex-row items-center  gap-x-3  rounded-none text-sm text-[#7B8494]'>
+                          <IoIosSettings />
+                          <p className={'text-sm font-bold '}>{t('setting')}</p>
                         </div>
                       </div>
                       <Link
-                        href="/account/profile"
-                        className=" text-xs font-bold text-[#7B8494]"
+                        href='/account/profile'
+                        className=' text-xs font-bold text-[#7B8494]'
                         onClick={() => {
                           (
                             ref as React.MutableRefObject<DrawerRef> | null
                           )?.current?.close();
                         }}
                       >
-                        <div className="rounded-none">
-                          <div className="my-2 flex flex-row rounded-none  text-sm  text-[#7B8494]">
-                            user setting
-                          </div>
+                        <div className='flex items-center gap-x-3 rounded-none  text-sm  text-[#7B8494]'>
+                          <FaUser />
+                          <p className={' text-sm font-bold '}>
+                            {t('profile')}
+                          </p>
                         </div>
                       </Link>
 
                       <Link
-                        href="/account/profile"
-                        className="font-bold"
+                        href='/account/profile'
+                        className='font-bold'
                         onClick={() => {
                           (
                             ref as React.MutableRefObject<DrawerRef> | null
                           )?.current?.close();
                         }}
                       >
-                        <div className="my-2 flex flex-row rounded-none  text-sm  text-[#7B8494]"></div>
+                        <div className='my-2 flex flex-row rounded-none  text-sm  text-[#7B8494]'></div>
                       </Link>
 
                       <Link
-                        href="/"
-                        onClick={() => logout()}
-                        className="font-bold"
+                        href='/'
+                        onClick={() => {logout();signOut()}}
+                        className='font-bold'
                       >
-                        <div className="mt-[15px] flex flex-row rounded bg-[#7B8494] p-2 text-white">
+                        <div className='mt-[15px] flex flex-row rounded bg-[#7B8494] p-2 text-black'>
                           logout
                         </div>
                       </Link>
                     </div>
                   )}
                 </div>
-              </div>{" "}
+              </div>{' '}
             </div>
           ) : (
-            <div className="mt-6 flex items-center">
+            <div className='mt-6 flex items-center'>
               <button
                 onClick={() => {
                   modalRef.current?.open();
                 }}
-                className="relative ms-6 flex  h-10 w-32 flex-row rounded bg-primary px-4 py-1 text-sm"
+                className='bg-primary relative ms-6  flex h-10 w-32 flex-row rounded px-4 py-1 text-sm'
               >
-                <span className=" absolute  top-2 mr-1 flex text-white">
-                  تسجيل الدخول
+                <span className=' absolute  top-2 mr-1 flex text-black'>
+                  {t('login')}
                 </span>
               </button>
-              <span className=" mr-3 cursor-pointer  ">{isLoadingUser?<Spinner/>:<></>}</span>
             </div>
           )}
-          <div className=" mb-44  ms-8 bg-secondary2 text-white">
-            {children}
-          </div>
+          <div className=' mb-4  ms-8 bg-beige text-black'>{children}</div>
 
           <Line />
 
-          <div className=":p-6 mx-8  bg-secondary2 py-3">
-            {Footer && Footer}
-          </div>
+          <div className='  bg-black p-6 '>{Footer && Footer}</div>
         </div>
       </Drawer>
     );
-  }
+  },
 );
+

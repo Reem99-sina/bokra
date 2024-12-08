@@ -2,6 +2,8 @@ import { createI18nMiddleware } from "next-international/middleware";
 import { NextRequest } from "next/server";
 import { config as appConfig } from "@/config";
 
+export {auth as middlewareAuth} from "@/auth"
+
 
 
 const I18nMiddleware = createI18nMiddleware({

@@ -32,8 +32,8 @@ export const FooterCopyright = () => {
   ];
   
   return (
-    <footer className=" bg-black  shadow">
-      <div className="container mx-auto flex flex-col items-center justify-center ">
+    <footer className=" bg-black  shadow container mx-auto">
+      <div className=" flex flex-col items-center justify-center ">
         <div className="text-start text-white flex  items-center gap-4  w-full">
           {/* <img src="/valoro.png" alt="Logo" className="w-12 h-12 mr-2" /> */}
 

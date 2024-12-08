@@ -8,11 +8,13 @@ import { useTranslation } from "@/translations/clients";
 import { Button } from "../shared/button.component";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { signIn } from 'next-auth/react'
 import { FacebookIcon, GoogleIcon } from "@/icon";
+import { useLoginMutation } from "@/services/profile.service";
 
 export const LoginForm: React.FC = () => {
   const router = useRouter();
-
+  const {mutateAsync}=useLoginMutation()
   const {
     register,
     handleSubmit,
@@ -21,7 +23,10 @@ export const LoginForm: React.FC = () => {
 
   const { t } = useTranslation();
 
-  const onSubmit: SubmitHandler<IUserRequest> = async () => {
+  const onSubmit: SubmitHandler<IUserRequest> = async (data) => {
+     await mutateAsync(
+      data 
+    );
     router.replace("/");
     toast.success("login successfully");
   };
@@ -29,10 +34,10 @@ export const LoginForm: React.FC = () => {
   return (
     <div className={`mt-2 flex h-screen w-full items-center justify-center `}>
       <div className="rounded-md border border-[#DCDFE4]">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
+        <div
+          // onSubmit={handleSubmit(onSubmit)}
           className="flex min-w-[568px] flex-col rounded-xl bg-white px-14 pb-6 pt-10"
-          autoComplete="off"
+          // autoComplete="off"
         >
           <span className="mb-4 text-center text-2xl font-black text-black">
             {t("login")}
@@ -69,6 +74,7 @@ export const LoginForm: React.FC = () => {
                 className="w-full justify-center rounded bg-black"
                 type="submit"
                 text={t("login")}
+                onClick={handleSubmit(onSubmit)}
               />
             </div>
             <div className="flex  items-center justify-between">
@@ -91,6 +97,7 @@ export const LoginForm: React.FC = () => {
                 type="submit"
                 startIcon={<FacebookIcon className="mx-3" />}
                 text={t("loginwithfacebook")}
+                onClick={()=>signIn("facebook")}
               />
             </div>
             <div className="flex w-full">
@@ -99,6 +106,7 @@ export const LoginForm: React.FC = () => {
                 type="submit"
                 startIcon={<GoogleIcon className="mx-3" />}
                 text={t("loginwithGoogle")}
+                onClick={()=>signIn("google")}
               />
             </div>
           </div>
@@ -108,7 +116,7 @@ export const LoginForm: React.FC = () => {
             <span>|</span>
             <span>{t("terms_conditions")}</span>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

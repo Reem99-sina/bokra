@@ -16,4 +16,7 @@ export default {
   forgetPassword: "Forget password",
   loginwithfacebook: "Continue with facebook",
   loginwithGoogle: "Continue with google",
+  logout: "logout",
+  profile: "profile",
+  setting: "setting",
 } as const;

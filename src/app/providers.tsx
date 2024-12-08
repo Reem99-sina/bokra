@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "../contexts/auth.context";
 import dynamic from "next/dynamic";
+import { SessionProvider } from "next-auth/react";
 
 const I18nProviderClient = dynamic(
   () => import("../translations/clients").then((mod) => mod.I18nProviderClient),
@@ -32,6 +33,7 @@ export const Providers = ({ children }: Props) => {
       locale="en"
     >
       <Toaster position="bottom-center" />
+      <SessionProvider>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <FetchProvider>
@@ -41,6 +43,7 @@ export const Providers = ({ children }: Props) => {
           </FetchProvider>
         </AuthProvider>
       </QueryClientProvider>
+      </SessionProvider>
     </I18nProviderClient>
   );
 };

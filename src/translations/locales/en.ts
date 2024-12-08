@@ -1,5 +1,6 @@
 export default {
   login: "Login",
+  logout: "Logout",
   use_email_or_phone: "You can use your email or mobile number",
   access_system: "to access the system",
   id_or_email: "Phone number / Email",
@@ -16,4 +17,6 @@ export default {
   forgetPassword: "Forget password",
   loginwithfacebook: "Continue with facebook",
   loginwithGoogle: "Continue with google",
+  profile: "profile",
+  setting: "setting",
 } as const;
