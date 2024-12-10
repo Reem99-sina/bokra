@@ -86,7 +86,7 @@ export const LoginForm: React.FC = () => {
               </Link>
               <Link
                 className="text-center text-gray-500 underline my-2 text-xs"
-                href={"/register"}
+                href={"/forget-password"}
               >
                 {t("forgetPassword")}
               </Link>

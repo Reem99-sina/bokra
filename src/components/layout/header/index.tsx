@@ -1,125 +1,170 @@
-'use client';
+"use client";
 
-import { useTranslation } from '@/translations/clients';
-import Link from 'next/link';
-import { IoMenu } from 'react-icons/io5';
-import clsx from 'clsx';
+import { useTranslation } from "@/translations/clients";
+import Link from "next/link";
+import clsx from "clsx";
 import {
   Menu,
   MenuHandler,
   MenuItem,
   MenuList,
-} from '@material-tailwind/react';
-import { DrawerRef } from '@/components/shared/drawer.component';
-import { Button } from '@/components/shared/button.component';
-import { MobileMenuDrawer } from './mobile-menu';
-import Image from 'next/image';
-import { useRef, useState } from 'react';
-import { signOut, useSession } from 'next-auth/react';
-import { ProfileUser } from '@/icon';
-import { useRouter } from 'next/navigation';
+} from "@material-tailwind/react";
+import { DrawerRef } from "@/components/shared/drawer.component";
+import { Button } from "@/components/shared/button.component";
+import { MobileMenuDrawer } from "./mobile-menu";
+import Image from "next/image";
+import { ReactNode, useMemo, useRef, useState } from "react";
+import { signOut, useSession } from "next-auth/react";
+import { ProfileUser } from "@/icon";
+import { useRouter } from "next/navigation";
+import { useUser } from "@/hooks/user.hooks";
+import { useAuth } from "@/hooks/auth.hook";
+import { FaUser } from "react-icons/fa";
+import { IoClose, IoMenu } from "react-icons/io5";
+import { FaMoneyBillTransfer } from "react-icons/fa6";
+import { GiTakeMyMoney } from "react-icons/gi";
+import { CiLogout } from "react-icons/ci";
+import { FaChevronDown } from "react-icons/fa";
+import { FaChevronUp } from "react-icons/fa";
 
 interface linksProps {
   id: number;
   text: string;
   to: string;
+  onClick?: () => void;
+  icon?: ReactNode;
 }
 interface linksdropdownProps {
   id: number;
-  text: string;
-  to: string;
+  text?: string;
+  to?: string;
   dropdownItems?: linksProps[];
 }
-const links: linksdropdownProps[] = [
-  {
-    id: 1,
-    text: 'ABOUT US',
-    to: 'test/1',
-  },
-  {
-    id: 2,
-    text: 'BUSINESS',
-    to: 'test/1',
-  },
-  {
-    id: 3,
-    text: 'CAREERS',
-    to: 'test/1',
-  },
-  {
-    id: 4,
-    text: 'BLOG',
-    to: 'test/1',
-  },
-];
 
 export const Header = () => {
+  const { logout } = useAuth();
   const { lang, t } = useTranslation();
   const router = useRouter();
+  const user = useUser();
   // const pathname = usePathname();
   // const homeVersion = useMemo(() => pathname.endsWith(`/${lang}`), [pathname]);
   const drawerRef = useRef<DrawerRef>(null);
   const session = useSession();
   const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
+  const links: linksdropdownProps[] = useMemo(() => {
+    return [
+      {
+        id: 1,
+        text: "ABOUT US",
+        to: "test/1",
+      },
+      {
+        id: 2,
+        text: "BUSINESS",
+        to: "test/1",
+      },
+      {
+        id: 3,
+        text: "CAREERS",
+        to: "test/1",
+      },
+      {
+        id: 4,
+        text: "BLOG",
+        to: "test/1",
+      },
+      {
+        id: 5,
+        text: session?.data?.user?.name || user?.user?.username,
+        icon: <ProfileUser />,
+        dropdownItems: [
+          {
+            id: 1,
+            text: t("profile"),
+            icon: <FaUser />,
+            to: "/account",
+          },
+          {
+            id: 2,
+            text: t("personalLoan"),
+            icon: <GiTakeMyMoney />,
+            to: "/account/personal-loan",
+          },
+          {
+            id: 3,
+            text: t("financialTransactions"),
+            icon: <FaMoneyBillTransfer />,
+            to: "/financial-transactions",
+          },
+          {
+            id: 4,
+            text: t("logout"),
+            icon: <CiLogout />,
+            to: "/login",
+            onClick: () => {
+              logout();
+              signOut();
+            },
+          },
+        ],
+      },
+    ];
+  }, [session, user]);
 
   return (
     <>
       <header>
         <div
           className={clsx(
-            ' flex  flex-1  justify-center overflow-x-hidden   bg-mainColor  py-4 sm:w-screen',
+            " flex  flex-1  justify-center overflow-x-hidden   bg-mainColor  py-4 sm:w-screen"
           )}
         >
           <div
             className={clsx(
-              ' flex   w-screen flex-row items-center justify-between self-center overflow-x-hidden px-3 text-sm font-bold lg:container ',
+              " flex   w-screen flex-row items-center justify-between self-center overflow-x-hidden px-3 text-sm font-bold lg:container "
             )}
           >
-            <div className='flex w-[200px]  items-center justify-between gap-28 '>
-              <button
-                className='block py-2 sm:hidden'
-                onClick={() => {
-                  drawerRef.current?.open();
-                }}
-              ></button>
+            <div className="flex w-[200px]  items-center justify-start gap-28 ">
               <Link href={`/${lang}/`}>
                 <Image
-                  src={'/bokralogo.png'}
+                  src={"/bokralogo.png"}
                   width={100}
                   height={90}
-                  alt='logo'
+                  alt="logo"
                 />
               </Link>
             </div>
-            <div className='ms-24 hidden  flex-row  gap-x-8 sm:flex'>
+            <div className="ms-24 hidden  flex-row  gap-x-8 sm:flex">
               {links.map((link) => (
                 <div
                   key={link.id}
-                  className='flex flex-row items-center font-sans '
+                  className="flex flex-row items-center font-sans "
                 >
                   {link?.dropdownItems ? (
                     <Menu>
                       <MenuHandler>
-                        <div className='flex  cursor-pointer items-center gap-2 '>
-                          <div
-                            className={clsx(
-                              'hover:after:bg-primary relative text-sm font-bold text-[#7B8494] hover:after:absolute hover:after:bottom-[-3px] hover:after:block hover:after:h-px hover:after:w-full',
-                            )}
-                          >
-                            <div className='flex items-center justify-around'>
-                              <p>{link.text}</p>
-                            </div>
-                          </div>
+                        <div className="flex items-center gap-x-3 text-white cursor-pointer">
+                          <div>{link?.text && <ProfileUser />}</div>
+                          <p>{link?.text}</p>
                         </div>
                       </MenuHandler>
-                      <MenuList className='p-0'>
-                        {link?.dropdownItems?.map(item => (
+                      <MenuList className="p-0 focus:outline-none">
+                        {link?.dropdownItems?.map((item) => (
                           <Link
                             href={item.to}
                             key={item.id}
-                            className='text-xs font-bold text-[#7B8494]'
+                            onClick={item?.onClick}
+                            className="text-xs font-bold text-[#7B8494] focus-visible:outline-none"
                           >
-                            <MenuItem className='p-4'>{item.text}</MenuItem>
+                            <MenuItem className="p-4 ">
+                              <div className="flex items-center gap-x-4">
+                                {item?.icon}
+                                <p className="text-black hover:underline">
+                                  {" "}
+                                  {item.text}
+                                </p>
+                              </div>
+                            </MenuItem>
                           </Link>
                         ))}
                       </MenuList>
@@ -128,7 +173,7 @@ export const Header = () => {
                     <Link
                       href={link.to as string}
                       className={clsx(
-                        'relative text-md font-bold text-white  ',
+                        "relative text-md font-bold text-white  "
                       )}
                     >
                       {link.text}
@@ -137,24 +182,19 @@ export const Header = () => {
                 </div>
               ))}
             </div>
-           
-            {session?.data?.user && (
-              <div className='flex items-center gap-x-3 text-white'>
-                <div>
-                  <ProfileUser />
-                </div>
-                <p>{session?.data?.user?.name}</p>
-                <Button text={t('logout')} onClick={() => signOut()}className='!w-auto' />
-              </div>
-            )}
+
             {!session?.data?.user && (
-              <Button text={t('login')} onClick={() => router.push('/login')}className='!w-auto' />
+              <Button
+                text={t("login")}
+                onClick={() => router.push("/login")}
+                className="!w-auto"
+              />
             )}
-             <div
-              className='flex cursor-pointer sm:hidden'
+            <div
+              className="flex cursor-pointer sm:hidden"
               onClick={() => drawerRef.current?.open()}
             >
-              <IoMenu className='' />
+              <IoMenu className="" />
             </div>
           </div>
 
@@ -167,44 +207,55 @@ export const Header = () => {
       <MobileMenuDrawer
         modalRef={drawerRef}
         width={320}
-        placement='right'
+        placement="right"
         ref={drawerRef}
         Footer={
-          <Link href={`/${lang}/`} className='bg-black'>
-            <Image src={'/bokralogo.png'} width={100} height={90} alt='logo' />
+          <div className="bg-black p-6">
+          <Link href={`/${lang}/`}>
+            <Image src={"/bokralogo.png"} width={100} height={90} alt="logo" />
           </Link>
+          </div>
         }
+        TopLeftComponent={<IoClose />}
       >
-        <div className='ms-8 bg-beige text-black'>
-          <nav className='mt-4'>
-            <ul className='list-disc'>
-              {links.map(link => (
+        <div className="ms-8 bg-beige text-black">
+          <nav className="mt-4">
+            <ul className="list-none">
+              {links.map((link) => (
                 <div key={link?.id}>
                   <li key={link.id}>
                     {link?.dropdownItems && link?.dropdownItems?.length > 0 ? (
                       <div>
                         <div
-                          className='mb-2 flex cursor-pointer items-center gap-4'
+                          className="mb-2 flex cursor-pointer items-center gap-4"
                           onClick={() =>
                             setOpenDropdownId(
-                              link.id === openDropdownId ? null : link.id,
+                              link.id === openDropdownId ? null : link.id
                             )
                           }
                         >
                           <p>{link.text}</p>
-                          {openDropdownId === link.id
-                            ? 'down icon'
-                            : 'upper icon'}
+                          {openDropdownId === link.id ? (
+                            <FaChevronDown />
+                          ) : (
+                            <FaChevronUp />
+                          )}
                         </div>
                         {openDropdownId === link.id && (
-                          <ul className='list-disc'>
-                            {link?.dropdownItems?.map(item => (
-                              <li key={item.id}>
+                          <ul className="list-none">
+                            {link?.dropdownItems?.map((item) => (
+                              <li
+                                key={item.id}
+                                className="flex flex-col gap-y-4"
+                              >
                                 <Link
                                   onClick={() => drawerRef.current?.close()}
                                   href={item.to}
                                 >
-                                  {item.text}
+                                  <div className="flex items-center gap-x-4">
+                                    {item?.icon}
+                                    <p className="text-black"> {item.text}</p>
+                                  </div>
                                 </Link>
                               </li>
                             ))}
@@ -214,13 +265,13 @@ export const Header = () => {
                     ) : (
                       <Link
                         onClick={() => drawerRef.current?.close()}
-                        href={link.to}
+                        href={link?.to ?? ""}
                       >
                         {link.text}
                       </Link>
                     )}
                   </li>
-                  <div className='bg-divider my-3 ms-[-17px] flex h-[1px] flex-1' />
+                  <div className="bg-divider my-3 ms-[-17px] flex h-[1px] flex-1" />
                 </div>
               ))}
             </ul>

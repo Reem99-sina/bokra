@@ -9,6 +9,11 @@ export interface IUser {
   phone: string | undefined;
   image: string | undefined;
   val_license: string;
+  street: string;
+  district: string;
+  city: string;
+  nationality: string;
+  birthDate: Date | string;
 }
 
 export interface IUserResponse {
@@ -22,4 +27,19 @@ export interface IUserResponse {
 export interface IUserRequest {
   email: string;
   password: string;
+}
+export interface IUserForgetRequest {
+  email: string;
+}
+export interface UserInput {
+  name: string;
+  street: string;
+  district: string;
+  city: string;
+  email: string;
+  nationality: string;
+  phone: string;
+  birthDate: Date | string;
+  agreeTerms1: boolean;
+  agreeTerms2: boolean;
 }
