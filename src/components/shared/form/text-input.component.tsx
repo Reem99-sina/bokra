@@ -15,6 +15,7 @@ interface Props {
   leftIcon?: React.ReactNode;
   mandatoryIcon?: boolean;
   className?: string;
+  disabled?: boolean;
 }
 
 export const TextInput: FC<Props> = ({
@@ -23,6 +24,7 @@ export const TextInput: FC<Props> = ({
   errorMessage,
   mandatoryIcon,
   leftIcon,
+  disabled,
   className,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,11 +34,11 @@ export const TextInput: FC<Props> = ({
   };
 
   return (
-    <div className="w-full">
+    <div className="">
       {label && (
         <label
           className={clsx(
-            "dark:text-text-dark mb-2  flex items-center gap-x-2 text-xs font-bold text-secondary2",
+            "dark:text-text-dark mb-2  flex items-center gap-x-2 text-sm font-bold text-black capitalize",
             errorMessage && "dark:text-error-dark text-error"
           )}
         >
@@ -53,9 +55,8 @@ export const TextInput: FC<Props> = ({
               : undefined
           }
         >
-          {inputProps.type === "password" && (
-            showPassword ? <HideEye /> : <ShowEye />
-          )}
+          {inputProps.type === "password" &&
+            (showPassword ? <HideEye /> : <ShowEye />)}
           {leftIcon ? leftIcon : null}
         </div>
         <input
@@ -63,15 +64,18 @@ export const TextInput: FC<Props> = ({
           type={
             !showPassword && inputProps.type === "password"
               ? "password"
+              : inputProps.type
+              ? inputProps.type
               : "text"
           }
           style={{
             fontFamily: "Verdana",
           }}
           className={clsx(
-            "block min-h-[53px]  w-full bg-white p-2.5 text-sm font-black text-secondary3",
+            disabled ? "bg-gray-300" : "bg-white",
+            "block min-h-[53px]  w-full  p-2.5 text-sm font-black text-secondary3",
             `border ${
-              errorMessage ? "border-error" : "border-black"
+              errorMessage ? "border-error" : "border-gray-300"
             } rounded-md `,
             "placeholder:text-sm placeholder:font-normal ",
             `${className ? className : "rounded-lg  px-4"}`

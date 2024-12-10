@@ -4,6 +4,7 @@ import clsx from "clsx";
 import ReactPaginate from "react-paginate";
 import { Arrow } from "@/icon";
 import { memo } from "react";
+import { useTranslation } from "@/translations/clients";
 
 const itemContainerClassName = clsx(
   "mx-1 flex h-9 w-9 items-center justify-center",
@@ -24,19 +25,22 @@ interface Props {
 
 const Pagination: React.FC<Props> = memo(
   ({ onPageChange, pageCount, initialPage = 1 }) => {
+    const {t}=useTranslation()
+    
     return (
       <ReactPaginate
         initialPage={initialPage - 1}
         nextLabel={
           <div className="flex flex-row items-center justify-center gap-1">
-            <p>التالي</p>
-            <Arrow rotate={360} className="rotate-180" />
+            <p>{t("Next")}</p>
+            <Arrow />
           </div>
         }
         previousLabel={
           <div className="flex flex-row items-center justify-center gap-1">
-            <Arrow />
-            <p>السابق</p>
+           
+            <Arrow rotate={360} className="rotate-180" />
+            <p>{t("Prevs")}</p>
           </div>
         }
         onPageChange={(selectedItem) => onPageChange(selectedItem.selected + 1)}
@@ -48,7 +52,7 @@ const Pagination: React.FC<Props> = memo(
         breakClassName="mb-2 text-pastel2 mx-1"
         pageClassName={clsx(
           itemContainerClassName,
-          "border-[#DCDFE4] hover:bg-[#153E7E] hover:bg-opacity-30"
+          "border-[#DCDFE4] hover:bg-gray-300 hover:bg-opacity-30"
         )}
         pageLinkClassName={itemClassName}
         nextClassName={clsx(
@@ -61,7 +65,7 @@ const Pagination: React.FC<Props> = memo(
           "bg-[#F4F6F9] w-[80px] h-[30px] border-0 "
         )}
         previousLinkClassName={clsx(itemClassName, "text-bg")}
-        activeClassName="bg-[#153E7E]  border-0"
+        activeClassName="bg-black  border-0"
         activeLinkClassName="text-white"
         disabledLinkClassName={"cursor-not-allowed"}
         disabledClassName="opacity-30 "
