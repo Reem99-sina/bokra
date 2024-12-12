@@ -94,7 +94,7 @@ export const Header = () => {
             id: 3,
             text: t("financialTransactions"),
             icon: <FaMoneyBillTransfer />,
-            to: "/financial-transactions",
+            to: "/account/financial-transaction",
           },
           {
             id: 4,

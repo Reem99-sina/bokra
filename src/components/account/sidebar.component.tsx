@@ -46,7 +46,7 @@ const LinkItemComponent = ({
       href={`/account/${item.href}`}
       className={clsx(
         "mb-2 flex w-[200px] rounded-es-lg rounded-ss-lg py-4 text-sm",
-        isActive
+        isActive||(item.href.replace("/", "")==""&&pathname.split("/").pop()=="account")
           ? "border-l-8 bg-transparent px-4 font-black text-white"
           : "cursor-pointer bg-transparent font-normal text-white hover:text-[#7B8494]"
       )}

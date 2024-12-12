@@ -66,7 +66,7 @@ const LinkItemComponent = ({
 }) => {
   const pathname = usePathname();
 
-  const isActive = pathname.includes(item.href);
+  const isActive = pathname.split("/").pop() == item.href.replace("/", "");
 
   const SvgIcon = item?.icon;
 
@@ -75,7 +75,7 @@ const LinkItemComponent = ({
       href={`/account/${item.href}`}
       className={clsx(
         "mx-2 flex w-fit  rounded-ss-lg py-4 text-sm",
-        isActive
+        isActive||(item.href.replace("/", "")==""&&pathname.split("/").pop()=="account")
           ? "border-b-4 border-[#707070] px-4 font-black text-white"
           : "cursor-pointer bg-transparent font-normal text-[#7B8080] hover:text-[#7B8494]"
       )}

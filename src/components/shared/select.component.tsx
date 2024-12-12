@@ -36,7 +36,7 @@ export const Select: React.FC<Props> = ({
     <>
       {label ? (
         <div className='flex w-full flex-row items-center justify-between'>
-          <p className='text-xs font-bold '>{label}</p>
+          <p className='text-sm font-bold text-black'>{label}</p>
           {icon ? <span>{icon}</span> : null}
         </div>
       ) : null}
