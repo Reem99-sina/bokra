@@ -19,10 +19,6 @@ export const LinksData = () => {
           title: t("financialTransactions"),
           href: "/financial-transaction",
         },
-        {
-          title: t("logout"),
-          href: "/login",
-        },
       ],
     },
   ];
@@ -139,5 +135,89 @@ export const technologyType = [
   {
     label: "  reatial technology  ",
     value: " reatial technology ",
-  }
+  },
 ];
+export const dataLoansDetail = {
+  companyInformation: {
+    companyName: "Tech Innovations Ltd.",
+    industryPartner: "GlobalTech Solutions",
+    companyType: "Limited Liability",
+    businessRegistrationNumber: "1234567890",
+    dateOfEstablishment: "2015-03-22",
+    industrySector: "EdTech",
+    companyWebsite: "https://www.techinnovations.com",
+    companyLinkedIn: "https://www.linkedin.com/company/tech-innovations-ltd/",
+  },
+  contactInformation: {
+    address: "123 Tech Street, Innovation City",
+    city: "Tech City",
+    governorate: "Tech Governate",
+    contactPerson: "John Doe",
+    phoneNumber: "+1234567890",
+    emailAddress: "contact@techinnovations.com",
+  },
+  legalDocuments: {
+    commercialRegistration:
+      "https://www.techinnovations.com/legal/commercial-registration.pdf",
+    taxCard: "https://www.techinnovations.com/legal/tax-card.pdf",
+    supportingAgreements: [
+      "https://www.techinnovations.com/legal/agreement1.pdf",
+      "https://www.techinnovations.com/legal/agreement2.pdf",
+    ],
+  },
+  financials: {
+    annualRevenue: {
+      previousYear: "5000000",
+      currentYear: "6000000",
+    },
+    netProfitMargin: "15%",
+    totalAssets: "15000000",
+    totalLiabilities: "5000000",
+    revenueProjections: "7000000",
+    cashFlowForecasts: "2500000",
+  },
+  loanDetails: {
+    loanAmountRequested: "2000000",
+    purposeOfLoan: "Expansion into new markets",
+    repaymentTerm: "5 years",
+  },
+  businessPlan: {
+    businessGrowthStrategy: "Expand into emerging markets and invest in R&D.",
+    majorMilestones: [
+      {
+        milestone: "Product launch in new market",
+        date: "2024-06-01",
+      },
+      {
+        milestone: "Achieve 30% market share",
+        date: "2025-12-01",
+      },
+    ],
+  },
+  collateral: {
+    assets: ["Company building", "Patent portfolio"],
+  },
+  managementTeam: {
+    teamMembers: [
+      {
+        name: "Jane Smith",
+        role: "CEO",
+        experience: "10 years in tech industry leadership",
+      },
+      {
+        name: "Michael Johnson",
+        role: "CFO",
+        experience: "8 years managing financials in tech startups",
+      },
+    ],
+  },
+  industryAnalysis: {
+    industryLandscape:
+      "The EdTech industry is growing rapidly with increased adoption of online learning platforms.",
+    competition: "Top competitors include LearnCorp and EduNet.",
+    marketTrends: "Shift towards AI-driven personalized learning experiences.",
+  },
+  additionalInformation: {
+    involvedInLegalCases: "No",
+  },
+};
