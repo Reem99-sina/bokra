@@ -111,4 +111,7 @@ export default {
   question: "Is your company currently involved in any legal cases?",
   competitors: "Competitors",
   marketTrends: "Market Trends",
+  Detail_Loans:"Detail of Loan",
+  Company_images:"Company Image"
+
 } as const;

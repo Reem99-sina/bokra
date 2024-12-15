@@ -3,13 +3,14 @@ import { Select } from "@/components/shared/select.component";
 import { useTranslation } from "@/translations/clients";
 import { addLoanInfo } from "@/types/loan.type";
 import { technologyType } from "@/utils/data.util";
-import {  Textarea } from "@material-tailwind/react";
+import { Textarea } from "@material-tailwind/react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import AddFiles from "./add-files";
 import PhoneInput from "react-phone-input-2";
 import MainTitleComponent from "@/components/shared/main-title.component";
 import { RadioExample } from "@/components/shared/Radio.component";
 import { Button } from "@/components/shared/button.component";
+import BackNavigation from "@/components/shared/back-navigation";
 
 const AddLoan = ({ type }: { type: string }) => {
   const { t } = useTranslation();
@@ -47,7 +48,10 @@ const AddLoan = ({ type }: { type: string }) => {
 
   return (
     <div className="flex flex-col gap-y-2 h-[80vh] overflow-y-auto text-black">
-      <MainTitleComponent title={t("companyInformation")} />
+      <div className="flex gap-x-3 flex-row-reverse">
+        <MainTitleComponent title={t("companyInformation")} />
+        <BackNavigation title="" />
+      </div>
       <div className=" flex flex-wrap gap-x-3 my-2">
         <div className="md:min-w-[300px] min-w-full">
           <TextInput

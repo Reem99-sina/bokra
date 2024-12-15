@@ -29,20 +29,18 @@ const queryClient = new QueryClient({
 
 export const Providers = ({ children }: Props) => {
   return (
-    <I18nProviderClient
-      locale="en"
-    >
+    <I18nProviderClient locale="en">
       <Toaster position="bottom-center" />
       <SessionProvider>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <FetchProvider>
-            <UserProvider>
-              <ThemeProvider>{children}</ThemeProvider>
-            </UserProvider>
-          </FetchProvider>
-        </AuthProvider>
-      </QueryClientProvider>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>
+            <FetchProvider>
+              <UserProvider>
+                <ThemeProvider>{children}</ThemeProvider>
+              </UserProvider>
+            </FetchProvider>
+          </AuthProvider>
+        </QueryClientProvider>
       </SessionProvider>
     </I18nProviderClient>
   );

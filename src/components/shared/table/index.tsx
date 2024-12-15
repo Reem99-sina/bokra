@@ -4,7 +4,7 @@ import { Row } from './row-component';
 import { HeadRow } from './head-row.component';
 
 export interface Column {
-  title: string;
+  title?: string;
   accessor: string;
 }
 
@@ -16,14 +16,14 @@ interface Props<T> {
 
 export const Table = <T,>({ columns, items, href = '#' }: Props<T>) => {
   return (
-    <div className='overflow-auto'>
+    <div className='overflow-auto rounded-md'>
       <table className={clsx(' w-full border-collapse text-xs text-[#58595B]')}>
         <thead>
           <HeadRow columns={columns} />
         </thead>
 
         <tbody>
-          {items.map((item, index) => {
+          {items?.map((item, index) => {
             const isFirstRow = index === 0;
             const isLastRow = index === items.length - 1;
 

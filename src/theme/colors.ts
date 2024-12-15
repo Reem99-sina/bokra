@@ -3,7 +3,8 @@ export const colors = {
     beige:"#e8e8e8",
     grayLight:"#cccccc",
     error:"#EA1818",
-    grayInput:"#d1d5db"
+    grayInput:"#d1d5db",
+    bg3:"#F7F7F7"
   };
   
   

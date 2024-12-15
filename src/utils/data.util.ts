@@ -221,3 +221,47 @@ export const dataLoansDetail = {
     involvedInLegalCases: "No",
   },
 };
+export const financialTransactions = [
+  {
+    transactionID: "TX123456789",
+    transactionAmount: "100000",
+    transactionDate: "2024-11-15",
+    transactionType: "Debit",
+    description: "Payment for project development",
+    paymentMethod: "Bank Transfer",
+    senderReceiverInfo: {
+      name: "John Doe",
+      address: "123 Business Street, City",
+      phone: "+1234567890",
+      email: "johndoe@example.com",
+    },
+  },
+  {
+    transactionID: "TX123456789",
+    transactionAmount: "100000",
+    transactionDate: "2024-11-15",
+    transactionType: "Debit",
+    description: "Payment for project development",
+    paymentMethod: "Bank Transfer",
+    senderReceiverInfo: {
+      name: "John Doe",
+      address: "123 Business Street, City",
+      phone: "+1234567890",
+      email: "johndoe@example.com",
+    },
+  },
+  {
+    transactionID: "TX123456789",
+    transactionAmount: "100000",
+    transactionDate: "2024-11-15",
+    transactionType: "Credit",
+    description: "Payment for project development",
+    paymentMethod: "Bank Transfer",
+    senderReceiverInfo: {
+      name: "John Doe",
+      address: "123 Business Street, City",
+      phone: "+1234567890",
+      email: "johndoe@example.com",
+    },
+  },
+];
