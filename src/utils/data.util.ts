@@ -228,7 +228,7 @@ export const financialTransactions = [
     transactionDate: "2024-11-15",
     transactionType: "Debit",
     description: "Payment for project development",
-    paymentMethod: "Bank Transfer",
+    paymentMethod: "",
     senderReceiverInfo: {
       name: "John Doe",
       address: "123 Business Street, City",
@@ -242,7 +242,7 @@ export const financialTransactions = [
     transactionDate: "2024-11-15",
     transactionType: "Debit",
     description: "Payment for project development",
-    paymentMethod: "Bank Transfer",
+    paymentMethod: "",
     senderReceiverInfo: {
       name: "John Doe",
       address: "123 Business Street, City",
@@ -256,7 +256,7 @@ export const financialTransactions = [
     transactionDate: "2024-11-15",
     transactionType: "Credit",
     description: "Payment for project development",
-    paymentMethod: "Bank Transfer",
+    paymentMethod: "",
     senderReceiverInfo: {
       name: "John Doe",
       address: "123 Business Street, City",

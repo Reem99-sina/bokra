@@ -114,9 +114,22 @@ the project subject to the lending process.`,
   industry_landscape_desc: `Please provide information on the industry landscape, competition, and market 
 trends. `,
   additional_information: " Additional Information",
-  question:"Is your company currently involved in any legal cases?",
-  competitors:"Competitors",
-  marketTrends:"Market Trends",
-  Detail_Loans:"Detail of Loan",
-  Company_images:"Company Image"
+  question: "Is your company currently involved in any legal cases?",
+  competitors: "Competitors",
+  marketTrends: "Market Trends",
+  Detail_Loans: "Detail of Loan",
+  Company_images: "Company Image",
+  header_bokra: "Empower Your Business With Quicklend Embedded Financing",
+  sub_title:
+    "Streamline, Automate, and Scale Your Venture Debt Financing Process with Our Cloud-Based Solution. From Application Submission to Loan Renewal — All in One Platform.",
+  search: "Search",
+  howWork: "HOW IT WORKS",
+  howWorkDesc: "Lean more about our website works",
+  head_first_about: "Choose what to do",
+  desc_first_about: `Identify your funding needs and the best solution for your business. Whether you're facing cash flow gaps or need capital to grow, we provide tailored funding options for SMEs.`,
+  read_more: "Read More",
+  find_what: "Find what you want",
+  desc_find: ` Discover the right financial solution tailored to your business needs. Whether you're seeking funds to purchase raw materials, manage cash flow gaps, or scale operations, we provide financing options that align with your goals. `,
+  expore_funding: "Explore the Suitable Funding for Your Situation",
+  export_desc:"Discover tailored funding solutions designed to address your business challenges and financial needs. Whether you are looking for short-term support or long-term partnerships, we offer flexible funding models"
 } as const;

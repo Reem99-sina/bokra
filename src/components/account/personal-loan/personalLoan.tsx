@@ -11,7 +11,7 @@ const PersonalLoanComponent = ({
 }) => {
   return (
     <div
-      className="border border-gray-400 rounded   text-black  w-[250px] flex flex-col  gap-y-3 hover:bg-gray-300 cursor-pointer hover:shadow-xl"
+      className="border border-gray-400 rounded   text-black  sm:w-[250px] w-full flex flex-col  gap-y-3 hover:bg-gray-300 cursor-pointer hover:shadow-xl"
       onClick={onClick}
     >
       <div className="flex flex-col ">
@@ -20,7 +20,7 @@ const PersonalLoanComponent = ({
           width={250}
           height={100}
           alt="business-loan"
-          className="max-h-[200px]"
+          className="max-h-[200px] w-full"
         />
         <div className="w-full h-[1px] bg-gray-300 " />
       </div>

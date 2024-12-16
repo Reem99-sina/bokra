@@ -55,26 +55,31 @@ export const Header = () => {
     return [
       {
         id: 1,
-        text: "ABOUT US",
-        to: "test/1",
+        text: "Home",
+        to: "/#home",
       },
       {
         id: 2,
-        text: "BUSINESS",
-        to: "test/1",
+        text: "About us",
+        to: "/#about",
       },
       {
         id: 3,
-        text: "CAREERS",
+        text: "Business",
         to: "test/1",
       },
       {
         id: 4,
-        text: "BLOG",
+        text: "Careers",
         to: "test/1",
       },
       {
         id: 5,
+        text: "Blog",
+        to: "test/1",
+      },
+      {
+        id: 6,
         text: session?.data?.user?.name || user?.user?.username,
         icon: <ProfileUser />,
         dropdownItems: [

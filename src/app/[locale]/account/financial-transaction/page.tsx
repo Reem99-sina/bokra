@@ -36,9 +36,8 @@ const FinancialTransaction = () => {
       transactionType: ele?.transactionType,
       description: ele?.description,
       paymentMethod: (
-        <div className="flex gap-x-3 items-center">
+        <div className="flex gap-x-3 items-center justify-center">
           <MdPayments />
-          <p>{ele?.paymentMethod}</p>
         </div>
       ),
       name: ele?.senderReceiverInfo?.name,
@@ -51,12 +50,12 @@ const FinancialTransaction = () => {
   }, [financialTransactions]);
 
   return (
-    <div className="container my-5">
+    <div className="container my-5 sm:w-[95%] w-full">
       <div className=" flex flex-col gap-y-5 justify-start">
         <div>
           <MainTitleComponent title={t("financialTransactions")} />
         </div>
-        <div>
+        <div className="">
           <Table columns={columns} items={items} />
         </div>
         <div className="flex items-center justify-end">

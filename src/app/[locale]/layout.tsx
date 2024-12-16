@@ -19,7 +19,7 @@ export const revalidate = 0;
 
 export default function RootLayout({ children, params: { locale } }: Props) {
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} className="scroll-smooth">
       <head>
         <link
           rel="stylesheet"
