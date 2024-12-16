@@ -2,19 +2,24 @@
 
 import MainTitleComponent from "@/components/shared/main-title.component";
 import { MdWork } from "react-icons/md";
-import  {
-  BorderBg3,
-  DataComponents,
-} from "../custom-detail.component";
+import { BorderBg3, DataComponents } from "../custom-detail.component";
 import { useTranslation } from "@/translations/clients";
 import BackNavigation from "@/components/shared/back-navigation";
 import Image from "next/image";
 import DisplayDataComponent from "@/components/shared/display-data.component";
 import { dataLoansDetail } from "@/utils/data.util";
+import {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+} from "@material-tailwind/react";
+import { useState } from "react";
 
 const DetailLona = () => {
   const { t } = useTranslation();
- 
+  const [open, setOpen] = useState(t("companyInformation"));
+  const handleOpen = (value: string) => setOpen(open === value ? "" : value);
+
   return (
     <div className="flex flex-col gap-y-2  text-black ">
       <div className="flex gap-x-3 flex-row-reverse">
@@ -49,7 +54,7 @@ const DetailLona = () => {
             </BorderBg3>
             <BorderBg3>
               <DisplayDataComponent title={t("nameTeam")} value={""} />
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col">
                 <p className=" text-gray-500 font-light text-xs">
                   {dataLoansDetail?.managementTeam?.teamMembers[0]?.name}
                 </p>
@@ -69,10 +74,14 @@ const DetailLona = () => {
         </div>
         <div className="flex-1">
           {DataComponents()?.map((ele) => (
-            <>
-              <MainTitleComponent title={ele?.title} />
-              {ele?.component}
-            </>
+            <div key={ele?.title}>
+              <Accordion open={ele?.title == open}>
+                <AccordionHeader onClick={() => handleOpen(ele?.title)}>
+                  <MainTitleComponent title={ele?.title} />
+                </AccordionHeader>
+                <AccordionBody>{ele?.component}</AccordionBody>
+              </Accordion>
+            </div>
           ))}
         </div>
       </div>

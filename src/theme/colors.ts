@@ -4,7 +4,8 @@ export const colors = {
     grayLight:"#cccccc",
     error:"#EA1818",
     grayInput:"#d1d5db",
-    bg3:"#F7F7F7"
+    bg3:"#F7F7F7",
+    layout:"#00000078"
   };
   
   

@@ -5,40 +5,7 @@ import { dataLoansDetail } from "@/utils/data.util";
 import DocumnetReview from "../shared/documnet-review";
 import { formattedAmount } from "@/utils/money.util";
 import { RadioExample } from "../shared/Radio.component";
-import clsx from "clsx";
 
-const CustomDetailComponent = ({
-  ele,
-  onClick,
-  open,
-}: {
-  ele: { title: string; component: ReactNode };
-  onClick: () => void;
-  open: boolean;
-}) => {
-  return (
-    <div className="flex justify-between">
-      <div className="flex gap-x-4 cursor-pointer" onClick={() => onClick()}>
-        <div
-          className={clsx(
-            "h-full w-1 bg-beige",
-            open ? "bg-black" : "bg-beige"
-          )}
-        ></div>
-        <p
-          className={clsx(
-            "font-black text-md ",
-            open ? "text-black" : "text-gray-500"
-          )}
-        >
-          {ele?.title}
-        </p>
-      </div>
-    </div>
-  );
-};
-
-export default CustomDetailComponent;
 export const DataComponents = () => {
   const { t } = useTranslation();
 
@@ -260,5 +227,9 @@ export const DataComponents = () => {
   ];
 };
 export const BorderBg3 = ({ children }: { children: ReactNode }) => {
-  return <div className="bg-bg3 py-[14px] px-3 rounded w-full flex flex-col gap-3">{children}</div>;
+  return (
+    <div className="bg-bg3 py-[14px] px-3 rounded w-full flex flex-col gap-3">
+      {children}
+    </div>
+  );
 };
