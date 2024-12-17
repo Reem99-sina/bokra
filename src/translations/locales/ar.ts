@@ -115,17 +115,18 @@ export default {
   Company_images: "Company Image",
   Cash_flow_forecasts: "Cash flow forecasts",
   header_bokra: "EMPOWER YOUR BUSINESS WITH QUICKLEND EMBEDDED FINANCING",
-  sub_title:
-    "Streamline, Automate, and Scale Your Venture Debt Financing Process with Our Cloud-Based Solution. From Application Submission to Loan Renewal — All in One Platform.",
+  sub_title: "Get Bokra Today",
   search: "Search",
-  howWork: "HOW IT WORKS",
-  howWorkDesc: "Lean more about our website works",
-  desc_first_about: `Identify your funding needs and the best solution for your business. Whether you're facing cash flow gaps or need capital to grow, we provide tailored funding options for SMEs.`,
+  howWork: "ABOUT US",
+  howWorkDesc: ` Bokra is the first goal-achiever digital investment platform in the MENA region, transforming wealth management. Our platform offers Sharia-compliant investments in real estate, precious metals, and debt instruments. Fully licensed by the FRA, we are a digital gateway to financial freedom, empowering users to realize their financial aspirations with the support of our experienced team.`,
   read_more: "Read More",
-  find_what: "Find what you want",
-  desc_find: ` Discover the right financial solution tailored to your business needs. Whether you're seeking funds to purchase raw materials, manage cash flow gaps, or scale operations, we provide financing options that align with your goals. `,
+  find_what: "OUR VISION",
+  desc_find: `Simplifying investment by making it attainable for everyone by turning financial dreams into achievable goals.`,
   Cash_flow_forecasts_desc: "Cash flow forecasts for the project. ",
   expore_funding: "Explore the Suitable Funding for Your Situation",
-  export_desc:"Discover tailored funding solutions designed to address your business challenges and financial needs. Whether you are looking for short-term support or long-term partnerships, we offer flexible funding models"
-
+  export_desc:
+    "Discover tailored funding solutions designed to address your business challenges and financial needs. Whether you are looking for short-term support or long-term partnerships, we offer flexible funding models",
+  head_first_about: "OUR MISSION",
+  desc_first_about: `To provide a pathway to financial independence through accessible asset-backed securities. `,
+  desc_stay: "Sign up with your email address to receive news and updates.",
 } as const;

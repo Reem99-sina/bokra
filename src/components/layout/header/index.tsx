@@ -121,7 +121,7 @@ export const Header = () => {
       <header className="fixed top-0 z-10 bg-black left-0">
         <div
           className={clsx(
-            "flex  flex-1  justify-center overflow-x-hidden   bg-mainColor  py-4 sm:w-screen"
+            "flex  flex-1  justify-center overflow-x-hidden   bg-mainColor  py-5 sm:w-screen"
           )}
         >
           <div
