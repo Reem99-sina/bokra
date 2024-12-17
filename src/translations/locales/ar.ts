@@ -124,7 +124,7 @@ export default {
   read_more: "Read More",
   find_what: "Find what you want",
   desc_find: ` Discover the right financial solution tailored to your business needs. Whether you're seeking funds to purchase raw materials, manage cash flow gaps, or scale operations, we provide financing options that align with your goals. `,
-
+  Cash_flow_forecasts_desc: "Cash flow forecasts for the project. ",
   expore_funding: "Explore the Suitable Funding for Your Situation",
   export_desc:"Discover tailored funding solutions designed to address your business challenges and financial needs. Whether you are looking for short-term support or long-term partnerships, we offer flexible funding models"
 

@@ -118,10 +118,10 @@ export const Header = () => {
 
   return (
     <>
-      <header>
+      <header className="fixed top-0 z-10 bg-black left-0">
         <div
           className={clsx(
-            " flex  flex-1  justify-center overflow-x-hidden   bg-mainColor  py-4 sm:w-screen"
+            "flex  flex-1  justify-center overflow-x-hidden   bg-mainColor  py-4 sm:w-screen"
           )}
         >
           <div
@@ -178,7 +178,9 @@ export const Header = () => {
                     <Link
                       href={link.to as string}
                       className={clsx(
-                        "relative text-md font-bold text-white  "
+                        "relative text-md font-bold text-white  ",
+                        "transition-all duration-300",
+                        "scroll-smooth"
                       )}
                     >
                       {link.text}
