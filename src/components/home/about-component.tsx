@@ -3,6 +3,7 @@ import AboutCardComponent from "./about-card.component";
 import { AiOutlineFund } from "react-icons/ai";
 import { FaRegLightbulb } from "react-icons/fa";
 import { useTranslation } from "@/translations/clients";
+import ScrollAnimationExample from "../scroll.compnent";
 
 const AboutComponent = () => {
   const { t } = useTranslation();
@@ -11,6 +12,7 @@ const AboutComponent = () => {
     <div className="container justify-center items-center flex  flex-col gap-4 ">
       <h3 className="text-black ">{t("howWork")}</h3>
       <p className="text-gray-500">{t("howWorkDesc")}</p>
+      <ScrollAnimationExample>
       <div className="flex gap-4  justify-center  my-6  sm:flex-nowrap flex-wrap mx-auto">
         <AboutCardComponent
           head={t("head_first_about")}
@@ -31,6 +33,7 @@ const AboutComponent = () => {
           icon={<AiOutlineFund color="black" size={"30"} />}
         />
       </div>
+      </ScrollAnimationExample>
     </div>
   );
 };

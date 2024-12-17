@@ -19,7 +19,7 @@ export const revalidate = 0;
 
 export default function RootLayout({ children, params: { locale } }: Props) {
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} className="scroll-smooth">
+    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} >
       <head>
         <link
           rel="stylesheet"
@@ -30,7 +30,7 @@ export default function RootLayout({ children, params: { locale } }: Props) {
       <body
       // className={clsx(locale === 'ar' ? arFont.className : enFont.className)}
       >
-        <div className="flex h-screen  w-screen   flex-col  overflow-x-hidden ">
+        <div className="flex h-screen  w-screen   flex-col  overflow-x-hidden scroll-smooth">
           <Providers>{children}</Providers>
         </div>
       </body>

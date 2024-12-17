@@ -32,12 +32,12 @@ export const FooterCopyright = () => {
   ];
   
   return (
-    <footer className=" bg-black  shadow container mx-auto">
+    <footer className="bg-black  shadow container mx-auto py-16 rounded-xl border">
       <div className=" flex flex-col items-center justify-center ">
         <div className="text-start text-white flex  items-center gap-4  w-full">
           {/* <img src="/valoro.png" alt="Logo" className="w-12 h-12 mr-2" /> */}
 
-          <div className="py-5  flex justify-evenly w-full">
+          <div className="py-5  flex justify-between w-full flex-wrap gap-5">
             {social.map(({ title, child }) => (
               <div key={title}>
                 <p className="mb-[13px] text-md">{title}</p>
