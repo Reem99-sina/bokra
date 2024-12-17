@@ -16,7 +16,7 @@ interface Props {
   mandatoryIcon?: boolean;
   className?: string;
   disabled?: boolean;
-  children?:ReactNode
+  children?: ReactNode;
 }
 
 export const TextInput: FC<Props> = ({
@@ -27,7 +27,7 @@ export const TextInput: FC<Props> = ({
   leftIcon,
   disabled,
   className,
-  children
+  children,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -48,7 +48,7 @@ export const TextInput: FC<Props> = ({
           {mandatoryIcon && <MandatoryIcon />}
         </label>
       )}
-      
+
       <div className="relative flex h-full items-center">
         <div
           className="absolute right-3 top-1/2 -translate-y-1/2 transform cursor-pointer"
@@ -86,9 +86,11 @@ export const TextInput: FC<Props> = ({
         />
       </div>
       {children}
-      <p className="m-0 h-2 text-xs text-red-600 dark:text-red-500">
-        {errorMessage && errorMessage}
-      </p>
+      {errorMessage && (
+        <p className="m-0 h-2 text-xs text-red-600 dark:text-red-500">
+          {errorMessage}
+        </p>
+      )}
     </div>
   );
 };
