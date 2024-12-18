@@ -118,10 +118,10 @@ export const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 z-10 bg-black left-0">
+      <div className="fixed top-0 z-10  left-0 will-change-transform right-4 bg-black">
         <div
           className={clsx(
-            "flex  flex-1  justify-center overflow-x-hidden   bg-mainColor  py-5 sm:w-screen"
+            "flex  flex-1  justify-center overflow-x-hidden   bg-mainColor  py-5 sm:w-screen "
           )}
         >
           <div
@@ -153,7 +153,7 @@ export const Header = () => {
                           <p>{link?.text}</p>
                         </div>
                       </MenuHandler>
-                      <MenuList className="p-0 focus:outline-none">
+                      <MenuList className="p-0 focus:outline-none z-10">
                         {link?.dropdownItems?.map((item) => (
                           <Link
                             href={item.to}
@@ -209,7 +209,7 @@ export const Header = () => {
             <LoginForm />
           </Modal> */}
         </div>
-      </header>
+      </div>
 
       <MobileMenuDrawer
         modalRef={drawerRef}

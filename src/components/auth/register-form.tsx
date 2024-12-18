@@ -30,10 +30,9 @@ export const RegisterForm: React.FC = () => {
   return (
     <div className={`mt-2 flex h-screen w-full items-center justify-center `}>
       <div className="rounded-md border border-[#DCDFE4]">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
+        <div
           className="flex w-[568px] flex-col rounded-xl bg-white px-14 pb-6 pt-10"
-          autoComplete="off"
+
         >
           <span className="mb-4 text-center text-2xl font-black text-black">
             {t("register")}
@@ -72,6 +71,7 @@ export const RegisterForm: React.FC = () => {
                 className="w-full justify-center rounded bg-black !px-3 !py-2 !font-bold"
                 type="submit"
                 text={t("register")}
+                onClick={handleSubmit(onSubmit)}
               />
             </div>
             <Link
@@ -104,7 +104,7 @@ export const RegisterForm: React.FC = () => {
             <span>|</span>
             <span>{t("terms_conditions")}</span>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

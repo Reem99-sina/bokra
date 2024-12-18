@@ -16,8 +16,8 @@ const HomeComponent = () => {
     <div className="bg-[url('/embedded-finance.jpg')] container sm:h-screen h-auto pb-3 max-w-full bg-center bg-no-repeat bg-cover relative flex justify-center flex-col items-center gap-4 pt-14">
       <div className="absolute inset-0 bg-layout"></div>
       <div className="flex flex-col justify-center items-center h-auto  gap-5 text-center z-0">
-        <h1 className="text-[5rem] font-black">{t("header_bokra")}</h1>
-        <p className="text-[3rem] font-black">{t("sub_title")}</p>
+        <h1 className="sm:text-[5rem] text-2xl  font-black">{t("header_bokra")}</h1>
+        <p className="sm:text-[3rem] text-lg font-black">{t("sub_title")}</p>
       </div>
       <div className="flex gap-4 z-0 items-center flex-wrap justify-center">
         <div className="flex flex-wrap my-4 justify-center">

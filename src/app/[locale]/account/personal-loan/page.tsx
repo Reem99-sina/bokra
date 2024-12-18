@@ -19,7 +19,7 @@ const PersonalLoanComponent = () => {
   }, [page]);
 
   return (
-    <div className="container my-5 flex flex-col gap-y-5 justify-around">
+    <div className="container my-5 flex flex-col gap-y-5 justify-around ">
       <MainTitleComponent title={t("personalLoans")} />
 
       <div className="flex gap-4 flex-wrap">
