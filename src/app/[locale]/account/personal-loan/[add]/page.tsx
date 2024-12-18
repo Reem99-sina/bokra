@@ -7,7 +7,7 @@ const AddorEdit = () => {
     const params=useParams()
     
     return (
-        <div className="container my-5 flex flex-col gap-y-5 justify-around">
+        <div className="container my-5 flex flex-col gap-y-5 ">
             <AddLoan type={String(params.add)}/>
         </div>
     );

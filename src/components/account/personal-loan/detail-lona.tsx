@@ -26,7 +26,7 @@ const DetailLona = () => {
         <MainTitleComponent title={t("Detail_Loans")} />
         <BackNavigation title="" />
       </div>
-      <div className=" flex gap-6 items-start sm:flex-nowrap flex-wrap my-4">
+      <div className=" flex gap-6 items-start sm:flex-nowrap flex-wrap ">
         <div className="flex flex-col gap-4 sm:flex-[0.3] flex-1">
           <div className="flex items-start gap-4 justify-center my-4 flex-wrap">
             <div className=" rounded-md">

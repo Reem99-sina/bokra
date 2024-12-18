@@ -30,7 +30,7 @@ export default function RootLayout({ children, params: { locale } }: Props) {
       <body
       // className={clsx(locale === 'ar' ? arFont.className : enFont.className)}
       >
-        <div className="flex h-screen  w-screen   flex-col  overflow-x-hidden scroll-smooth">
+        <div className="flex h-screen  w-screen   flex-col  overflow-x-hidden scroll-smooth  relative z-10 ">
           <Providers>{children}</Providers>
         </div>
       </body>
