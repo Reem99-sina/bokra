@@ -19,12 +19,12 @@ const options = {
 
       return true;
     },
-    async redirect({  baseUrl }) {
+    async redirect({baseUrl }) {
       return baseUrl;
     },
   },
   pages: {
-    signIn: "/",
+    signIn: "/login",
   },
 };
 

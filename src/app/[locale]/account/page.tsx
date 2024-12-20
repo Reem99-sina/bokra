@@ -4,7 +4,7 @@ import { TextInput } from "@/components/shared/form/text-input.component";
 import MainTitleComponent from "@/components/shared/main-title.component";
 import { useUser } from "@/hooks/user.hooks";
 import { useTranslation } from "@/translations/clients";
-import { UserInput } from "@/types/user.type";
+import { IUser, UserInput } from "@/types/user.type";
 import clsx from "clsx";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -14,14 +14,14 @@ const AccountComponent = () => {
   const { user } = useUser();
   const { register } = useForm<UserInput>({
     defaultValues: {
-      name: user?.username || "",
-      street: user?.street || "",
-      district: user?.district || "",
-      city: user?.city || "",
-      email: user?.email || "",
-      nationality: user?.nationality || "",
-      phone: user?.phone || "",
-      birthDate: user?.birthDate || "",
+      name: (user as IUser)?.username || "",
+      street: (user as IUser)?.street || "",
+      district: (user as IUser)?.district || "",
+      city: (user as IUser)?.city || "",
+      email: (user as IUser)?.email || "",
+      nationality: (user as IUser)?.nationality || "",
+      phone: (user as IUser)?.phone || "",
+      birthDate: (user as IUser)?.birthDate || "",
       agreeTerms1: false,
       agreeTerms2: false,
     },

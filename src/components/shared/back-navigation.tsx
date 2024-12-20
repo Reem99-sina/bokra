@@ -14,7 +14,7 @@ const BackNavigation: React.FC<IAppProps> = ({ title }) => {
 
   return (
     <Button
-      className='flex items-center ps-0 !w-auto'
+      className='flex items-center px-0 !w-auto'
       variant='text'
       onClick={() => router.back()}
     >
