@@ -145,4 +145,6 @@ export default {
   priceBefore: "Price before tax and commission",
   commission: "Value Added Tax (14%)",
   platcommission: "Platform commission",
+  potential_collateral_desc:
+  "Potential collateral or assets that can secure the loan.",
 } as const;

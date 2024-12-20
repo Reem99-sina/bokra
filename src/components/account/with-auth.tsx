@@ -1,3 +1,4 @@
+import { useUser } from "@/hooks/user.hooks";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import React, { ElementType } from "react";
@@ -6,6 +7,8 @@ const IsAuthenticated = () => {
   // Implement your authentication logic here (e.g., check token, user session, etc.)
   let token = undefined;
   const { status } = useSession();
+  const{user}=useUser()
+  
   if (status === "loading") {
     return <p>Loading...</p>; // Display a loading state
   }
@@ -14,7 +17,7 @@ const IsAuthenticated = () => {
     token = localStorage.getItem("authToken");
   }
 
-  return token || status;
+  return token ||user?user:status;
 };
 
 function withAuth<P>(WrappedComponent: ElementType) {

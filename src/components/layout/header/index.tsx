@@ -26,6 +26,7 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import { CiLogout } from "react-icons/ci";
 import { FaChevronDown } from "react-icons/fa";
 import { FaChevronUp } from "react-icons/fa";
+import { IUser } from "@/types/user.type";
 
 interface linksProps {
   id: number;
@@ -45,18 +46,19 @@ export const Header = () => {
   const { logout } = useAuth();
   const { lang, t } = useTranslation();
   const router = useRouter();
-  const user = useUser();
+  const { user, updateUser } = useUser();
   // const pathname = usePathname();
   // const homeVersion = useMemo(() => pathname.endsWith(`/${lang}`), [pathname]);
   const drawerRef = useRef<DrawerRef>(null);
   const session = useSession();
   const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
+
   const links: linksdropdownProps[] = useMemo(() => {
     return [
       {
         id: 1,
         text: "Home",
-        to: "/#home",
+        to: "/",
       },
       {
         id: 2,
@@ -80,7 +82,10 @@ export const Header = () => {
       },
       {
         id: 6,
-        text: session?.data?.user?.name || user?.user?.username,
+        text:
+          session?.data?.user?.name ||
+          (user as IUser)?.username ||
+          user?.email?.split("@")[0],
         icon: <ProfileUser />,
         dropdownItems: [
           {
@@ -108,6 +113,7 @@ export const Header = () => {
             to: "/login",
             onClick: () => {
               logout();
+              updateUser({ email: "", password: "" });
               signOut();
             },
           },
@@ -190,13 +196,13 @@ export const Header = () => {
               ))}
             </div>
 
-            {!session?.data?.user && (
-              <Button
-                text={t("login")}
-                onClick={() => router.push("/login")}
-                className="!w-auto"
-              />
-            )}
+            {(!session?.data?.user && !user?.email) && (
+                <Button
+                  text={t("login")}
+                  onClick={() => router.push("/login")}
+                  className="!w-auto"
+                />
+              )}
             <div
               className="flex cursor-pointer sm:hidden"
               onClick={() => drawerRef.current?.open()}
@@ -218,9 +224,14 @@ export const Header = () => {
         ref={drawerRef}
         Footer={
           <div className="bg-black p-6">
-          <Link href={`/${lang}/`}>
-            <Image src={"/bokralogo.png"} width={100} height={90} alt="logo" />
-          </Link>
+            <Link href={`/${lang}/`}>
+              <Image
+                src={"/bokralogo.png"}
+                width={100}
+                height={90}
+                alt="logo"
+              />
+            </Link>
           </div>
         }
         TopLeftComponent={<IoClose />}
