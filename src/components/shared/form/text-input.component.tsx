@@ -80,14 +80,14 @@ export const TextInput: FC<Props> = ({
             `border ${
               errorMessage ? "border-error" : "border-gray-300"
             } rounded-md `,
-            "placeholder:text-xs placeholder:font-light ",
-            `${className ? className : "rounded-lg  px-4"}`
+            "placeholder:!text-xs placeholder:!font-light",
+            `${className ? className : "rounded-lg  px-4"} focus-visible:outline-0`
           )}
         />
       </div>
       {children}
       {errorMessage && (
-        <p className="m-0 h-2 text-xs text-red-600 dark:text-red-500">
+        <p className="mb-2 h-2 text-xs text-red-600 dark:text-red-500">
           {errorMessage}
         </p>
       )}

@@ -196,13 +196,13 @@ export const Header = () => {
               ))}
             </div>
 
-            {(!session?.data?.user && !user?.email) && (
-                <Button
-                  text={t("login")}
-                  onClick={() => router.push("/login")}
-                  className="!w-auto"
-                />
-              )}
+            {!session?.data?.user && !user?.email && (
+              <Button
+                text={t("login")}
+                onClick={() => router.push("/login")}
+                className="!w-auto"
+              />
+            )}
             <div
               className="flex cursor-pointer sm:hidden"
               onClick={() => drawerRef.current?.open()}

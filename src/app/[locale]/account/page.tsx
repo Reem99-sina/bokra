@@ -29,11 +29,11 @@ const AccountComponent = () => {
   });
 
   return (
-    <div className="container mt-5 ">
+    <div className="container mt-8 ">
       <MainTitleComponent title={t("personalData")} />
       <div className=" flex justify-between flex-col h-[92%]">
         <div className="flex items-center  gap-4 sm:flex-row my-4 flex-wrap">
-          <div className="md:min-w-[200px] min-w-full">
+          <div className="md:min-w-[500px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("name"),
@@ -41,10 +41,10 @@ const AccountComponent = () => {
               }}
               label={t("name")}
               disabled
-              className="md:max-w-[200px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[200px] min-w-full">
+          <div className="md:min-w-[500px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("street"),
@@ -52,10 +52,10 @@ const AccountComponent = () => {
               }}
               label={t("street")}
               disabled
-              className="md:max-w-[200px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[200px] min-w-full">
+          <div className="md:min-w-[500px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("district"),
@@ -63,10 +63,10 @@ const AccountComponent = () => {
               }}
               label={t("district")}
               disabled
-              className="md:max-w-[200px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[200px] min-w-full">
+          <div className="md:min-w-[500px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("city"),
@@ -74,10 +74,10 @@ const AccountComponent = () => {
               }}
               label={t("city")}
               disabled
-              className="md:max-w-[200px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[200px] min-w-full">
+          <div className="md:min-w-[500px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("email"),
@@ -85,10 +85,10 @@ const AccountComponent = () => {
               }}
               label={t("email")}
               disabled
-              className="md:max-w-[200px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[200px] min-w-full">
+          <div className="md:min-w-[500px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("nationality"),
@@ -96,10 +96,10 @@ const AccountComponent = () => {
               }}
               label={t("nationality")}
               disabled
-              className="md:max-w-[200px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[200px] min-w-full">
+          <div className="md:min-w-[500px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("phone"),
@@ -107,10 +107,10 @@ const AccountComponent = () => {
               }}
               label={t("phone")}
               disabled
-              className="md:max-w-[200px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[200px] min-w-full">
+          <div className="md:min-w-[500px] min-w-full">
             <TextInput
               inputProps={{
                 type: "date",
@@ -119,7 +119,7 @@ const AccountComponent = () => {
               }}
               label={t("birthDate")}
               disabled
-              className="md:!max-w-[200px] !w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              className="md:!max-w-[500px] !w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
         </div>
@@ -127,7 +127,7 @@ const AccountComponent = () => {
           <div className="flex max-w-[1300px] justify-end p-4 gap-x-4">
             <Button
               className={clsx(
-                "ml-3 h-10 !w-[117px] flex-none gap-2 rounded-[4px] bg-black text-white "
+                "ml-3 h-10 !w-[117px] flex-none gap-2 rounded-[4px] bg-black text-white !text-sm"
               )}
               type="submit"
               text={t("edit")}
@@ -136,7 +136,7 @@ const AccountComponent = () => {
             <Button
               text={t("cancel")}
               className={clsx(
-                "h-10 !w-[117px] gap-2 rounded-[4px] border  !border-gray-300 !bg-beige !text-black "
+                "h-10 !w-[117px] gap-2 rounded-[4px] border  !border-gray-300 !bg-beige !text-black !text-sm"
               )}
               //   disabled={!isDirty}
               type="button"

@@ -34,7 +34,7 @@ const PersonalLoanComponent = ({
 
         <div className="flex items-end justify-between">
           <div className="flex flex-col flex-wrap">
-            <p className="text-[10px] text-gray-400">{loan.duration}</p>
+            <p className="text-[10px] text-[#555]">{loan.duration}</p>
             <h3 className="font-black text-md capitalize">{loan.amount}</h3>
           </div>
           <div className="bg-black rounded-full p-2">
