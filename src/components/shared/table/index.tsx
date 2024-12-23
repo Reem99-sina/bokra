@@ -16,7 +16,7 @@ interface Props<T> {
 
 export const Table = <T,>({ columns, items, href = '#' }: Props<T>) => {
   return (
-    <div className='overflow-auto rounded-md'>
+    <div className='relative  overflow-auto rounded-md table-auto w-full'>
       <table className={clsx(' w-full border-collapse text-xs text-[#58595B]')}>
         <thead>
           <HeadRow columns={columns} />

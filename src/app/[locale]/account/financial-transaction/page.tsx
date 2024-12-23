@@ -1,6 +1,5 @@
 "use client";
 import Pagination from "@/components/pagination.component";
-import MainTitleComponent from "@/components/shared/main-title.component";
 import { Table } from "@/components/shared/table";
 import { useTranslation } from "@/translations/clients";
 import { financialTransactions } from "@/utils/data.util";
@@ -8,6 +7,8 @@ import { MdPayments } from "react-icons/md";
 import { useMemo } from "react";
 import { formattedAmount } from "@/utils/money.util";
 import { formatPhoneNumber } from "@/utils/formatNumber";
+import SearchComponent from "@/components/shared/search-component";
+import clsx from "clsx";
 
 const FinancialTransaction = () => {
   const { t } = useTranslation();
@@ -50,20 +51,25 @@ const FinancialTransaction = () => {
   }, [financialTransactions]);
 
   return (
-    <div className="container my-5 sm:w-[95%] w-full">
+    <div className={clsx("container my-8 mx-auto ",``)}>
       <div className=" flex flex-col gap-y-5 justify-start">
-        <div>
-          <MainTitleComponent title={t("financialTransactions")} />
-        </div>
-        <div className="">
+        <div className="border border-grayLight p-4 rounded-md flex flex-col gap-4">
+          <div className="flex justify-between items-center">
+            <h1 className="font-black text-black text-md">
+              {t("financialTransactions")}
+            </h1>
+            <SearchComponent />
+          </div>
+         
           <Table columns={columns} items={items} />
-        </div>
-        <div className="flex items-center justify-end">
-          <Pagination
-            onPageChange={() => {}}
-            pageCount={Math.ceil(financialTransactions?.length / 5)}
-            initialPage={1}
-          />
+          
+          <div className="flex items-center justify-end">
+            <Pagination
+              onPageChange={() => {}}
+              pageCount={Math.ceil(financialTransactions?.length / 5)}
+              initialPage={1}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -8,18 +8,19 @@ export interface PersonalLoan {
   amount: string;
 }
 export interface addLoanInfo {
-    loanAmount:number;
-  companyType:string;
-  businessName:string;
+  loanAmount: number;
+  loanCurrency: string;
+  companyType: string;
+  businessName: string;
   industryType: string;
-  businessRegNumber:string
+  businessRegNumber: string;
   loanPurpose: string;
   financialStatements?: File[];
-  annualRevenue:number,
-  net_profit_margin:string,
-  liabilities?:number,
-  expenses:number,
-  revenue_projections:string,
-  businessRegCert:File[],
-  identityDocument:File[]
+  annualRevenue: number;
+  net_profit_margin: string;
+  liabilities?: number;
+  expenses: number;
+  revenue_projections: string;
+  businessRegCert: File[];
+  identityDocument: File[];
 }

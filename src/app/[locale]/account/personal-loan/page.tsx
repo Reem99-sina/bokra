@@ -2,8 +2,8 @@
 import PersonalLoan from "@/components/account/personal-loan/personalLoan";
 import Pagination from "@/components/pagination.component";
 import { Button } from "@/components/shared/button.component";
-import { TextInput } from "@/components/shared/form/text-input.component";
 import MainTitleComponent from "@/components/shared/main-title.component";
+import SearchComponent from "@/components/shared/search-component";
 import { useTranslation } from "@/translations/clients";
 import { dataLoans } from "@/utils/data.util";
 import clsx from "clsx";
@@ -20,26 +20,14 @@ const PersonalLoanComponent = () => {
   }, [page]);
 
   return (
-    <div className="container my-8 flex flex-col gap-y-5 justify-around ">
+    <div className="container my-8 flex flex-col gap-y-5 justify-around mx-auto">
       <MainTitleComponent title={t("personalLoans")} />
       <div className="flex items-center">
         <div className="w-full">
-          <TextInput
-            inputProps={{ placeholder: t("search") }}
-            className="!text-black !font-light"
-          />
+        <SearchComponent/>
         </div>
         <div className="flex max-w-auto justify-end ">
-          <Button
-            className={clsx(
-              "ml-3 h-10 !w-auto flex-none gap-2 rounded-[4px] !bg-beige !text-black !text-sm"
-            )}
-            type="submit"
-            text={t("search")}
-            onClick={() => {
-              router?.push("/account/personal-loan/add");
-            }}
-          />
+         
           <Button
             className={clsx(
               "ml-3 h-10 !w-auto flex-none gap-2 rounded-[4px] bg-black text-white !text-sm"

@@ -67,18 +67,14 @@ export const Header = () => {
       },
       {
         id: 3,
-        text: "Business",
-        to: "test/1",
+        text: "Our Solutions",
+        to: "/#type",
       },
-      {
-        id: 4,
-        text: "Careers",
-        to: "test/1",
-      },
+    
       {
         id: 5,
-        text: "Blog",
-        to: "test/1",
+        text: "Contact us",
+        to: "/#contact",
       },
       {
         id: 6,

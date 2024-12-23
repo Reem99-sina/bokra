@@ -152,6 +152,8 @@ export default {
   loanAmountErrorMessage: "Loan amount cannot be empty.",
   loanAmountRangeErrorMessage:
     "Please enter a valid loan amount between $5,000 and $500,000.",
+  loanAmountRangeErrorEGPMessage:
+    "Please enter a valid loan amount between EGP 500'000 - EGP 15'000'000.",
   purposeMessage: "Please provide the purpose of the loan.",
   businessInformation: "Business Information",
   business_name: "Business Name",
@@ -171,4 +173,8 @@ export default {
   fileType: "Please upload a financial statement in PDF, JPEG, or PNG format.",
   fileSize: "File size exceeds the 10MB limit.",
   busRegistCert: "Business Registration Certificate",
+  loanCurrency: "loan Currency",
+  apply_now:"Apply Now",
+  ourSolution:"Our Solutions"
+
 } as const;

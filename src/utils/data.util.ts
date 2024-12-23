@@ -137,6 +137,16 @@ export const technologyType = [
     value: " reatial technology ",
   },
 ];
+export const loanCurreny = [
+  {
+    label: "EGP",
+    value: "EGP",
+  },
+  {
+    label: "USD",
+    value: "USD",
+  },
+];
 export const dataLoansDetail = {
   companyInformation: {
     companyName: "Tech Innovations Ltd.",

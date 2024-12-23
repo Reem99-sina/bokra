@@ -1,11 +1,29 @@
-const DocumnetReview = ({ url, style }: { url: string; style?: React.CSSProperties }) => {
+import Image from "next/image";
+
+const DocumnetReview = ({
+  url,
+  style,
+}: {
+  url: string;
+  style?: React.CSSProperties;
+}) => {
   return (
     <div className="sm:w-[25%] w-full">
-      <iframe
-        src={url}
-        style={{ width: "100%", height: "200px", ...style }}
-        frameBorder="0"
-      />
+      <a
+        href={
+          ""
+        }
+        download={url}
+        target="_blank"
+      >
+        <Image
+          src={"/document_icon.jpeg"}
+          width={200}
+          height={50}
+          alt="document icon"
+          style={style}
+        />
+      </a>
     </div>
   );
 };

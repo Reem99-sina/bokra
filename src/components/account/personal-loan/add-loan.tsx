@@ -2,7 +2,7 @@ import { TextInput } from "@/components/shared/form/text-input.component";
 import { Select } from "@/components/shared/select.component";
 import { useTranslation } from "@/translations/clients";
 import { addLoanInfo } from "@/types/loan.type";
-import { technologyType } from "@/utils/data.util";
+import { loanCurreny, technologyType } from "@/utils/data.util";
 import { Checkbox } from "@material-tailwind/react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import AddFiles from "./add-files";
@@ -27,9 +27,11 @@ const AddLoan = ({ type }: { type: string }) => {
       liabilities: undefined,
       businessRegCert: undefined,
       identityDocument: undefined,
+      loanCurrency: "",
     },
     mode: "onChange",
   });
+  const loan_currency = formdata.watch("loanCurrency");
   const onSubmit = () => {
     // console.log(data, "data");
   };
@@ -40,8 +42,56 @@ const AddLoan = ({ type }: { type: string }) => {
         <MainTitleComponent title={t("loanDetail")} />
         <BackNavigation title="" />
       </div>
-      <div className=" flex flex-wrap gap-3 my-2">
-        <div className="md:min-w-[500px] min-w-full">
+      <div className=" flex flex-wrap gap-5 my-4">
+        <div className=" min-w-full">
+          <TextInput
+            inputProps={{
+              placeholder: t("purposeCompany"),
+              ...formdata.register("loanPurpose", {
+                required: { value: true, message: t("purposeMessage") },
+              }),
+            }}
+            errorMessage={formdata.formState.errors.loanPurpose?.message}
+            label={t("purposeCompany")}
+            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500  !bg-grayColor "
+          />
+        </div>
+        <div className="sm:min-w-[49%] min-w-full">
+          <Controller
+            control={formdata.control}
+            name="loanCurrency"
+            rules={{
+              required: {
+                value: true,
+                message: t("loanCurrencyRequiredErrorMessage"),
+              },
+            }}
+            render={({ field: { onChange }, fieldState: { error } }) => {
+              return (
+                <>
+                  <Select
+                    label={t("loanCurrency")}
+                    placeholder={t("loanCurrency")}
+                    options={loanCurreny}
+                    onChange={(value) => onChange(value)}
+                    error={Boolean(error?.message)}
+                    styleCustom={{
+                      width: "auto",
+                      backgroundColor: "#f1f0f0",
+                      minWidth: "300px",
+                    }}
+                  />
+                  {error?.message && (
+                    <p className="mb-4 text-xs text-red-600 dark:text-red-500">
+                      {error?.message}
+                    </p>
+                  )}
+                </>
+              );
+            }}
+          />
+        </div>
+        <div className="sm:min-w-[49%] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("loanAmount"),
@@ -49,7 +99,10 @@ const AddLoan = ({ type }: { type: string }) => {
               ...formdata.register("loanAmount", {
                 required: {
                   value: true,
-                  message: t("loanAmountRequiredErrorMessage"),
+                  message:
+                    loan_currency == "USD"
+                      ? t("loanAmountRequiredErrorMessage")
+                      : t("loanAmountRangeErrorEGPMessage"),
                 },
                 min: { value: 5000, message: t("loanAmountRangeErrorMessage") },
                 max: {
@@ -60,26 +113,13 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.loanAmount?.message}
             label={t("loanAmount")}
-            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500   "
-          />
-        </div>
-        <div className="md:min-w-[500px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("purposeCompany"),
-              ...formdata.register("loanPurpose", {
-                required: { value: true, message: t("purposeMessage") },
-              }),
-            }}
-            errorMessage={formdata.formState.errors.loanPurpose?.message}
-            label={t("purposeCompany")}
-            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500   "
+            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500 !bg-grayColor "
           />
         </div>
       </div>
       <MainTitleComponent title={t("businessInformation")} />
-      <div className=" flex flex-wrap gap-3 my-2">
-        <div className="md:min-w-[500px] min-w-full">
+      <div className=" flex flex-wrap gap-5  my-4">
+        <div className=" min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("business_name"),
@@ -90,10 +130,10 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.businessName?.message}
             label={t("business_name")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500 !bg-grayColor  !bg-grayColor "
           />
         </div>
-        <div className="md:min-w-[500px] min-w-full">
+        <div className=" min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("registration_number"),
@@ -111,10 +151,10 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.businessRegNumber?.message}
             label={t("registration_number")}
-            className="md:min-w-[500px] w-full !text-xs !font-light !text-gray-500   "
+            className=" w-full !text-xs !font-light !text-gray-500 !bg-grayColor   "
           />
         </div>
-        <div className="md:min-w-[500px] min-w-full">
+        <div className=" min-w-full">
           <Controller
             control={formdata.control}
             name="industryType"
@@ -132,7 +172,7 @@ const AddLoan = ({ type }: { type: string }) => {
                     error={Boolean(error?.message)}
                     styleCustom={{
                       width: "auto",
-                      backgroundColor: "white",
+                      backgroundColor: "#f1f0f0",
                       minWidth: "300px",
                     }}
                   />
@@ -148,8 +188,8 @@ const AddLoan = ({ type }: { type: string }) => {
         </div>
       </div>
       <MainTitleComponent title={t("financials")} />
-      <div className=" flex flex-wrap gap-x-3 my-2">
-        <div className="md:min-w-[500px] min-w-full">
+      <div className=" flex flex-wrap gap-5 my-4">
+        <div className=" min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("Annual_Revenue"),
@@ -167,7 +207,7 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.annualRevenue?.message}
             label={t("Annual_Revenue")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500 !bg-grayColor   "
           >
             {!formdata.formState.errors.annualRevenue?.message && (
               <p className="text-[12px] font-light text-gray-400 mb-2">
@@ -176,7 +216,7 @@ const AddLoan = ({ type }: { type: string }) => {
             )}
           </TextInput>
         </div>
-        <div className="md:min-w-[500px] min-w-full">
+        <div className=" min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("total_liabilities"),
@@ -196,7 +236,7 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.liabilities?.message}
             label={t("total_liabilities")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500 !bg-grayColor   "
           >
             {!formdata.formState.errors.liabilities?.message && (
               <p className="text-[12px] font-light text-gray-400 mb-2 ">
@@ -205,7 +245,7 @@ const AddLoan = ({ type }: { type: string }) => {
             )}
           </TextInput>
         </div>
-        <div className="md:min-w-[500px] min-w-full">
+        <div className=" min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("expenses"),
@@ -220,13 +260,13 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.expenses?.message}
             label={t("expenses")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500 !bg-grayColor   "
           />
         </div>
       </div>
       <MainTitleComponent title={t("docUpload")} />
-      <div className=" flex flex-wrap gap-x-3 my-2">
-        <div className="md:min-w-[500px] min-w-full">
+      <div className=" flex flex-wrap gap-5 my-4">
+        <div className=" min-w-full">
           <FormProvider {...formdata}>
             <AddFiles
               formName="financialStatements"
@@ -239,7 +279,7 @@ const AddLoan = ({ type }: { type: string }) => {
             />
           </FormProvider>
         </div>
-        <div className="md:min-w-[500px] min-w-full">
+        <div className=" min-w-full">
           <FormProvider {...formdata}>
             <AddFiles
               formName="businessRegCert"
@@ -250,7 +290,7 @@ const AddLoan = ({ type }: { type: string }) => {
             />
           </FormProvider>
         </div>
-        <div className="md:min-w-[500px] min-w-full">
+        <div className=" min-w-full">
           <FormProvider {...formdata}>
             <AddFiles
               formName="identityDocument"
@@ -269,12 +309,12 @@ const AddLoan = ({ type }: { type: string }) => {
       <div className="flex items-center justify-end gap-x-3 p-3">
         <Button
           text={type == "edit" ? t("edit") : t("addLoan")}
-          className="!bg-black !w-auto !text-sm"
+          className="!bg-black !w-auto !text-sm !px-4 !py-2"
           onClick={formdata.handleSubmit(onSubmit)}
         />
         <Button
           text={t("cancel")}
-          className="!bg-beige !text-gray-500 !w-auto !text-sm"
+          className="!bg-beige !text-gray-500 !w-auto !text-sm  !px-4 !py-2"
           // onClick={() => refDrawer?.current?.close()}
         />
       </div>

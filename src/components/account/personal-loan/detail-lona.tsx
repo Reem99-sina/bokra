@@ -54,11 +54,11 @@ const DetailLona = () => {
             </BorderBg3>
             <BorderBg3>
               <DisplayDataComponent title={t("nameTeam")} value={""} />
-              <div className="flex flex-col">
-                <p className=" text-gray-500 font-light text-xs">
+              <div className="flex flex-col text-[12px]">
+                <p className=" text-gray-500 font-light ">
                   {dataLoansDetail?.managementTeam?.teamMembers[0]?.name}
                 </p>
-                <p className=" text-gray-500 font-light text-xs">
+                <p className=" text-gray-500 font-light ">
                   {dataLoansDetail?.managementTeam?.teamMembers[0]?.role}
                 </p>
               </div>

@@ -59,7 +59,7 @@ const AddFiles = ({
                   ...register(formName),
                   onClick: () => refImage?.current?.click(),
                 }}
-                className="!py-0 !min-h-[40px]"
+                className="!py-0 !min-h-[40px] !bg-grayColor"
                 label={label}
                 leftIcon={<IoDocumentAttach />}
               />
@@ -73,7 +73,7 @@ const AddFiles = ({
                 className="placeholder:text-xs placeholder:font-light"
               />
               <p className="text-gray-400 text-[12px] mb-1">{desc}</p>
-              <div className="flex w-full justify-between text-[10px] ">
+              <div className="flex w-full justify-between text-[10px] text-gray-400">
                 <p>{t("filesSupport")} : PDF, JPEG, or PNG</p>
                 <p>{t("minSizefile")} : 10 MB</p>
               </div>
