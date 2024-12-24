@@ -43,7 +43,7 @@ const AddLoan = ({ type }: { type: string }) => {
         <BackNavigation title="" />
       </div>
       <div className=" flex flex-wrap gap-5 my-4">
-        <div className=" min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("purposeCompany"),
@@ -53,45 +53,10 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.loanPurpose?.message}
             label={t("purposeCompany")}
-            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500  !bg-grayColor "
+            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500"
           />
         </div>
-        <div className="sm:min-w-[49%] min-w-full">
-          <Controller
-            control={formdata.control}
-            name="loanCurrency"
-            rules={{
-              required: {
-                value: true,
-                message: t("loanCurrencyRequiredErrorMessage"),
-              },
-            }}
-            render={({ field: { onChange }, fieldState: { error } }) => {
-              return (
-                <>
-                  <Select
-                    label={t("loanCurrency")}
-                    placeholder={t("loanCurrency")}
-                    options={loanCurreny}
-                    onChange={(value) => onChange(value)}
-                    error={Boolean(error?.message)}
-                    styleCustom={{
-                      width: "auto",
-                      backgroundColor: "#f1f0f0",
-                      minWidth: "300px",
-                    }}
-                  />
-                  {error?.message && (
-                    <p className="mb-4 text-xs text-red-600 dark:text-red-500">
-                      {error?.message}
-                    </p>
-                  )}
-                </>
-              );
-            }}
-          />
-        </div>
-        <div className="sm:min-w-[49%] min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("loanAmount"),
@@ -113,13 +78,48 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.loanAmount?.message}
             label={t("loanAmount")}
-            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500 !bg-grayColor "
+            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500  "
+          />
+        </div>
+        <div className="sm:min-w-[300px] min-w-full">
+          <Controller
+            control={formdata.control}
+            name="loanCurrency"
+            rules={{
+              required: {
+                value: true,
+                message: t("loanCurrencyRequiredErrorMessage"),
+              },
+            }}
+            render={({ field: { onChange }, fieldState: { error } }) => {
+              return (
+                <>
+                  <Select
+                    label={t("loanCurrency")}
+                    placeholder={t("loanCurrency")}
+                    options={loanCurreny}
+                    onChange={(value) => onChange(value)}
+                    error={Boolean(error?.message)}
+                    styleCustom={{
+                      width: "auto",
+                      backgroundColor: "#fff",
+                      minWidth: "300px",
+                    }}
+                  />
+                  {error?.message && (
+                    <p className="mb-4 text-xs text-red-600 dark:text-red-500">
+                      {error?.message}
+                    </p>
+                  )}
+                </>
+              );
+            }}
           />
         </div>
       </div>
       <MainTitleComponent title={t("businessInformation")} />
       <div className=" flex flex-wrap gap-5  my-4">
-        <div className=" min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("business_name"),
@@ -130,10 +130,10 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.businessName?.message}
             label={t("business_name")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500 !bg-grayColor  !bg-grayColor "
+            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500    "
           />
         </div>
-        <div className=" min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("registration_number"),
@@ -151,10 +151,10 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.businessRegNumber?.message}
             label={t("registration_number")}
-            className=" w-full !text-xs !font-light !text-gray-500 !bg-grayColor   "
+            className=" w-full !text-xs !font-light !text-gray-500    "
           />
         </div>
-        <div className=" min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <Controller
             control={formdata.control}
             name="industryType"
@@ -172,7 +172,7 @@ const AddLoan = ({ type }: { type: string }) => {
                     error={Boolean(error?.message)}
                     styleCustom={{
                       width: "auto",
-                      backgroundColor: "#f1f0f0",
+                      backgroundColor: "#fff",
                       minWidth: "300px",
                     }}
                   />
@@ -189,7 +189,7 @@ const AddLoan = ({ type }: { type: string }) => {
       </div>
       <MainTitleComponent title={t("financials")} />
       <div className=" flex flex-wrap gap-5 my-4">
-        <div className=" min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("Annual_Revenue"),
@@ -207,7 +207,7 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.annualRevenue?.message}
             label={t("Annual_Revenue")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500 !bg-grayColor   "
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500    "
           >
             {!formdata.formState.errors.annualRevenue?.message && (
               <p className="text-[12px] font-light text-gray-400 mb-2">
@@ -216,7 +216,7 @@ const AddLoan = ({ type }: { type: string }) => {
             )}
           </TextInput>
         </div>
-        <div className=" min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("total_liabilities"),
@@ -236,7 +236,7 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.liabilities?.message}
             label={t("total_liabilities")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500 !bg-grayColor   "
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500    "
           >
             {!formdata.formState.errors.liabilities?.message && (
               <p className="text-[12px] font-light text-gray-400 mb-2 ">
@@ -245,7 +245,7 @@ const AddLoan = ({ type }: { type: string }) => {
             )}
           </TextInput>
         </div>
-        <div className=" min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("expenses"),
@@ -260,44 +260,42 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.expenses?.message}
             label={t("expenses")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500 !bg-grayColor   "
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500    "
           />
         </div>
       </div>
       <MainTitleComponent title={t("docUpload")} />
       <div className=" flex flex-wrap gap-5 my-4">
-        <div className=" min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <FormProvider {...formdata}>
             <AddFiles
               formName="financialStatements"
               placeholder={t("finStatements")}
               desc={""}
               label={t("finStatements")}
-              errorMessage={
-                formdata.formState.errors.financialStatements?.message
-              }
+             
             />
           </FormProvider>
         </div>
-        <div className=" min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <FormProvider {...formdata}>
             <AddFiles
               formName="businessRegCert"
               placeholder={t("busRegistCert")}
               desc={""}
               label={t("busRegistCert")}
-              errorMessage={formdata.formState.errors.businessRegCert?.message}
+             
             />
           </FormProvider>
         </div>
-        <div className=" min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <FormProvider {...formdata}>
             <AddFiles
               formName="identityDocument"
               placeholder={t("identityDocument")}
               desc={""}
               label={t("identityDocument")}
-              errorMessage={formdata.formState.errors.businessRegCert?.message}
+           
             />
           </FormProvider>
         </div>

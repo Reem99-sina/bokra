@@ -33,84 +33,84 @@ const AccountComponent = () => {
       <MainTitleComponent title={t("personalData")} />
       <div className=" flex justify-between flex-col h-[92%]">
         <div className="flex items-center  gap-4 sm:flex-row my-4 flex-wrap">
-          <div className="md:min-w-[500px] min-w-full">
+          <div className="md:min-w-[300px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("name"),
                 ...register("name"),
               }}
               label={t("name")}
-              disabled
-              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              disabled={true}
+              className="md:max-w-[300px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[500px] min-w-full">
+          <div className="md:min-w-[300px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("street"),
                 ...register("street"),
               }}
               label={t("street")}
-              disabled
-              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              disabled={true}
+              className="md:max-w-[300px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[500px] min-w-full">
+          <div className="md:min-w-[300px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("district"),
                 ...register("district"),
               }}
               label={t("district")}
-              disabled
-              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              disabled={true}
+              className="md:max-w-[300px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[500px] min-w-full">
+          <div className="md:min-w-[300px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("city"),
                 ...register("city"),
               }}
               label={t("city")}
-              disabled
-              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              disabled={true}
+              className="md:max-w-[300px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[500px] min-w-full">
+          <div className="md:min-w-[300px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("email"),
                 ...register("email"),
               }}
               label={t("email")}
-              disabled
-              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              disabled={true}
+              className="md:max-w-[300px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[500px] min-w-full">
+          <div className="md:min-w-[300px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("nationality"),
                 ...register("nationality"),
               }}
               label={t("nationality")}
-              disabled
-              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              disabled={true}
+              className="md:max-w-[300px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[500px] min-w-full">
+          <div className="md:min-w-[300px] min-w-full">
             <TextInput
               inputProps={{
                 placeholder: t("phone"),
                 ...register("phone"),
               }}
               label={t("phone")}
-              disabled
-              className="md:max-w-[500px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
+              disabled={true}
+              className="md:max-w-[300px] w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>
-          <div className="md:min-w-[500px] min-w-full">
+          <div className="md:min-w-[300px] min-w-full">
             <TextInput
               inputProps={{
                 type: "date",
@@ -118,7 +118,7 @@ const AccountComponent = () => {
                 ...register("birthDate"),
               }}
               label={t("birthDate")}
-              disabled
+              disabled={true}
               className="md:!max-w-[500px] !w-full !text-xs !font-normal !text-gray-500 !py-0 !min-h-[40px]"
             />
           </div>

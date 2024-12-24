@@ -174,7 +174,17 @@ export default {
   fileSize: "File size exceeds the 10MB limit.",
   busRegistCert: "Business Registration Certificate",
   loanCurrency: "loan Currency",
-  apply_now:"Apply Now",
-  ourSolution:"Our Solutions"
-
+  apply_now: "Apply Now",
+  ourSolution: "Our Solutions",
+  errorLoginUserName: "Username cannot be empty.",
+  errorLoginemail: "Please enter a valid email address.",
+  errorPasswordNotEmty: "Password cannot be empty.",
+  errorPasswordPattern:
+    "Password must meet complexity requirements: 8+ characters, including uppercase, lowercase, number, and  special character",
+  fullname: "Full Name",
+  errorFullName:"Full name cannot be empty.",
+  errorRepeatMatchPassword:"Repeat Password must match the Password.",
+  errorRepeatRequiredPassword:"Repeat Password cannot be empty",
+  errorPhoneNumber:"Phone number cannot be empty.",
+  errorPhoneNumberValid:"Please enter a valid phone number."
 } as const;

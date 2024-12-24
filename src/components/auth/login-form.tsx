@@ -13,6 +13,7 @@ import { FacebookIcon, GoogleIcon } from "@/icon";
 // import { useLoginMutation } from "@/services/profile.service";
 import { useUser } from "@/hooks/user.hooks";
 import Image from "next/image";
+import { validateInput } from "@/utils/validate.userName";
 
 export const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -40,7 +41,12 @@ export const LoginForm: React.FC = () => {
           // autoComplete="off"
         >
           <div className="flex items-center justify-center  w-full ">
-            <Image src={"/logo_black.jpeg"} width={100} height={90} alt="logo" />
+            <Image
+              src={"/logo_black.jpeg"}
+              width={100}
+              height={90}
+              alt="logo"
+            />
           </div>
           <div className="h-[1px] w-full bg-grayLight"></div>
           <div className="px-14 pb-6 pt-6 flex flex-col">
@@ -59,7 +65,19 @@ export const LoginForm: React.FC = () => {
             <TextInput
               inputProps={{
                 placeholder: t("id_or_email"),
-                ...register("email"),
+                ...register("email", {
+                  required: {
+                    value: true,
+                    message: t("errorLoginUserName"),
+                  },
+                  validate: {
+                    value: (value) =>
+                      validateInput({
+                        value: value,
+                        message: t("errorLoginemail"),
+                      }),
+                  },
+                }),
               }}
               errorMessage={errors.email?.message}
               className="!font-normal !text-black"
@@ -70,7 +88,18 @@ export const LoginForm: React.FC = () => {
               inputProps={{
                 type: "password",
                 placeholder: t("password"),
-                ...register("password"),
+                ...register("password", {
+                  required: { value: true, message: t("errorPasswordNotEmty") },
+                  minLength: {
+                    value: 8,
+                    message: t("errorPasswordPattern"),
+                  },
+                  pattern: {
+                    value:
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
+                    message: t("errorPasswordPattern"),
+                  },
+                }),
               }}
               errorMessage={errors.password?.message}
               className="!font-normal !text-black"

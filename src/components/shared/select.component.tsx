@@ -39,7 +39,7 @@ export const Select: React.FC<Props> = ({
     <>
       {label ? (
         <div className='flex w-full flex-row items-center justify-between'>
-          <p className={clsx('text-md font-bold ',error?"text-red-600":"text-black")}>{label}</p>
+          <p className={clsx('text-sm font-bold ',error?"text-red-600":"text-black")}>{label}</p>
           {icon ? <span>{icon}</span> : null}
         </div>
       ) : null}

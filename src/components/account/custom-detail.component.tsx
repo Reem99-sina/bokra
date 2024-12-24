@@ -109,7 +109,6 @@ export const DataComponents = () => {
             url={dataLoansDetail?.legalDocuments?.commercialRegistration}
             style={{ borderRadius: "4px" }}
           />
-          <h3 className="font-black">{t("loan_details")}</h3>
           <div className="flex flex-col  flex-1 p-3 rounded gap-y-3">
             <DisplayDataComponent
               title={t("loan_amount_requested")}

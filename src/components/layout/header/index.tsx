@@ -180,7 +180,7 @@ export const Header = () => {
                     <Link
                       href={link.to as string}
                       className={clsx(
-                        "relative text-md font-bold text-white  ",
+                        "relative text-md font-black text-white  ",
                         "transition-all duration-300",
                         "scroll-smooth"
                       )}

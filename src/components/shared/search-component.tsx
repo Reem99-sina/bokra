@@ -8,10 +8,15 @@ const SearchComponent = () => {
   return (
     <div className="flex items-center gap-3 ">
       <div className="w-full">
-        <TextInput inputProps={{ placeholder: t("search") }} />
-      </div>
-      <div className="bg-beige p-3 rounded">
-        <CiSearch color="black" />
+        <TextInput
+          inputProps={{ placeholder: t("search"),className:"!ps-0" }}
+          leftIcon={
+            <div className="bg-beige p-3 rounded ">
+              <CiSearch color="black" />
+            </div>
+          }
+          
+        />
       </div>
     </div>
   );

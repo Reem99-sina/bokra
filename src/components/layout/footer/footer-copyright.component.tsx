@@ -40,7 +40,7 @@ export const FooterCopyright = () => {
         <div className="text-start text-white flex  items-center gap-4  w-full">
           {/* <img src="/valoro.png" alt="Logo" className="w-12 h-12 mr-2" /> */}
 
-          <div className="py-5  flex justify-between w-full flex-wrap gap-5">
+          <div className="  flex justify-between w-full flex-wrap gap-5">
             {social.map(({ title, child }) => (
               <div key={title} className="flex items-center gap-3">
               
@@ -57,8 +57,8 @@ export const FooterCopyright = () => {
             <Link href={`/${lang}/`}>
                 <Image
                   src={"/bokralogo.png"}
-                  width={200}
-                  height={100}
+                  width={100}
+                  height={50}
                   alt="logo"
                 />
               </Link>

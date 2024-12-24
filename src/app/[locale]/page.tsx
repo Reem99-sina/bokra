@@ -12,7 +12,7 @@ import TypeLoanComponent from "@/components/home/type-loan.component";
 export default function Home() {
   return (
     <main className="z-0   transition-all bg-beige">
-      <div className="flex   w-full   flex-col  overflow-x-hidden ">
+      <div className="flex   w-full   flex-col">
         <Header />
         <section
           className="flex w-full flex-1 flex-col  bg-beige mt-14"

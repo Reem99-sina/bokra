@@ -9,18 +9,16 @@ const AddFiles = ({
   placeholder,
   label,
   formName,
-  desc,
-  errorMessage,
+  desc
 }: {
   placeholder: string;
   label: string;
   formName: string;
   desc?: string;
-  errorMessage?: string;
 }) => {
   const refImage = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
-  const { register, control } = useFormContext();
+  const { register, control,formState:{errors} } = useFormContext();
 
   return (
     <div className="flex flex-col my-2">
@@ -59,9 +57,14 @@ const AddFiles = ({
                   ...register(formName),
                   onClick: () => refImage?.current?.click(),
                 }}
-                className="!py-0 !min-h-[40px] !bg-grayColor"
+                className="!py-0 !min-h-[40px] "
                 label={label}
-                leftIcon={<IoDocumentAttach />}
+                errorMessage={errors[formName]?.message?String(errors[formName]?.message):""}
+                leftIcon={
+                  <div className="p-2">
+                    <IoDocumentAttach />
+                  </div>
+                }
               />
               <input
                 type="file"
@@ -81,11 +84,7 @@ const AddFiles = ({
           );
         }}
       />
-      {errorMessage && (
-        <p className="mb-2 h-2 text-xs text-red-600 dark:text-red-500">
-          {errorMessage}
-        </p>
-      )}
+     
     </div>
   );
 };
