@@ -5,7 +5,8 @@ export const colors = {
     error:"#EA1818",
     grayInput:"#d1d5db",
     bg3:"#F7F7F7",
-    layout:"#00000078"
+    layout:"#00000078",
+    grayColor:"#f1f0f0"
   };
   
   

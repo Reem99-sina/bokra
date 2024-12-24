@@ -15,7 +15,7 @@ const ScrollAnimationExample = ({ children }: { children: ReactNode }) => {
   }, [controls, inView]);
 
   return (
-    <motion.div ref={ref} animate={controls} initial={{ opacity: 0, y: 100 }}>
+    <motion.div ref={ref} animate={controls} initial={{ opacity: 0, y: 100 }} className="w-full">
       {children}
     </motion.div>
   );

@@ -2,13 +2,11 @@ import { TextInput } from "@/components/shared/form/text-input.component";
 import { Select } from "@/components/shared/select.component";
 import { useTranslation } from "@/translations/clients";
 import { addLoanInfo } from "@/types/loan.type";
-import { technologyType } from "@/utils/data.util";
-import { Textarea } from "@material-tailwind/react";
+import { loanCurreny, technologyType } from "@/utils/data.util";
+import { Checkbox } from "@material-tailwind/react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import AddFiles from "./add-files";
-import PhoneInput from "react-phone-input-2";
 import MainTitleComponent from "@/components/shared/main-title.component";
-import { RadioExample } from "@/components/shared/Radio.component";
 import { Button } from "@/components/shared/button.component";
 import BackNavigation from "@/components/shared/back-navigation";
 
@@ -17,80 +15,94 @@ const AddLoan = ({ type }: { type: string }) => {
 
   const formdata = useForm<addLoanInfo>({
     defaultValues: {
-      companyName: "",
-      industryPartnername: "",
+      loanAmount: undefined,
       companyType: "",
-      busRegistNumber: "",
-      companyWebAddress: "",
-      companyLinkedin: "",
-      datOfEst: "",
-      industry: "",
-      purposeOfCompany: "",
-      gainCompany: "",
-      problem: "",
-      amountMoney: "",
-      duration: "",
-      files: undefined,
-      address: "",
-      city: "",
-      email: "",
-      governorate: "",
-      personName: "",
-      phoneNum: "",
-      annual_revenue: "",
-      net_profit_margin: "",
-      total_asset: "",
-      total_liabilities: "",
-      loan_amount_requested: "",
+      businessRegNumber: "",
+      businessName: "",
+      industryType: "",
+      loanPurpose: "",
+      financialStatements: undefined,
+      annualRevenue: undefined,
+      expenses: undefined,
+      liabilities: undefined,
+      businessRegCert: undefined,
+      identityDocument: undefined,
+      loanCurrency: "",
     },
     mode: "onChange",
   });
+  const loan_currency = formdata.watch("loanCurrency");
+  const onSubmit = () => {
+    // console.log(data, "data");
+  };
 
   return (
-    <div className="flex flex-col gap-y-2 h-[80vh] overflow-y-auto text-black">
+    <div className="flex flex-col gap-y-2  text-black">
       <div className="flex gap-x-3 flex-row-reverse">
-        <MainTitleComponent title={t("companyInformation")} />
+        <MainTitleComponent title={t("loanDetail")} />
         <BackNavigation title="" />
       </div>
-      <div className=" flex flex-wrap gap-x-3 my-2">
-        <div className="md:min-w-[300px] min-w-full">
+      <div className=" flex flex-wrap gap-5 my-4">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
-              placeholder: t("companyName"),
-              ...formdata.register("companyName"),
+              placeholder: t("purposeCompany"),
+              ...formdata.register("loanPurpose", {
+                required: { value: true, message: t("purposeMessage") },
+              }),
             }}
-            label={t("companyName")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
+            errorMessage={formdata.formState.errors.loanPurpose?.message}
+            label={t("purposeCompany")}
+            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500"
           />
         </div>
-        <div className="md:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
-              placeholder: t("IndustryPartnername"),
-              ...formdata.register("industryPartnername"),
+              placeholder: t("loanAmount"),
+              type: "number",
+              ...formdata.register("loanAmount", {
+                required: {
+                  value: true,
+                  message:
+                    loan_currency == "USD"
+                      ? t("loanAmountRequiredErrorMessage")
+                      : t("loanAmountRangeErrorEGPMessage"),
+                },
+                min: { value: 5000, message: t("loanAmountRangeErrorMessage") },
+                max: {
+                  value: 500000,
+                  message: t("loanAmountRangeErrorMessage"),
+                },
+              }),
             }}
-            label={t("IndustryPartnername")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
+            errorMessage={formdata.formState.errors.loanAmount?.message}
+            label={t("loanAmount")}
+            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500  "
           />
         </div>
-        <div className="md:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <Controller
             control={formdata.control}
-            name="industry"
+            name="loanCurrency"
             rules={{
-              required: t("requiredMessage"),
+              required: {
+                value: true,
+                message: t("loanCurrencyRequiredErrorMessage"),
+              },
             }}
             render={({ field: { onChange }, fieldState: { error } }) => {
               return (
                 <>
                   <Select
-                    label={t("companyType")}
-                    placeholder={t("companyType")}
-                    options={technologyType}
+                    label={t("loanCurrency")}
+                    placeholder={t("loanCurrency")}
+                    options={loanCurreny}
                     onChange={(value) => onChange(value)}
+                    error={Boolean(error?.message)}
                     styleCustom={{
                       width: "auto",
-                      backgroundColor: "white",
+                      backgroundColor: "#fff",
                       minWidth: "300px",
                     }}
                   />
@@ -104,38 +116,50 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
           />
         </div>
-        <div className="md:min-w-[300px] min-w-full">
+      </div>
+      <MainTitleComponent title={t("businessInformation")} />
+      <div className=" flex flex-wrap gap-5  my-4">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
-              placeholder: t("busRegistNumber"),
-              type: "number",
-              ...formdata.register("busRegistNumber"),
+              placeholder: t("business_name"),
+              type: "text",
+              ...formdata.register("businessName", {
+                required: { value: true, message: t("business_error") },
+              }),
             }}
-            label={t("busRegistNumber")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
-          >
-            <p className="text-[12px] font-light text-gray-400 mb-2">
-              {t("busRegistNumber")}
-            </p>
-          </TextInput>
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("datOfEst"),
-              type: "date",
-              ...formdata.register("datOfEst"),
-            }}
-            label={t("datOfEst")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
+            errorMessage={formdata.formState.errors.businessName?.message}
+            label={t("business_name")}
+            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500    "
           />
         </div>
-        <div className="md:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
+          <TextInput
+            inputProps={{
+              placeholder: t("registration_number"),
+              type: "text",
+              ...formdata.register("businessRegNumber", {
+                required: {
+                  value: true,
+                  message: t("registration_error_required"),
+                },
+                pattern: {
+                  value: /^[a-zA-Z0-9]{10,15}$/,
+                  message: t("registration_error_alph"),
+                },
+              }),
+            }}
+            errorMessage={formdata.formState.errors.businessRegNumber?.message}
+            label={t("registration_number")}
+            className=" w-full !text-xs !font-light !text-gray-500    "
+          />
+        </div>
+        <div className="sm:min-w-[300px] min-w-full">
           <Controller
             control={formdata.control}
-            name="industry"
+            name="industryType"
             rules={{
-              required: t("requiredMessage"),
+              required: { value: true, message: t("industry_error") },
             }}
             render={({ field: { onChange }, fieldState: { error } }) => {
               return (
@@ -145,9 +169,10 @@ const AddLoan = ({ type }: { type: string }) => {
                     placeholder={t("technologyType")}
                     options={technologyType}
                     onChange={(value) => onChange(value)}
+                    error={Boolean(error?.message)}
                     styleCustom={{
                       width: "auto",
-                      backgroundColor: "white",
+                      backgroundColor: "#fff",
                       minWidth: "300px",
                     }}
                   />
@@ -161,475 +186,133 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
           />
         </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("companyWebAddress"),
-              type: "text",
-              ...formdata.register("companyWebAddress"),
-            }}
-            label={t("companyWebAddress")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
-          >
-            <p className="text-[12px] font-light text-gray-400 mb-2">
-              {t("companyWebAddress")}
-            </p>
-          </TextInput>
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("companyLinkedin"),
-              type: "text",
-              ...formdata.register("companyLinkedin", {
-                pattern: {
-                  value: /^(http|https):\/\/[^ "]+$/,
-                  message: "Must be a valid URL",
-                },
-              }),
-            }}
-            label={t("companyLinkedin")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
-          />
-        </div>
-      </div>
-      <MainTitleComponent title={t("contactInfo")} />
-      <div className=" flex flex-wrap gap-x-3 my-2">
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("address"),
-              type: "text",
-              ...formdata.register("address"),
-            }}
-            label={t("address")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
-          />
-        </div>
-
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("city"),
-              type: "text",
-              ...formdata.register("city"),
-            }}
-            label={t("city")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
-          />
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("governorate"),
-              type: "text",
-              ...formdata.register("governorate"),
-            }}
-            label={t("governorate")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
-          />
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("personName"),
-              type: "text",
-              ...formdata.register("personName"),
-            }}
-            label={t("personName")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
-          />
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <Controller
-            control={formdata.control}
-            name="phoneNum"
-            rules={{
-              required: t("requiredMessage"),
-            }}
-            render={({ field: { onChange, value } }) => {
-              return (
-                <PhoneInput
-                  country={"us"}
-                  value={value}
-                  onChange={(phone) => onChange(phone)}
-                  specialLabel={t("phoneNum")}
-                  inputStyle={{
-                    width: "300px",
-                    padding: "7px 10px",
-                    borderRadius: "0.375rem",
-                    margin: "8px 0px",
-                    color: "black",
-                    border: "1px solid #d1d5db",
-                  }}
-                />
-              );
-            }}
-          />
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("email"),
-              type: "text",
-              ...formdata.register("email", {
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Invalid email address",
-                },
-              }),
-            }}
-            label={t("email")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
-          />
-        </div>
-      </div>
-      <MainTitleComponent title={t("legalDoc")} />
-      <div className=" flex flex-wrap gap-x-3 my-2">
-        <div className="md:min-w-[300px] min-w-full">
-          <Controller
-            control={formdata.control}
-            name="files"
-            rules={{
-              required: t("requiredMessage"),
-            }}
-            render={() => {
-              return (
-                <FormProvider {...formdata}>
-                  <AddFiles
-                    formName="files"
-                    placeholder={t("addFilelegal")}
-                    label={t("addFiles")}
-                  />
-                </FormProvider>
-              );
-            }}
-          />
-        </div>
       </div>
       <MainTitleComponent title={t("financials")} />
-      <div className=" flex flex-wrap gap-x-3 my-2">
-        <div className="md:min-w-[300px] min-w-full">
+      <div className=" flex flex-wrap gap-5 my-4">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
-              placeholder: t("Annual_Revenue_des"),
+              placeholder: t("Annual_Revenue"),
               type: "number",
-              ...formdata.register("annual_revenue"),
+              ...formdata.register("annualRevenue", {
+                required: {
+                  value: true,
+                  message: t("annual_revenue_error_required"),
+                },
+                pattern: {
+                  value: /^[0-9]+(\.[0-9]+)?$/,
+                  message: t("enter_valid_number"),
+                },
+              }),
             }}
+            errorMessage={formdata.formState.errors.annualRevenue?.message}
             label={t("Annual_Revenue")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500    "
           >
-            <p className="text-[12px] font-light text-gray-400 mb-2">
-              {t("Annual_Revenue") + " " + t("Annual_Revenue_des")}
-            </p>
+            {!formdata.formState.errors.annualRevenue?.message && (
+              <p className="text-[12px] font-light text-gray-400 mb-2">
+                {t("Annual_Revenue") + " " + t("Annual_Revenue_des")}
+              </p>
+            )}
           </TextInput>
         </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("net_profit_margin_desc"),
-              type: "number",
-              ...formdata.register("net_profit_margin"),
-            }}
-            label={t("net_profit_margin")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
-          >
-            <p className="text-[12px] font-light text-gray-400 mb-2">
-              {t("net_profit_margin_desc")}
-            </p>
-          </TextInput>
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("total_asset_desc"),
-              type: "number",
-              ...formdata.register("total_asset"),
-            }}
-            label={t("total_asset")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
-          >
-            <p className="text-[12px] font-light text-gray-400 mb-2 ">
-              {t("total_asset_desc")}
-            </p>
-          </TextInput>
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("total_liabilities"),
               type: "number",
-              ...formdata.register("total_liabilities"),
+              ...formdata.register("liabilities", {
+                pattern: {
+                  value: /^[0-9]+(\.[0-9]+)?$/,
+                  message: t("enter_valid_number"),
+                },
+                validate: (value) => {
+                  return Number(value) >
+                    Number(formdata.getValues("annualRevenue"))
+                    ? t("liabilitiesErrorExceed")
+                    : undefined;
+                },
+              }),
             }}
+            errorMessage={formdata.formState.errors.liabilities?.message}
             label={t("total_liabilities")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500    "
           >
-            <p className="text-[12px] font-light text-gray-400 mb-2 ">
-              {t("total_liabilities_desc")}
-            </p>
+            {!formdata.formState.errors.liabilities?.message && (
+              <p className="text-[12px] font-light text-gray-400 mb-2 ">
+                {t("total_liabilities_desc")}
+              </p>
+            )}
           </TextInput>
         </div>
-        <div className="md:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[300px] min-w-full">
           <TextInput
             inputProps={{
-              placeholder: t("revenue_projections"),
+              placeholder: t("expenses"),
               type: "number",
-              ...formdata.register("revenue_projections"),
+              ...formdata.register("expenses", {
+                required: { value: true, message: t("expenses_error_require") },
+                pattern: {
+                  value: /^[0-9]+(\.[0-9]+)?$/,
+                  message: t("enter_valid_number"),
+                },
+              }),
             }}
-            label={t("revenue_projections")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500   "
-          >
-            <p className="text-[12px] font-light text-gray-400 mb-2 ">
-              {t("revenue_projections_desc")}
-            </p>
-          </TextInput>
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("Cash_flow_forecasts"),
-              type: "number",
-              ...formdata.register("Cash_flow_forecasts"),
-            }}
-            label={t("Cash_flow_forecasts")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500  "
-          >
-            <p className="text-[12px] font-light text-gray-400 mb-2 ">
-              {t("Cash_flow_forecasts_desc")}
-            </p>
-          </TextInput>
-        </div>
-      </div>
-      <MainTitleComponent title={t("loan_details")} />
-      <div className=" flex flex-wrap gap-x-3 my-2">
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("loan_amount_requested"),
-              type: "number",
-              ...formdata.register("loan_amount_requested"),
-            }}
-            label={t("loan_amount_requested")}
-            className="md:min-w-[500px] w-full !text-xs !font-bold !text-gray-500  "
-          />
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("proposed_repayment_desc"),
-              type: "number",
-              ...formdata.register("loan_amount_requested"),
-            }}
-            label={t("proposed_repayment")}
-            className="md:min-w-[500px] w-full !text-xs !font-bold !text-gray-500  "
-          />
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <p className="mb-2 text-sm font-bold">{t("purposeCompany")}</p>
-          <Controller
-            control={formdata.control}
-            name="purposeOfCompany"
-            rules={{
-              required: t("requiredMessage"),
-            }}
-            render={({ field: { onChange } }) => {
-              return (
-                <>
-                  <Textarea
-                    rows={5}
-                    onChange={(event) => onChange(event)}
-                    placeholder={t("purposeCompany")}
-                    className="border border-gray-300 rounded-md !bg-white p-3 md:!min-w-[500px] !w-full"
-                  />
-                </>
-              );
-            }}
+            errorMessage={formdata.formState.errors.expenses?.message}
+            label={t("expenses")}
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500    "
           />
         </div>
       </div>
-      <MainTitleComponent title={t("business_plan")} />
-      <div className=" flex flex-wrap gap-x-3 my-2">
-        <div className="md:min-w-[300px] min-w-full">
-          <p className="mb-2 text-sm">{t("problem")}</p>
-          <Controller
-            control={formdata.control}
-            name="problem"
-            rules={{
-              required: t("requiredMessage"),
-            }}
-            render={({ field: { onChange } }) => {
-              return (
-                <>
-                  <Textarea
-                    rows={5}
-                    onChange={(event) => onChange(event)}
-                    placeholder={t("problemPlaceholder")}
-                    className="border border-gray-300 rounded-md !bg-white p-3 md:!min-w-[500px] !w-full"
-                  />
-                </>
-              );
-            }}
-          />
+      <MainTitleComponent title={t("docUpload")} />
+      <div className=" flex flex-wrap gap-5 my-4">
+        <div className="sm:min-w-[300px] min-w-full">
+          <FormProvider {...formdata}>
+            <AddFiles
+              formName="financialStatements"
+              placeholder={t("finStatements")}
+              desc={""}
+              label={t("finStatements")}
+             
+            />
+          </FormProvider>
         </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("timelines"),
-              type: "datetime-local",
-              ...formdata.register("gainCompany"),
-            }}
-            label={t("timelines")}
-            className="md:min-w-[500px] w-full !text-xs !font-light !text-gray-500   "
-          >
-            <p className="text-[12px] font-light text-gray-400 mb-2 ">
-              {t("timelines_desc")}
-            </p>
-          </TextInput>
+        <div className="sm:min-w-[300px] min-w-full">
+          <FormProvider {...formdata}>
+            <AddFiles
+              formName="businessRegCert"
+              placeholder={t("busRegistCert")}
+              desc={""}
+              label={t("busRegistCert")}
+             
+            />
+          </FormProvider>
+        </div>
+        <div className="sm:min-w-[300px] min-w-full">
+          <FormProvider {...formdata}>
+            <AddFiles
+              formName="identityDocument"
+              placeholder={t("identityDocument")}
+              desc={""}
+              label={t("identityDocument")}
+           
+            />
+          </FormProvider>
         </div>
       </div>
-      <MainTitleComponent title={t("collateral")} />
-      <div className=" flex flex-wrap gap-x-3 my-2">
-        <div className="md:min-w-[300px] min-w-full">
-          <Controller
-            control={formdata.control}
-            name="files"
-            rules={{
-              required: t("requiredMessage"),
-            }}
-            render={() => {
-              return (
-                <FormProvider {...formdata}>
-                  <AddFiles
-                    formName="files"
-                    placeholder={t("potential_collateral")}
-                    desc={t("potential_collateral_desc")}
-                    label={t("potential_collateral")}
-                  />
-                </FormProvider>
-              );
-            }}
-          />
-        </div>
-      </div>
-      <MainTitleComponent title={t("management_team")} />
-      <div className=" flex flex-wrap gap-x-3 my-2">
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("nameTeam"),
-              type: "number",
-              ...formdata.register("loan_amount_requested"),
-            }}
-            label={t("nameTeam")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500  "
-          />
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("postion"),
-              type: "number",
-              ...formdata.register("loan_amount_requested"),
-            }}
-            label={t("postion")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500  "
-          />
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <TextInput
-            inputProps={{
-              placeholder: t("yearsExperience"),
-              type: "number",
-              ...formdata.register("loan_amount_requested"),
-            }}
-            label={t("yearsExperience")}
-            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500  "
-          />
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <p className="mb-2 text-sm">{t("expertise")}</p>
-          <Controller
-            control={formdata.control}
-            name="problem"
-            rules={{
-              required: t("requiredMessage"),
-            }}
-            render={({ field: { onChange } }) => {
-              return (
-                <div className="w-full">
-                  <Textarea
-                    rows={5}
-                    onChange={(event) => onChange(event)}
-                    placeholder={t("expertise")}
-                    className="border border-gray-300 rounded-md !bg-white p-3 md:!min-w-[500px] !min-w-[300px]"
-                  />
-                </div>
-              );
-            }}
-          />
-        </div>
-        <div className="md:min-w-[300px] min-w-full">
-          <p className="mb-2 text-sm">{t("track_record")}</p>
-          <Controller
-            control={formdata.control}
-            name="problem"
-            rules={{
-              required: t("requiredMessage"),
-            }}
-            render={({ field: { onChange } }) => {
-              return (
-                <>
-                  <Textarea
-                    rows={5}
-                    onChange={(event) => onChange(event)}
-                    placeholder={t("track_record")}
-                    className="border border-gray-300 rounded-md !bg-white p-3 md:!min-w-[500px] !w-full"
-                  />
-                </>
-              );
-            }}
-          />
-        </div>
-      </div>
-      <MainTitleComponent title={t("industry_analysis")} />
-      <div className=" flex flex-wrap gap-x-3 my-2">
-        <div className="md:min-w-[300px] min-w-full">
-          <p className="mb-2 text-sm">{t("industry_landscape")}</p>
-          <Controller
-            control={formdata.control}
-            name="problem"
-            rules={{
-              required: t("requiredMessage"),
-            }}
-            render={({ field: { onChange } }) => {
-              return (
-                <>
-                  <Textarea
-                    rows={5}
-                    onChange={(event) => onChange(event)}
-                    placeholder={t("industry_landscape_desc")}
-                    className="border border-gray-300 rounded-md !bg-white p-3 md:!min-w-[500px] !w-full"
-                  />
-                </>
-              );
-            }}
-          />
-        </div>
-      </div>
-      <MainTitleComponent title={t("additional_information")} />
-      <div className=" flex flex-wrap gap-x-3 my-2 items-center">
+      <div className=" flex flex-wrap gap-x-2 my-2 items-center">
+        <Checkbox crossOrigin={undefined} />
         <h3 className="text-black font-bold text-sm">{t("question")}</h3>
-        <RadioExample id="yes" name="type" label="yes" />
-        <RadioExample id="no" name="type" label="no" />
       </div>
       <div className="flex items-center justify-end gap-x-3 p-3">
         <Button
           text={type == "edit" ? t("edit") : t("addLoan")}
-          className="!bg-black !w-auto"
+          className="!bg-black !w-auto !text-sm !px-4 !py-2"
+          onClick={formdata.handleSubmit(onSubmit)}
         />
         <Button
           text={t("cancel")}
-          className="!bg-beige !text-gray-500 !w-auto"
+          className="!bg-beige !text-gray-500 !w-auto !text-sm  !px-4 !py-2"
           // onClick={() => refDrawer?.current?.close()}
         />
       </div>

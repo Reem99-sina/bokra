@@ -7,11 +7,13 @@ const AboutCardComponent = ({
   head,
   desc,
   buttonText,
+  onClick
 }: {
   icon: ReactNode;
   head: string;
   desc: string;
   buttonText: string;
+  onClick?:()=>void
 }) => {
   return (
     <CardDetail className="text-md text-black items-center shadow-lg  gap-4 py-6 px-3 justify-center rounded-md">
@@ -21,6 +23,7 @@ const AboutCardComponent = ({
       <Button
         className="!bg-white !text-black !border !border-grayLight !w-auto !text-xs"
         text={buttonText}
+        onClick={onClick}
       />
     </CardDetail>
   );

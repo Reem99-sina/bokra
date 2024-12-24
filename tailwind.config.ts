@@ -39,6 +39,11 @@ export default {
         xl: "4rem",
         "2xl": "4rem",
       },
+      screens: {
+        "@screen 2xl": {
+          min: "1200px",
+        }
+      },
     },
   },
   plugins: [],

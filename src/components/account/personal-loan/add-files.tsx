@@ -14,19 +14,37 @@ const AddFiles = ({
   placeholder: string;
   label: string;
   formName: string;
-  desc?:string
+  desc?: string;
 }) => {
   const refImage = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
-  const { register, control } = useFormContext();
+  const { register, control,formState:{errors} } = useFormContext();
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col my-2">
       <Controller
         control={control}
         name={formName}
         rules={{
-          required: t("requiredMessage"),
+          validate: {
+            fileType: (files: File[]) => {
+              const invalidFile = Array?.from(files)?.find(
+                (file) =>
+                  ![
+                    "application/pdf",
+                    "image/png",
+                    "image/jpeg",
+                    "image/jpg",
+                  ].includes(file?.type)
+              );
+
+              return invalidFile ? t("fileType") : true;
+            },
+            fileSize: (files: File[]) =>
+              Array?.from(files)?.find((ele) => ele?.size <= 10 * 1024 * 1024)
+                ? true
+                : t("fileSize"),
+          },
         }}
         render={({ field: { onChange } }) => {
           return (
@@ -35,31 +53,38 @@ const AddFiles = ({
                 inputProps={{
                   placeholder: placeholder,
                   className: "!text-sm ",
+                  multiple: true,
                   ...register(formName),
                   onClick: () => refImage?.current?.click(),
                 }}
-                className="!py-0 !min-h-[40px]"
+                className="!py-0 !min-h-[40px] "
                 label={label}
-                leftIcon={<IoDocumentAttach />}
+                errorMessage={errors[formName]?.message?String(errors[formName]?.message):""}
+                leftIcon={
+                  <div className="p-2">
+                    <IoDocumentAttach />
+                  </div>
+                }
               />
               <input
                 type="file"
                 hidden
-                multiple
+                multiple={true}
                 ref={refImage}
-                onChange={(event) => onChange(event)}
-                accept={"application/pdf"}
+                onChange={(event) => onChange(event.target.files)}
+                accept={"application/pdf,image/png,image/jpeg,image/jpg"}
+                className="placeholder:text-xs placeholder:font-light"
               />
-               <p className="text-gray-400 text-[12px] mb-1">{desc}</p>
-              <div className="flex w-full justify-between text-[12px] ">
-               
-                <p>{t("filesSupport")} : Pdf, Docx</p>
-                <p>{t("minSizefile")} : 2 MB</p>
+              <p className="text-gray-400 text-[12px] mb-1">{desc}</p>
+              <div className="flex w-full justify-between text-[10px] text-gray-400">
+                <p>{t("filesSupport")} : PDF, JPEG, or PNG</p>
+                <p>{t("minSizefile")} : 10 MB</p>
               </div>
             </>
           );
         }}
       />
+     
     </div>
   );
 };

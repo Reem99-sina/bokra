@@ -9,3 +9,5 @@ export { default as MandatoryIcon } from "./mandatory.svg";
 export { default as ShowEye } from "./show.svg";
 export { default as Password } from "./password.svg";
 export { default as ProfileUser } from './user.svg';
+export { default as Vision } from './vision.png';
+export { default as Mission } from './mission.png';

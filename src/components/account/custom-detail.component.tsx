@@ -5,6 +5,7 @@ import { dataLoansDetail } from "@/utils/data.util";
 import DocumnetReview from "../shared/documnet-review";
 import { formattedAmount } from "@/utils/money.util";
 import { RadioExample } from "../shared/Radio.component";
+import clsx from "clsx";
 
 export const DataComponents = () => {
   const { t } = useTranslation();
@@ -108,7 +109,6 @@ export const DataComponents = () => {
             url={dataLoansDetail?.legalDocuments?.commercialRegistration}
             style={{ borderRadius: "4px" }}
           />
-          <h3 className="font-black">{t("loan_details")}</h3>
           <div className="flex flex-col  flex-1 p-3 rounded gap-y-3">
             <DisplayDataComponent
               title={t("loan_amount_requested")}
@@ -226,9 +226,9 @@ export const DataComponents = () => {
     },
   ];
 };
-export const BorderBg3 = ({ children }: { children: ReactNode }) => {
+export const BorderBg3 = ({ children,className }: { children: ReactNode,className?:string }) => {
   return (
-    <div className="bg-bg3 py-[14px] px-3 rounded w-full flex flex-col gap-3">
+    <div className={clsx("bg-bg3 py-[14px] px-3 rounded w-full flex flex-col gap-2",className)}>
       {children}
     </div>
   );

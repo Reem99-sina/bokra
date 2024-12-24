@@ -18,7 +18,7 @@ const BackNavigation: React.FC<IAppProps> = ({ title }) => {
       variant='text'
       onClick={() => router.back()}
     >
-      <div>
+      <div className='bg-black p-2 rounded-full text-white'>
         <FaArrowLeft />
       </div>
       <Typography

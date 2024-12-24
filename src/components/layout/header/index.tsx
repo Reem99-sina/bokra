@@ -67,18 +67,14 @@ export const Header = () => {
       },
       {
         id: 3,
-        text: "Business",
-        to: "test/1",
+        text: "Our Solutions",
+        to: "/#type",
       },
-      {
-        id: 4,
-        text: "Careers",
-        to: "test/1",
-      },
+    
       {
         id: 5,
-        text: "Blog",
-        to: "test/1",
+        text: "Contact us",
+        to: "/#contact",
       },
       {
         id: 6,
@@ -184,7 +180,7 @@ export const Header = () => {
                     <Link
                       href={link.to as string}
                       className={clsx(
-                        "relative text-md font-bold text-white  ",
+                        "relative text-md font-black text-white  ",
                         "transition-all duration-300",
                         "scroll-smooth"
                       )}
@@ -196,13 +192,13 @@ export const Header = () => {
               ))}
             </div>
 
-            {(!session?.data?.user && !user?.email) && (
-                <Button
-                  text={t("login")}
-                  onClick={() => router.push("/login")}
-                  className="!w-auto"
-                />
-              )}
+            {!session?.data?.user && !user?.email && (
+              <Button
+                text={t("login")}
+                onClick={() => router.push("/login")}
+                className="!w-auto"
+              />
+            )}
             <div
               className="flex cursor-pointer sm:hidden"
               onClick={() => drawerRef.current?.open()}

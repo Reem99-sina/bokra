@@ -10,12 +10,14 @@ const DisplayDataComponent = ({
   icon?: ReactNode;
 }) => {
   return (
-    <div className=" flex justify-between items-start flex-col text-xs">
+    <div className=" flex justify-between items-start flex-col text-xs gap-2">
       <p className="font-black">{title}:</p>
-      <p className=" text-gray-500 font-light flex items-center gap-x-2">
-        {icon}
-        {value}
-      </p>
+      {(value || icon) && (
+        <p className=" text-gray-500 font-normal flex items-center gap-x-2 text-[12px]">
+          {icon}
+          {value}
+        </p>
+      )}
     </div>
   );
 };

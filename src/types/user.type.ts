@@ -24,6 +24,13 @@ export interface IUserResponse {
     message?: string;
   };
 }
+export interface IUserRegisterRequest {
+  fullName:string
+  email: string;
+  password: string;
+  repeatPassword: string;
+  phoneNumber: string;
+}
 export interface IUserRequest {
   email: string;
   password: string;

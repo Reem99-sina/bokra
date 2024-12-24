@@ -23,7 +23,7 @@ const className = "ps-[3%]";
         <div className={clsx("hidden bg-black py-6 sm:block", className)}>
           <Sidebar />
         </div>
-        <div className={clsx(" block  sm:hidden", className)}>
+        <div className={clsx(" block  sm:hidden bg-black", className)}>
           <MobileTabs />
         </div>
         <div className="flex flex-1 border-t border-[rgb(222,222,222)] bg-white ">

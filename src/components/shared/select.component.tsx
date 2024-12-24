@@ -1,4 +1,5 @@
 
+import clsx from 'clsx';
 import React from 'react';
 import ReactSelect, { PropsValue, SingleValue } from 'react-select';
 
@@ -15,6 +16,7 @@ interface Props {
   label?: string;
   styleCustom?: { [key: string]: string };
   icon?: JSX.Element;
+  error?:boolean
 }
 
 export const Select: React.FC<Props> = ({
@@ -25,6 +27,7 @@ export const Select: React.FC<Props> = ({
   label,
   styleCustom,
   icon,
+  error
 }) => {
   const handleOnChange = (selectedOption: SingleValue<Option>) => {
     if (selectedOption?.value) {
@@ -36,7 +39,7 @@ export const Select: React.FC<Props> = ({
     <>
       {label ? (
         <div className='flex w-full flex-row items-center justify-between'>
-          <p className='text-sm font-bold text-black'>{label}</p>
+          <p className={clsx('text-sm font-bold ',error?"text-red-600":"text-black")}>{label}</p>
           {icon ? <span>{icon}</span> : null}
         </div>
       ) : null}
@@ -51,7 +54,7 @@ export const Select: React.FC<Props> = ({
         styles={{
           control: styles => ({
             ...styles,
-            borderColor: '#E2E2E2',
+            borderColor: error?"#ff0000":'#E2E2E2',
             borderRadius: '6px',
             width: '347px',
             height: '40px',
