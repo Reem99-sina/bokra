@@ -45,15 +45,15 @@ const LinkItemComponent = ({
     <Link
       href={`/account/${item.href}`}
       className={clsx(
-        "mb-2 flex w-[200px] rounded-es-lg rounded-ss-lg py-4 text-sm",
+        "mb-2 flex w-[200px] rounded-es-lg rounded-ss-lg py-4 text-sm  items-center",
         isActive||(item.href.replace("/", "")==""&&pathname.split("/").pop()=="account")
-          ? "border-l-8 bg-transparent px-4 font-black text-white"
+          ? "border-e-8  bg-transparent px-4 font-black text-white"
           : "cursor-pointer bg-transparent font-normal text-white hover:text-[#7B8494]"
       )}
     >
       {SvgIcon ? (
         <SvgIcon
-          className="me-2"
+          className="me-3"
           stroke={isActive ? "#198897" : "#7B8080"}
           strokeWidth={isActive ? 2 : 1}
         />

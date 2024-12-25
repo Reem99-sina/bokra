@@ -9,16 +9,22 @@ const AddFiles = ({
   placeholder,
   label,
   formName,
-  desc
+  desc,
+  errorMessage
 }: {
   placeholder: string;
   label: string;
   formName: string;
   desc?: string;
+  errorMessage?:string
 }) => {
   const refImage = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
-  const { register, control,formState:{errors} } = useFormContext();
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div className="flex flex-col my-2">
@@ -28,9 +34,9 @@ const AddFiles = ({
         rules={{
           validate: {
             fileType: (files: File[]) => {
-              const invalidFile = Array?.from(files)?.find(
+              const invalidFile = files&&Array?.from(files)?.every(
                 (file) =>
-                  ![
+                  [
                     "application/pdf",
                     "image/png",
                     "image/jpeg",
@@ -38,10 +44,10 @@ const AddFiles = ({
                   ].includes(file?.type)
               );
 
-              return invalidFile ? t("fileType") : true;
+              return invalidFile ? true : errorMessage;
             },
             fileSize: (files: File[]) =>
-              Array?.from(files)?.find((ele) => ele?.size <= 10 * 1024 * 1024)
+              Array?.from(files)?.every((ele) => ele?.size <= 10 * 1024 * 1024)
                 ? true
                 : t("fileSize"),
           },
@@ -53,13 +59,15 @@ const AddFiles = ({
                 inputProps={{
                   placeholder: placeholder,
                   className: "!text-sm ",
-                  multiple: true,
-                  ...register(formName),
                   onClick: () => refImage?.current?.click(),
                 }}
                 className="!py-0 !min-h-[40px] "
                 label={label}
-                errorMessage={errors[formName]?.message?String(errors[formName]?.message):""}
+                errorMessage={
+                  errors[formName]?.message
+                    ? String(errors[formName]?.message)
+                    : ""
+                }
                 leftIcon={
                   <div className="p-2">
                     <IoDocumentAttach />
@@ -70,8 +78,9 @@ const AddFiles = ({
                 type="file"
                 hidden
                 multiple={true}
+                {...register(formName)}
                 ref={refImage}
-                onChange={(event) => onChange(event.target.files)}
+                onChange={(event) => onChange(event?.target?.files)}
                 accept={"application/pdf,image/png,image/jpeg,image/jpg"}
                 className="placeholder:text-xs placeholder:font-light"
               />
@@ -84,7 +93,6 @@ const AddFiles = ({
           );
         }}
       />
-     
     </div>
   );
 };

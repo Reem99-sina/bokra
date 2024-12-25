@@ -8,23 +8,23 @@ const DocumnetReview = ({
   style?: React.CSSProperties;
 }) => {
   return (
-    <div className="sm:w-[25%] w-full">
-      <a
-        href={
-          ""
-        }
-        download={url}
-        target="_blank"
-      >
-        <Image
-          src={"/document_icon.jpeg"}
-          width={200}
-          height={50}
-          alt="document icon"
-          style={style}
-        />
-      </a>
-    </div>
+    <div className="">
+    <a
+      href={
+        ""
+      }
+      download={url}
+      target="_blank"
+    >
+      <Image
+        src={"/rectangle.png"}
+        width={200}
+        height={50}
+        alt="document icon"
+        style={style}
+      />
+    </a>
+  </div>
   );
 };
 

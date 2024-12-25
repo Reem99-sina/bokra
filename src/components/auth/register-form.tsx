@@ -123,7 +123,7 @@ export const RegisterForm: React.FC = () => {
                 placeholder: t("repeatPassword"),
                 ...register("repeatPassword", {
                   validate: (value) =>
-                    value == password ? t("errorRepeatPassword") : "",
+                    value != password ? t("errorRepeatPassword") :true,
                   required: {
                     value: true,
                     message: t("errorRepeatRequiredPassword"),
@@ -159,6 +159,7 @@ export const RegisterForm: React.FC = () => {
                         borderRadius: "0.375rem",
                         margin: "8px 0px",
                         color: "black",
+                        fontSize:"14px",
                         border: errors?.phoneNumber?.message ?"1px solid #ff0000":"1px solid #d1d5db",
                       }}
                     />

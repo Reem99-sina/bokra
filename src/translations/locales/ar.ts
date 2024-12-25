@@ -186,5 +186,7 @@ export default {
   errorRepeatMatchPassword:"Repeat Password must match the Password.",
   errorRepeatRequiredPassword:"Repeat Password cannot be empty",
   errorPhoneNumber:"Phone number cannot be empty.",
-  errorPhoneNumberValid:"Please enter a valid phone number."
+  errorPhoneNumberValid:"Please enter a valid phone number.",
+  errorbusinessregistration:"Please upload a business registration certificate in PDF, JPEG, or PNG format.",
+  errorId:"Please upload a valid identity document in PDF, JPEG, or PNG format"
 } as const;
