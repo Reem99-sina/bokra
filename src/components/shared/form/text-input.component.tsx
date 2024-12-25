@@ -40,7 +40,7 @@ export const TextInput: FC<Props> = ({
       {label && (
         <label
           className={clsx(
-            "dark:text-text-dark mb-2  flex items-center gap-x-2 text-sm font-bold text-black capitalize",
+            "dark:text-text-dark mb-2  flex items-center gap-x-2 text-xs font-bold text-black capitalize",
             errorMessage && "dark:text-error-dark text-error"
           )}
         >
@@ -78,10 +78,10 @@ export const TextInput: FC<Props> = ({
             fontFamily: "Verdana",
           }}
           className={clsx(
-            disabled ? "bg-gray-300" : "bg-white",
+            disabled ? "bg-bg3" : "bg-white",
             "block min-h-[40px]  w-full  p-2.5 text-sm font-black text-secondary3 py-0",
             `border ${
-              errorMessage ? "border-error" : "border-gray-300"
+              errorMessage ? "border-error" : "border-[#E2E2E2]"
             } rounded-md `,
             "placeholder:!text-xs placeholder:!font-light",
             `${

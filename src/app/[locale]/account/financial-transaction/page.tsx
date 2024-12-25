@@ -59,7 +59,7 @@ const FinancialTransaction = () => {
               {t("financialTransactions")}
             </h1>
           </div>
-          <div>
+          <div className="w-full">
             {" "}
             <SearchComponent />
           </div>

@@ -9,10 +9,11 @@ import AddFiles from "./add-files";
 import MainTitleComponent from "@/components/shared/main-title.component";
 import { Button } from "@/components/shared/button.component";
 import BackNavigation from "@/components/shared/back-navigation";
+import { useRouter } from "next/navigation";
 
 const AddLoan = ({ type }: { type: string }) => {
   const { t } = useTranslation();
-
+  const router = useRouter();
   const formdata = useForm<addLoanInfo>({
     defaultValues: {
       loanAmount: undefined,
@@ -31,19 +32,23 @@ const AddLoan = ({ type }: { type: string }) => {
     },
     mode: "onChange",
   });
+
   const loan_currency = formdata.watch("loanCurrency");
+ 
+  
   const onSubmit = () => {
     // console.log(data, "data");
+    router.push("/account/personal-loan");
   };
 
   return (
-    <div className="flex flex-col gap-y-2  text-black">
+    <div className="flex flex-col   text-black">
       <div className="flex gap-x-3 flex-row-reverse">
         <MainTitleComponent title={t("loanDetail")} />
         <BackNavigation title="" />
       </div>
-      <div className=" flex flex-wrap gap-5 my-4">
-        <div className="sm:min-w-[300px] min-w-full">
+      <div className=" flex flex-wrap gap-6 my-4">
+        <div className="sm:min-w-[280px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("purposeCompany"),
@@ -53,10 +58,10 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.loanPurpose?.message}
             label={t("purposeCompany")}
-            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500"
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500"
           />
         </div>
-        <div className="sm:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[280px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("loanAmount"),
@@ -78,10 +83,10 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.loanAmount?.message}
             label={t("loanAmount")}
-            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500  "
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500  "
           />
         </div>
-        <div className="sm:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[280px] min-w-full">
           <Controller
             control={formdata.control}
             name="loanCurrency"
@@ -118,8 +123,8 @@ const AddLoan = ({ type }: { type: string }) => {
         </div>
       </div>
       <MainTitleComponent title={t("businessInformation")} />
-      <div className=" flex flex-wrap gap-5  my-4">
-        <div className="sm:min-w-[300px] min-w-full">
+      <div className=" flex flex-wrap gap-6  my-4">
+        <div className="sm:min-w-[280px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("business_name"),
@@ -130,10 +135,10 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             errorMessage={formdata.formState.errors.businessName?.message}
             label={t("business_name")}
-            className="md:min-w-[400px] w-full !text-xs !font-light !text-gray-500    "
+            className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500    "
           />
         </div>
-        <div className="sm:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[280px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("registration_number"),
@@ -154,7 +159,7 @@ const AddLoan = ({ type }: { type: string }) => {
             className=" w-full !text-xs !font-light !text-gray-500    "
           />
         </div>
-        <div className="sm:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[280px] min-w-full">
           <Controller
             control={formdata.control}
             name="industryType"
@@ -188,8 +193,8 @@ const AddLoan = ({ type }: { type: string }) => {
         </div>
       </div>
       <MainTitleComponent title={t("financials")} />
-      <div className=" flex flex-wrap gap-5 my-4">
-        <div className="sm:min-w-[300px] min-w-full">
+      <div className=" flex flex-wrap gap-6 my-4">
+        <div className="sm:min-w-[280px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("Annual_Revenue"),
@@ -216,7 +221,7 @@ const AddLoan = ({ type }: { type: string }) => {
             )}
           </TextInput>
         </div>
-        <div className="sm:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[280px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("total_liabilities"),
@@ -245,7 +250,7 @@ const AddLoan = ({ type }: { type: string }) => {
             )}
           </TextInput>
         </div>
-        <div className="sm:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[280px] min-w-full">
           <TextInput
             inputProps={{
               placeholder: t("expenses"),
@@ -265,54 +270,54 @@ const AddLoan = ({ type }: { type: string }) => {
         </div>
       </div>
       <MainTitleComponent title={t("docUpload")} />
-      <div className=" flex flex-wrap gap-5 my-4">
-        <div className="sm:min-w-[300px] min-w-full">
+      <div className=" flex flex-wrap gap-6 my-4">
+        <div className="sm:min-w-[280px] min-w-full">
           <FormProvider {...formdata}>
             <AddFiles
               formName="financialStatements"
               placeholder={t("finStatements")}
               desc={""}
               label={t("finStatements")}
-             
+              errorMessage={t("fileType")}
             />
           </FormProvider>
         </div>
-        <div className="sm:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[280px] min-w-full">
           <FormProvider {...formdata}>
             <AddFiles
               formName="businessRegCert"
               placeholder={t("busRegistCert")}
               desc={""}
               label={t("busRegistCert")}
-             
+              errorMessage={t("errorbusinessregistration")}
             />
           </FormProvider>
         </div>
-        <div className="sm:min-w-[300px] min-w-full">
+        <div className="sm:min-w-[280px] min-w-full">
           <FormProvider {...formdata}>
             <AddFiles
               formName="identityDocument"
               placeholder={t("identityDocument")}
               desc={""}
               label={t("identityDocument")}
-           
+              errorMessage={t("errorId")}
             />
           </FormProvider>
         </div>
       </div>
       <div className=" flex flex-wrap gap-x-2 my-2 items-center">
         <Checkbox crossOrigin={undefined} />
-        <h3 className="text-black font-bold text-sm">{t("question")}</h3>
+        <h3 className="text-black font-normal text-xs">{t("question")}</h3>
       </div>
       <div className="flex items-center justify-end gap-x-3 p-3">
         <Button
           text={type == "edit" ? t("edit") : t("addLoan")}
-          className="!bg-black !w-auto !text-sm !px-4 !py-2"
+          className="!bg-black !w-auto !text-xs"
           onClick={formdata.handleSubmit(onSubmit)}
         />
         <Button
           text={t("cancel")}
-          className="!bg-beige !text-gray-500 !w-auto !text-sm  !px-4 !py-2"
+          className="!bg-beige !text-gray-500 !w-auto !text-xs "
           // onClick={() => refDrawer?.current?.close()}
         />
       </div>

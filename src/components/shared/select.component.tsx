@@ -58,6 +58,7 @@ export const Select: React.FC<Props> = ({
             borderRadius: '6px',
             width: '347px',
             height: '40px',
+            color:"black",
             boxShadow: 'none',
             '&:hover': {},
             ...styleCustom,

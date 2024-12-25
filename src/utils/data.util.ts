@@ -1,4 +1,7 @@
 import { useTranslation } from "@/translations/clients";
+import { FaUser } from "react-icons/fa";
+import { FaMoneyBillTransfer } from "react-icons/fa6";
+import { GiTakeMyMoney } from "react-icons/gi";
 
 export const LinksData = () => {
   const { t } = useTranslation();
@@ -9,14 +12,17 @@ export const LinksData = () => {
       children: [
         {
           title: t("profile"),
+          icon:FaUser,
           href: "/",
         },
         {
           title: t("personalLoan"),
+          icon:GiTakeMyMoney,
           href: "/personal-loan",
         },
         {
           title: t("financialTransactions"),
+          icon:FaMoneyBillTransfer,
           href: "/financial-transaction",
         },
       ],
@@ -275,3 +281,24 @@ export const financialTransactions = [
     },
   },
 ];
+export const typeLoans = [
+  {
+    label: "loan",
+    value: "loan",
+  },
+  {
+    label: "loan",
+    value: "loan",
+  },
+];
+export const FilterLoans = () => {
+  const { t } = useTranslation();
+
+  return [
+    {
+      title: t("typeOfLoan"),
+      type: "select",
+      options: typeLoans,
+    },
+  ];
+};
