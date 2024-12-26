@@ -19,14 +19,14 @@ const className = "ps-[3%]";
     <div className="flex flex-1 flex-col">
       <Header />
 
-      <div className={clsx("flex flex-1 flex-col  sm:flex-row mt-[4rem] min-h-screen")}>
-        <div className={clsx("hidden bg-black py-6 sm:block", className)}>
+      <div className={clsx("flex flex-1 flex-col  sm:flex-row mt-[4rem] min-h-auto")}>
+        <div className={clsx("hidden sm:block mt-[18px] h-full bg-beige bg-opacity-20 ps-4",className)}>
           <Sidebar />
         </div>
-        <div className={clsx(" block  sm:hidden bg-black", className)}>
+        <div className={clsx(" block  sm:hidden bg-bg3 mt-7", className)}>
           <MobileTabs />
         </div>
-        <div className="flex flex-1 border-t border-[rgb(222,222,222)] bg-white ">
+        <div className="flex flex-1  bg-white  sm:w-[70%] w-full mt-8">
           {children}
         </div>
       </div>

@@ -25,21 +25,23 @@ interface Props {
 
 const Pagination: React.FC<Props> = memo(
   ({ onPageChange, pageCount, initialPage = 1 }) => {
-    const {t}=useTranslation()
-    
+    const { t, lang } = useTranslation();
+
     return (
       <ReactPaginate
         initialPage={initialPage - 1}
         nextLabel={
           <div className="flex flex-row items-center justify-center gap-1">
             <p>{t("Next")}</p>
-            <Arrow />
+            <Arrow className={clsx(lang == "ar" ? "rotate-180" : "rotate-0")} />
           </div>
         }
         previousLabel={
           <div className="flex flex-row items-center justify-center gap-1">
-           
-            <Arrow rotate={360} className="rotate-180" />
+            <Arrow
+              rotate={360}
+              className={clsx(lang == "ar" ? "rotate-0" : "rotate-180")}
+            />
             <p>{t("Prevs")}</p>
           </div>
         }

@@ -8,7 +8,8 @@ export const colors = {
     layout:"#00000078",
     grayColor:"#f1f0f0",
     bg2:"#F3F3F3",
-    darkGray:"#57585B"
+    darkGray:"#57585B",
+    siderBarColor:"#7B8080"
   };
   
   

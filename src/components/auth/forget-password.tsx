@@ -30,7 +30,7 @@ const ForgetPasswordForm = () => {
       <div className="rounded-md border border-[#DCDFE4]">
         <div
           // onSubmit={handleSubmit(onSubmit)}
-          className="flex min-w-[568px] flex-col rounded-xl bg-white "
+          className="flex   max-w-[568px] sm:w-[568px] flex-col rounded-xl bg-white "
           // autoComplete="off"
         >
           <div className="flex items-center justify-center  w-full mb-4 pt-5">
@@ -58,7 +58,7 @@ const ForgetPasswordForm = () => {
             <div className="my-2 flex flex-col gap-y-3">
               <div className="flex w-full">
                 <Button
-                  className="w-full justify-center rounded bg-black"
+                  className="w-full justify-center rounded bg-black  !px-3 !py-2"
                   type="submit"
                   text={t("resetPassword")}
                   onClick={handleSubmit(onSubmit)}

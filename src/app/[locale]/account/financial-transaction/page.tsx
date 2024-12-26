@@ -51,7 +51,7 @@ const FinancialTransaction = () => {
   }, [financialTransactions]);
 
   return (
-    <div className={clsx("container my-8 mx-auto ", ``)}>
+    <div className={clsx("container mb-8 mt-8 mx-auto ", ``)}>
       <div className=" flex flex-col gap-y-5 justify-start">
         <div className=" rounded-md flex flex-col gap-4">
           <div className="flex justify-between items-center">

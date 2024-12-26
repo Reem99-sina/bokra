@@ -8,10 +8,10 @@ import { FC, SVGProps } from "react";
 
 export const Sidebar = () => {
   return (
-    <div className="flex flex-1 flex-col bg-black">
+    <div className="flex flex-1 flex-col ">
       {LinksData()?.map(({ title, children }) => (
         <div key={title} className="mb-8 flex flex-col">
-          <span className="py-4 text-sm font-black text-[#58595B] ">
+          <span className="py-4 text-sm font-black text-siderBarColor ">
             {title}
           </span>
 
@@ -38,7 +38,8 @@ const LinkItemComponent = ({
   };
 }) => {
   const pathname = usePathname();
-  const isActive = pathname.split("/").pop() == item.href.replace("/", "");
+  const isActive = pathname.split("/").pop() == item.href.split("/").pop();
+  // const isActive = pathname.includes(item.href)
   const SvgIcon = item?.icon;
 
   return (
@@ -47,8 +48,8 @@ const LinkItemComponent = ({
       className={clsx(
         "mb-2 flex w-[200px] rounded-es-lg rounded-ss-lg py-4 text-sm  items-center",
         isActive||(item.href.replace("/", "")==""&&pathname.split("/").pop()=="account")
-          ? "border-e-8  bg-transparent px-4 font-black text-white"
-          : "cursor-pointer bg-transparent font-normal text-white hover:text-[#7B8494]"
+          ? "border-e-8 border-black bg-transparent  font-black text-black bg-white px-4"
+          : "cursor-pointer bg-transparent font-normal text-siderBarColor hover:text-[#7B8494]"
       )}
     >
       {SvgIcon ? (

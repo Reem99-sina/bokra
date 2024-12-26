@@ -23,11 +23,11 @@ export const MobileTabs: FC = () => {
     <div className="overflow-hidden">
       <div
         ref={containerRef}
-        className="flex gap-8 overflow-x-auto whitespace-nowrap border-b border-[rgba(0,0,0,0.3)]"
+        className="flex gap-8 overflow-x-auto whitespace-nowrap border-b border-black"
       >
         {LinksData()?.map((tab, index) => {
           const textColorClass =
-            index === activeTabIndex ? "text-white" : "text-[rgba(0,0,0,0.3)]";
+            index === activeTabIndex ? "text-black" : "text-[rgba(0,0,0,0.3)]";
 
           return (
             <div
@@ -74,9 +74,9 @@ const LinkItemComponent = ({
     <Link
       href={`/account/${item.href}`}
       className={clsx(
-        "mx-2 flex w-fit  rounded-ss-lg py-4 text-sm",
+        "mx-2 flex w-fit  rounded-ss-lg py-4 text-sm items-center",
         isActive||(item.href.replace("/", "")==""&&pathname.split("/").pop()=="account")
-          ? "border-b-4 border-[#707070] px-4 font-black text-white"
+          ? "border-b-4 border-black px-4 font-black text-black"
           : "cursor-pointer bg-transparent font-normal text-[#7B8080] hover:text-[#7B8494]"
       )}
     >

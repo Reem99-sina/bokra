@@ -83,6 +83,7 @@ export const Select: React.FC<Props> = ({
             ...styles,
             borderColor: '#E2E2E2',
             borderTopWidth: 1,
+            fontSize:"14px"
           }),
         }}
         components={{ IndicatorSeparator: null }}
