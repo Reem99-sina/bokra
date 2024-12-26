@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 export const revalidate = 0;
 
 export default function RootLayout({ children, params: { locale } }: Props) {
+  
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} >
       <head>

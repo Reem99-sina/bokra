@@ -40,10 +40,10 @@ export const RegisterForm: React.FC = () => {
       className={`my-4 flex min-h-screen h-auto w-full items-center justify-center `}
     >
       <div className="rounded-md border border-[#DCDFE4]">
-        <div className="flex w-[568px] flex-col rounded-xl bg-white">
-          <div className="flex items-center justify-center  w-full ">
+        <div className="flex  max-w-[568px] sm:w-[568px] flex-col rounded-xl bg-white">
+          <div className="flex items-center justify-center  w-full py-4">
             <Image
-              src={"/logo_black.jpeg"}
+              src={"/bokra.png"}
               width={100}
               height={90}
               alt="logo"
@@ -51,30 +51,30 @@ export const RegisterForm: React.FC = () => {
           </div>
           <div className="h-[1px] w-full bg-grayLight"></div>
           <div className="px-14 pb-6 pt-6 flex flex-col">
-            <span className="mb-4 text-center text-2xl font-black text-beige">
+            <span className="mb-4 text-center text-2xl font-black text-black">
               {t("register")}
             </span>
 
-            <span className="text-center text-xs font-black leading-5 text-gray-500">
+            <span className="text-center text-xs font-normal leading-5 text-gray-500">
               {t("use_email_or_phone")}
             </span>
-            <span className="text-center text-xs font-black leading-5 text-gray-500">
+            <span className="text-center text-xs font-normal leading-5 text-gray-500">
               {t("access_system")}
             </span>
-            <div className="my-1" />
+            <div className="my-2" />
             <TextInput
               inputProps={{
                 placeholder: t("fullname"),
                 ...register("fullName", {
                   required: { value: true, message: t("errorFullName") },
-                  minLength:{value:2,message:""},
-                  maxLength:{value:50,message:""}
+                  minLength: { value: 2, message: "" },
+                  maxLength: { value: 50, message: "" },
                 }),
               }}
               className="!font-normal !text-black"
               errorMessage={errors.fullName?.message}
             />
-            <div className="my-1" />
+            <div className="my-2" />
             <TextInput
               inputProps={{
                 placeholder: t("id_or_email"),
@@ -95,7 +95,7 @@ export const RegisterForm: React.FC = () => {
               className="!font-normal !text-black"
               errorMessage={errors.email?.message}
             />
-            <div className="my-1" />
+            <div className="my-2" />
             <TextInput
               inputProps={{
                 type: "password",
@@ -116,14 +116,14 @@ export const RegisterForm: React.FC = () => {
               className="!font-normal !text-black"
               errorMessage={errors.password?.message}
             />
-            <div className="my-1" />
+            <div className="my-2" />
             <TextInput
               inputProps={{
                 type: "password",
                 placeholder: t("repeatPassword"),
                 ...register("repeatPassword", {
                   validate: (value) =>
-                    value != password ? t("errorRepeatPassword") :true,
+                    value != password ? t("errorRepeatPassword") : true,
                   required: {
                     value: true,
                     message: t("errorRepeatRequiredPassword"),
@@ -133,16 +133,16 @@ export const RegisterForm: React.FC = () => {
               className="!font-normal !text-black"
               errorMessage={errors.repeatPassword?.message}
             />
-            <div className="my-1" />
+            <div className="my-2" />
             <Controller
               control={control}
               name="phoneNumber"
               rules={{
                 required: t("errorPhoneNumber"),
-                pattern:{
-                  value:/^(05\d{8}|9665\d{8})$/,
-                  message:t("errorPhoneNumberValid")
-                }
+                pattern: {
+                  value: /^(05\d{8}|9665\d{8})$/,
+                  message: t("errorPhoneNumberValid"),
+                },
               }}
               render={({ field: { onChange, value } }) => {
                 return (
@@ -157,10 +157,12 @@ export const RegisterForm: React.FC = () => {
                         width: "100%",
                         padding: "7px 10px",
                         borderRadius: "0.375rem",
-                        margin: "8px 0px",
+                        margin: "0px 0px",
                         color: "black",
-                        fontSize:"14px",
-                        border: errors?.phoneNumber?.message ?"1px solid #ff0000":"1px solid #d1d5db",
+                        fontSize: "14px",
+                        border: errors?.phoneNumber?.message
+                          ? "1px solid #ff0000"
+                          : "1px solid #d1d5db",
                       }}
                     />
                     {errors?.phoneNumber?.message && (
@@ -172,10 +174,10 @@ export const RegisterForm: React.FC = () => {
                 );
               }}
             />
-            <div className="my-2 flex flex-col gap-y-3">
+            <div className="mb-2 mt-5 flex flex-col gap-y-3">
               <div className="flex w-full">
                 <Button
-                  className="w-full justify-center rounded bg-black !px-3 !py-2 !font-bold"
+                  className="w-full justify-center rounded bg-black !px-3 !py-2 !font-bold "
                   type="submit"
                   text={t("register")}
                   onClick={handleSubmit(onSubmit)}

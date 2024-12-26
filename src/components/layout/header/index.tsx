@@ -19,14 +19,16 @@ import { ProfileUser } from "@/icon";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/user.hooks";
 import { useAuth } from "@/hooks/auth.hook";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaUserCircle } from "react-icons/fa";
 import { IoClose, IoMenu } from "react-icons/io5";
+import { GrLanguage } from "react-icons/gr";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { CiLogout } from "react-icons/ci";
 import { FaChevronDown } from "react-icons/fa";
 import { FaChevronUp } from "react-icons/fa";
 import { IUser } from "@/types/user.type";
+import { IoIosLogOut } from "react-icons/io";
 
 interface linksProps {
   id: number;
@@ -44,7 +46,7 @@ interface linksdropdownProps {
 
 export const Header = () => {
   const { logout } = useAuth();
-  const { lang, t } = useTranslation();
+  const { lang, t, changeLanguage } = useTranslation();
   const router = useRouter();
   const { user, updateUser } = useUser();
   // const pathname = usePathname();
@@ -70,7 +72,7 @@ export const Header = () => {
         text: "Our Solutions",
         to: "/#type",
       },
-    
+
       {
         id: 5,
         text: "Contact us",
@@ -120,10 +122,15 @@ export const Header = () => {
 
   return (
     <>
-      <div className="fixed top-0 z-10  left-0 will-change-transform right-4 bg-black">
+      <div
+        className={clsx(
+          "fixed top-0 z-10   will-change-transform  bg-white border-b",
+          lang == "ar" ? "left-4 right-0" : "left-0 right-4"
+        )}
+      >
         <div
           className={clsx(
-            "flex  flex-1  justify-center overflow-x-hidden   bg-mainColor  py-5 sm:w-screen "
+            "flex  flex-1  justify-center overflow-x-hidden   bg-mainColor  py-7 sm:w-screen "
           )}
         >
           <div
@@ -133,12 +140,7 @@ export const Header = () => {
           >
             <div className="flex w-[200px]  items-center justify-start gap-28 ">
               <Link href={`/${lang}/`}>
-                <Image
-                  src={"/bokralogo.png"}
-                  width={100}
-                  height={90}
-                  alt="logo"
-                />
+                <Image src={"/bokra.png"} width={100} height={90} alt="logo" />
               </Link>
             </div>
             <div className="ms-24 hidden  flex-row  gap-x-8 sm:flex">
@@ -150,8 +152,8 @@ export const Header = () => {
                   {link?.dropdownItems ? (
                     <Menu>
                       <MenuHandler>
-                        <div className="flex items-center gap-x-3 text-white cursor-pointer">
-                          <div>{link?.text && <ProfileUser />}</div>
+                        <div className="flex items-center gap-x-3 text-black cursor-pointer">
+                          <div>{link?.text && <FaUserCircle />}</div>
                           <p>{link?.text}</p>
                         </div>
                       </MenuHandler>
@@ -180,7 +182,7 @@ export const Header = () => {
                     <Link
                       href={link.to as string}
                       className={clsx(
-                        "relative text-sm font-bold text-white  ",
+                        "relative text-sm font-bold text-black  ",
                         "transition-all duration-300",
                         "scroll-smooth"
                       )}
@@ -190,20 +192,44 @@ export const Header = () => {
                   )}
                 </div>
               ))}
+              {!session?.data?.user && !user?.email && (
+                <Button
+                  text={t("login")}
+                  onClick={() => router.push("/login")}
+                  className="!w-auto !bg-black !p-3 !text-xs"
+                />
+              )}
+              <div className="flex items-center gap-4">
+                <div
+                  className="cursor-pointer"
+                  onClick={() => changeLanguage(lang == "ar" ? "en" : "ar")}
+                >
+                  <GrLanguage color="black" className="text-lg " />
+                </div>
+
+                {(session?.data?.user || user?.email) && (
+                  <>
+                    <div className="w-[1px] h-full bg-grayLight" />
+                    <div
+                      className="cursor-pointer"
+                      onClick={() => {
+                        logout();
+                        updateUser({ email: "", password: "" });
+                        signOut();
+                      }}
+                    >
+                      <IoIosLogOut color="black" className="text-xl" />
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
 
-            {!session?.data?.user && !user?.email && (
-              <Button
-                text={t("login")}
-                onClick={() => router.push("/login")}
-                className="!w-auto"
-              />
-            )}
             <div
               className="flex cursor-pointer sm:hidden"
               onClick={() => drawerRef.current?.open()}
             >
-              <IoMenu className="" />
+              <IoMenu className="" color={"black"} />
             </div>
           </div>
 

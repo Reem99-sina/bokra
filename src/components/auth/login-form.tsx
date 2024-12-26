@@ -37,12 +37,12 @@ export const LoginForm: React.FC = () => {
       <div className="rounded-md border border-[#DCDFE4]">
         <div
           // onSubmit={handleSubmit(onSubmit)}
-          className="flex min-w-[568px] flex-col rounded-xl bg-white "
+          className="flex  max-w-[568px] sm:w-[568px] flex-col rounded-xl bg-white "
           // autoComplete="off"
         >
-          <div className="flex items-center justify-center  w-full ">
+          <div className="flex items-center justify-center  w-full py-4">
             <Image
-              src={"/logo_black.jpeg"}
+              src={"/bokra.png"}
               width={100}
               height={90}
               alt="logo"
@@ -50,7 +50,7 @@ export const LoginForm: React.FC = () => {
           </div>
           <div className="h-[1px] w-full bg-grayLight"></div>
           <div className="px-14 pb-6 pt-6 flex flex-col">
-            <p className="mb-4 text-center text-2xl font-black text-beige justify-self-center w-full">
+            <p className="mb-4 text-center text-2xl font-black text-black justify-self-center w-full">
               {t("login")}
             </p>
 
@@ -104,10 +104,10 @@ export const LoginForm: React.FC = () => {
               errorMessage={errors.password?.message}
               className="!font-normal !text-black"
             />
-            <div className="my-2 flex flex-col gap-y-3">
+            <div className="mb-2 mt-5 flex flex-col gap-y-3">
               <div className="flex w-full">
                 <Button
-                  className="w-full justify-center rounded bg-black"
+                  className="w-full justify-center rounded bg-black !px-3 !py-2 !font-bold"
                   type="submit"
                   text={t("login")}
                   onClick={handleSubmit(onSubmit)}

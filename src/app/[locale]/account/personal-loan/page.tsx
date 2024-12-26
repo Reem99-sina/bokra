@@ -12,6 +12,7 @@ import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import React, { useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { IoAddSharp } from "react-icons/io5";
 
 const PersonalLoanComponent = () => {
   const { t } = useTranslation();
@@ -23,7 +24,7 @@ const PersonalLoanComponent = () => {
   }, [page]);
 
   return (
-    <div className="container my-8 flex flex-col gap-y-5 justify-around mx-auto">
+    <div className="container mb-8 mt-5 mx-auto flex flex-col gap-y-5 justify-around ">
       <MainTitleComponent title={t("personalLoans")} />
       <div className="flex items-center">
         <div className="w-full">
@@ -35,7 +36,7 @@ const PersonalLoanComponent = () => {
               "ml-3 h-10 !w-auto flex-none gap-2 rounded-[4px] bg-black text-white !text-sm"
             )}
             type="submit"
-            text={t("add")}
+            text={t("search")}
             onClick={() => {
               router?.push("/account/personal-loan/add");
             }}
@@ -64,6 +65,19 @@ const PersonalLoanComponent = () => {
           />
         ))}
       </div>
+      <div className="flex max-w-auto justify-end ">
+          <Button
+            className={clsx(
+              "ml-3 h-10 !w-auto flex-none gap-2 rounded-[4px] bg-black text-white !text-sm"
+            )}
+            type="submit"
+            text={""}
+            onClick={() => {
+              router?.push("/account/personal-loan/add");
+            }}
+            startIcon={<IoAddSharp color={"white"} className="text-md"/>}
+          />
+        </div>
       <div>
         <Pagination
           pageCount={Math.ceil(dataLoans?.length / 5)}

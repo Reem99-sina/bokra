@@ -12,7 +12,7 @@ const DetailPage = () => {
 //   }, [id, dataLoans]);
   
   return (
-    <div className="container my-8 flex flex-col gap-y-5 mx-auto">
+    <div className="container mb-8 mt-3 mx-auto flex flex-col gap-y-5 ">
       <DetailLona />
     </div>
   );

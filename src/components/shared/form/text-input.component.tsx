@@ -1,6 +1,7 @@
 "use client";
 
 import { HideEye, MandatoryIcon, ShowEye } from "@/icon";
+import { useTranslation } from "@/translations/clients";
 import clsx from "clsx";
 import React, { FC, ReactNode, useState } from "react";
 
@@ -30,7 +31,7 @@ export const TextInput: FC<Props> = ({
   children,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-
+  const {lang}=useTranslation()
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
@@ -51,7 +52,7 @@ export const TextInput: FC<Props> = ({
 
       <div className="relative flex h-full items-center">
         <div
-          className="absolute right-0 top-1/2 -translate-y-1/2 transform cursor-pointer p-3"
+          className={clsx("absolute  top-1/2 -translate-y-1/2 transform cursor-pointer p-3",lang=="ar"?"left-0":"right-0")}
           onClick={
             inputProps.type === "password"
               ? togglePasswordVisibility
@@ -92,7 +93,7 @@ export const TextInput: FC<Props> = ({
       </div>
       {children}
       {errorMessage && (
-        <p className="mb-2 h-2 text-xs text-red-600 dark:text-red-500">
+        <p className="min-h-2 text-xs text-red-600 dark:text-red-500 whitespace-normal break-words">
           {errorMessage}
         </p>
       )}

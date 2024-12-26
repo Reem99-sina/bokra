@@ -10,6 +10,7 @@ import OurSectionComponent from "@/components/home/our-section.component";
 import TypeLoanComponent from "@/components/home/type-loan.component";
 
 export default function Home() {
+
   return (
     <main className="z-0   transition-all bg-beige">
       <div className="flex   w-full   flex-col">
