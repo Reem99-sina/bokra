@@ -1,11 +1,9 @@
-const path = require('path');  
+const path = require("path");
 const withSvgr = require("next-plugin-svgr");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-   
-  },
+  images: {},
 };
 
 module.exports = withSvgr(nextConfig);

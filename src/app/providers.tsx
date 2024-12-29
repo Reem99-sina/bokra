@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "../contexts/auth.context";
 import dynamic from "next/dynamic";
 import { SessionProvider } from "next-auth/react";
+import { Spinner } from "@/components/shared/spinner.component";
 
 const I18nProviderClient = dynamic(
   () => import("../translations/clients").then((mod) => mod.I18nProviderClient),
@@ -16,6 +17,7 @@ const I18nProviderClient = dynamic(
 
 interface Props {
   children: React.ReactNode;
+  locale:string
 }
 
 const queryClient = new QueryClient({
@@ -27,9 +29,14 @@ const queryClient = new QueryClient({
   },
 });
 
-export const Providers = ({ children }: Props) => {
+export const Providers = ({ children,locale }: Props) => {
+  
   return (
-    <I18nProviderClient locale="en">
+    <I18nProviderClient locale={locale} fallback={
+      <div className='flex h-screen w-screen items-center justify-center bg-white'>
+        <Spinner />
+      </div>
+    }>
       <Toaster position="bottom-center" />
       <SessionProvider>
         <QueryClientProvider client={queryClient}>

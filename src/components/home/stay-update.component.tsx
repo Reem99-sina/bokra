@@ -32,12 +32,12 @@ const StayUpdateComponent = () => {
     //   </div>
     // </div>
     <div className=" text-black flex flex-col gap-5 items-center justify-center container mx-auto">
-      <h1 className="sm:text-[3rem] text-xl font-black">stay updated</h1>
+      <h1 className="sm:text-[3rem] text-xl font-black">{t("stay_updated")}</h1>
       <p className="">{t("desc_stay")}</p>
       <div className="flex gap-x-4 justify-center items-center my-5">
         <TextInput inputProps={{ placeholder: "Email" }} className="py-3 !rounded-full !px-3" />
         <Button
-          text="Sign Up"
+          text={t("register")}
           className=" !bg-black !w-auto !text-xs rounded-full !px-7 !py-4"
         />
       </div>

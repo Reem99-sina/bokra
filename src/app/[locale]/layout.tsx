@@ -1,4 +1,6 @@
 import "react-toastify/dist/ReactToastify.css";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import "@/style/globals.css";
 import React from "react";
 import { Providers } from "../providers";
@@ -32,7 +34,7 @@ export default function RootLayout({ children, params: { locale } }: Props) {
       // className={clsx(locale === 'ar' ? arFont.className : enFont.className)}
       >
         <div className="flex h-screen  w-screen   flex-col  overflow-x-hidden scroll-smooth  relative z-10 bg-white">
-          <Providers>{children}</Providers>
+          <Providers locale={locale}>{children}</Providers>
         </div>
       </body>
     </html>

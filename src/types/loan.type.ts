@@ -7,6 +7,7 @@ export interface PersonalLoan {
   duration: string; // Duration of the loan (e.g., 1-5 years)
   amount: string;
 }
+
 export interface addLoanInfo {
   loanAmount: number;
   loanCurrency: string;

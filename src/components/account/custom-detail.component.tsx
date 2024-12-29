@@ -4,8 +4,8 @@ import { useTranslation } from "@/translations/clients";
 import { dataLoansDetail } from "@/utils/data.util";
 import DocumnetReview from "../shared/documnet-review";
 import { formattedAmount } from "@/utils/money.util";
-import { RadioExample } from "../shared/Radio.component";
 import clsx from "clsx";
+import { Checkbox } from "@material-tailwind/react";
 
 export const DataComponents = () => {
   const { t } = useTranslation();
@@ -218,17 +218,28 @@ export const DataComponents = () => {
       title: t("additional_information"),
       component: (
         <div className=" flex flex-wrap gap-x-3 my-2 items-center">
+          <Checkbox crossOrigin={undefined} />
           <h3 className="text-black font-bold text-sm">{t("question")}</h3>
-          <RadioExample id="yes" name="type" label="yes" />
-          <RadioExample id="no" name="type" label="no" />
+        
         </div>
       ),
     },
   ];
 };
-export const BorderBg3 = ({ children,className }: { children: ReactNode,className?:string }) => {
+export const BorderBg3 = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
   return (
-    <div className={clsx("bg-bg3 py-[14px] px-3 rounded w-full flex flex-col gap-2",className)}>
+    <div
+      className={clsx(
+        "bg-bg3 py-[14px] px-3 rounded w-full flex flex-col gap-2",
+        className
+      )}
+    >
       {children}
     </div>
   );

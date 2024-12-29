@@ -1,6 +1,7 @@
+import { useTranslation } from "@/translations/clients";
 import { PersonalLoan } from "@/types/loan.type";
 import Image from "next/image";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const PersonalLoanComponent = ({
   loan,
@@ -9,6 +10,8 @@ const PersonalLoanComponent = ({
   loan: PersonalLoan;
   onClick: () => void;
 }) => {
+  const {lang}=useTranslation()
+  
   return (
     <div
       className="border border-gray-400 rounded   text-black  sm:w-[250px] w-full flex flex-col  gap-y-3 hover:bg-gray-300 cursor-pointer hover:shadow-xl"
@@ -38,7 +41,7 @@ const PersonalLoanComponent = ({
             <h3 className="font-black text-md capitalize">{loan.amount}</h3>
           </div>
           <div className="bg-black rounded-full p-2">
-            <FaArrowRight color="#fff" />
+            {lang=="ar"?<FaArrowLeft color="#fff"/>:<FaArrowRight color="#fff" />}
           </div>
         </div>
       </div>

@@ -16,16 +16,16 @@ const FinancialTransaction = () => {
     title?: string;
     accessor: string;
   }[] = [
-    { title: "Transaction ID", accessor: "transactionID" },
-    { title: "Transaction Amount", accessor: "transactionAmount" },
-    { title: "Transaction Date", accessor: "transactionDate" },
-    { title: "transaction Type", accessor: "transactionType" },
-    { title: "Description", accessor: "description" },
-    { title: "Payment Method", accessor: "paymentMethod" },
-    { title: "Name", accessor: "name" },
-    { title: "Address", accessor: "address" },
-    { title: "Phone", accessor: "phone" },
-    { title: "Email", accessor: "email" },
+    { title: t("transactionID"), accessor: "transactionID" },
+    { title: t("transactionAmount"), accessor: "transactionAmount" },
+    { title: t("transactionDate"), accessor: "transactionDate" },
+    { title: t("transactionType"), accessor: "transactionType" },
+    { title: t("desc"), accessor: "description" },
+    { title: t("paymentMethod"), accessor: "paymentMethod" },
+    { title: t("Name"), accessor: "name" },
+    { title: t("address"), accessor: "address" },
+    { title: t("phoneNum"), accessor: "phone" },
+    { title: t("email"), accessor: "email" },
   ];
   const items = useMemo(() => {
     return financialTransactions?.map((ele) => ({

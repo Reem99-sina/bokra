@@ -215,7 +215,7 @@ const AddLoan = ({ type }: { type: string }) => {
             className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500    "
           >
             {!formdata.formState.errors.annualRevenue?.message && (
-              <p className="text-[12px] font-light text-gray-400 mb-2">
+              <p className="text-[12px] font-light text-gray-400 ">
                 {t("Annual_Revenue") + " " + t("Annual_Revenue_des")}
               </p>
             )}
@@ -244,7 +244,7 @@ const AddLoan = ({ type }: { type: string }) => {
             className="md:min-w-[300px] w-full !text-xs !font-light !text-gray-500    "
           >
             {!formdata.formState.errors.liabilities?.message && (
-              <p className="text-[12px] font-light text-gray-400 mb-2 ">
+              <p className="text-[12px] font-light text-gray-400  ">
                 {t("total_liabilities_desc")}
               </p>
             )}

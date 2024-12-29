@@ -19,7 +19,7 @@ const ForgetPasswordForm = () => {
     formState: { errors },
   } = useForm<IUserForgetRequest>({});
 
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
   const onSubmit: SubmitHandler<IUserForgetRequest> = () => {
     router.replace("/dashboard");
     toast.success("login successfully");
@@ -33,8 +33,17 @@ const ForgetPasswordForm = () => {
           className="flex   max-w-[568px] sm:w-[568px] flex-col rounded-xl bg-white "
           // autoComplete="off"
         >
-          <div className="flex items-center justify-center  w-full mb-4 pt-5">
-            <Image src={"/bokralogo.png"} width={100} height={90} alt="logo" />
+          <div className="flex items-center justify-center  w-full pb-4 pt-5 bg-black rounded-t-md">
+            <Image
+              src={
+                lang == "ar"
+                  ? "/bokra-gray-arabic.png"
+                  : "/bokra-gray-eng.png"
+              }
+              width={100}
+              height={90}
+              alt="logo"
+            />
           </div>
           <div className="h-[1px] w-full bg-grayLight"></div>
           <div className="px-14 pb-6 pt-6 flex flex-col">

@@ -12,9 +12,9 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useUser } from "@/hooks/user.hooks";
 import Image from "next/image";
-import PhoneInput from "react-phone-input-2";
 import { validateInput } from "@/utils/validate.userName";
 import ErrorInputComponent from "../shared/form/error-input.component";
+import PhoneNumber from "../shared/phone-number";
 
 export const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -27,7 +27,7 @@ export const RegisterForm: React.FC = () => {
     formState: { errors },
   } = useForm<IUserRegisterRequest>({});
   const password = watch("password");
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
 
   const onSubmit: SubmitHandler<IUserRegisterRequest> = async (data) => {
     updateUser(data);
@@ -41,9 +41,11 @@ export const RegisterForm: React.FC = () => {
     >
       <div className="rounded-md border border-[#DCDFE4]">
         <div className="flex  max-w-[568px] sm:w-[568px] flex-col rounded-xl bg-white">
-          <div className="flex items-center justify-center  w-full py-4">
+          <div className="flex items-center justify-center  w-full py-4 bg-black rounded-t-md">
             <Image
-              src={"/bokra.png"}
+              src={
+                lang == "ar" ? "/bokra-gray-arabic.png" : "/bokra-gray-eng.png"
+              }
               width={100}
               height={90}
               alt="logo"
@@ -147,23 +149,10 @@ export const RegisterForm: React.FC = () => {
               render={({ field: { onChange, value } }) => {
                 return (
                   <>
-                    <PhoneInput
-                      country={""}
+                    <PhoneNumber
+                      error={errors?.phoneNumber?.message}
+                      onChange={onChange}
                       value={value}
-                      onChange={(phone) => onChange(phone)}
-                      specialLabel={""}
-                      placeholder={t("phoneNum")}
-                      inputStyle={{
-                        width: "100%",
-                        padding: "7px 10px",
-                        borderRadius: "0.375rem",
-                        margin: "0px 0px",
-                        color: "black",
-                        fontSize: "14px",
-                        border: errors?.phoneNumber?.message
-                          ? "1px solid #ff0000"
-                          : "1px solid #d1d5db",
-                      }}
                     />
                     {errors?.phoneNumber?.message && (
                       <ErrorInputComponent
