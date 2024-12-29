@@ -24,7 +24,7 @@ export const LoginForm: React.FC = () => {
     formState: { errors },
   } = useForm<IUserRequest>({});
 
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
 
   const onSubmit: SubmitHandler<IUserRequest> = async (data) => {
     updateUser(data);
@@ -40,9 +40,13 @@ export const LoginForm: React.FC = () => {
           className="flex  max-w-[568px] sm:w-[568px] flex-col rounded-xl bg-white "
           // autoComplete="off"
         >
-          <div className="flex items-center justify-center  w-full py-4">
+          <div className="flex items-center justify-center  w-full py-4 bg-black rounded-t-md">
             <Image
-              src={"/bokra.png"}
+              src={
+                lang == "ar"
+                  ? "/bokra-gray-arabic.png"
+                  : "/bokra-gray-eng.png"
+              }
               width={100}
               height={90}
               alt="logo"

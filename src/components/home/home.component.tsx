@@ -30,7 +30,7 @@ const HomeComponent = () => {
               </div>
             }
             className="rounded-none !p-3"
-            inputProps={{ placeholder: "What?" }}
+            inputProps={{ placeholder: t("what") }}
           />
           <TextInput
             leftIcon={
@@ -39,7 +39,7 @@ const HomeComponent = () => {
               </div>
             }
             className="rounded-none  !p-3"
-            inputProps={{ placeholder: "location?" }}
+            inputProps={{ placeholder: t("location") }}
           />
         </div>
         <div className="w-auto flex " dir="rtl">
@@ -54,7 +54,7 @@ const HomeComponent = () => {
       <div className="md:flex gap-x-4 z-0 md:absolute  bottom-[-10%] w-[50%] justify-center items-center hidden">
         <CardDetail className=" text-black items-center shadow-lg  sm:min-w-[20%] min-w-fit">
           <LiaShareAltSolid color="black" size={"40"} />
-          <h3 className="capitalize font-bold text-sm">partnership</h3>
+          <h3 className="capitalize font-bold text-sm">{t("partnership")}</h3>
           <Link
             className="text-xs text-gray-500 underline"
             href="/account/personal-loan/add"
@@ -64,7 +64,7 @@ const HomeComponent = () => {
         </CardDetail>
         <CardDetail className=" text-black items-center shadow-lg  sm:min-w-[20%] min-w-fit">
           <MdOutlineStrikethroughS color="black" size={"40"} />
-          <h3 className="capitalize font-bold text-sm">strike</h3>
+          <h3 className="capitalize font-bold text-sm">{t("speculation")}</h3>
           <Link
             className="text-xs text-gray-500 underline"
             href="/account/personal-loan/add"
@@ -74,7 +74,7 @@ const HomeComponent = () => {
         </CardDetail>
         <CardDetail className=" text-black items-center shadow-lg  sm:min-w-[20%] min-w-fit">
           <FaFileSignature color="black" size={"40"} />
-          <h3 className="capitalize font-bold text-sm">rent</h3>
+          <h3 className="capitalize font-bold text-sm">{t("rent")}</h3>
           <Link
             className="text-xs text-gray-500 underline"
             href="/account/personal-loan/add"

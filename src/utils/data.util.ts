@@ -1,7 +1,10 @@
 import { useTranslation } from "@/translations/clients";
-import { FaUser } from "react-icons/fa";
+import { FaFileSignature, FaUser } from "react-icons/fa";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { GiTakeMyMoney } from "react-icons/gi";
+import { LiaShareAltSolid } from "react-icons/lia";
+import { LuChartNoAxesCombined } from "react-icons/lu";
+import { MdAgriculture, MdOutlineStrikethroughS } from "react-icons/md";
 
 export const LinksData = () => {
   const { t } = useTranslation();
@@ -12,17 +15,17 @@ export const LinksData = () => {
       children: [
         {
           title: t("profile"),
-          icon:FaUser,
+          icon: FaUser,
           href: "/",
         },
         {
           title: t("personalLoan"),
-          icon:GiTakeMyMoney,
+          icon: GiTakeMyMoney,
           href: "/personal-loan",
         },
         {
           title: t("financialTransactions"),
-          icon:FaMoneyBillTransfer,
+          icon: FaMoneyBillTransfer,
           href: "/financial-transaction",
         },
       ],
@@ -300,5 +303,28 @@ export const FilterLoans = () => {
       type: "select",
       options: typeLoans,
     },
+  ];
+};
+export const DataTypeLoans = () => {
+  const { t } = useTranslation();
+  
+  return [
+    {
+      head: t("partnership"),
+      desc: t("desc_first_about"),
+      icon: LiaShareAltSolid,
+    },
+    {
+      head: t("speculation"),
+      desc: t("desc_first_about"),
+      icon: MdOutlineStrikethroughS,
+    },
+    { head: t("rent"), desc: t("desc_first_about"), icon: FaFileSignature },
+    {
+      head: t("profitable"),
+      desc: t("desc_first_about"),
+      icon: LuChartNoAxesCombined,
+    },
+    { head: t("ladder"), desc: t("desc_first_about"), icon: MdAgriculture },
   ];
 };

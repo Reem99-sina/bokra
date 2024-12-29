@@ -27,7 +27,7 @@ const AddFiles = ({
   } = useFormContext();
 
   return (
-    <div className="flex flex-col my-2">
+    <div className="flex flex-col ">
       <Controller
         control={control}
         name={formName}
@@ -84,8 +84,8 @@ const AddFiles = ({
                 accept={"application/pdf,image/png,image/jpeg,image/jpg"}
                 className="placeholder:text-xs placeholder:font-light"
               />
-              <p className="text-gray-400 text-[12px] mb-1">{desc}</p>
-              <div className="flex w-full justify-between text-[10px] text-gray-400">
+             {desc&& <p className="text-gray-400 text-[12px] mb-1">{desc}</p>}
+              <div className="flex w-full justify-between text-[10px] text-gray-400 mt-1">
                 <p>{t("filesSupport")} : PDF, JPEG, or PNG</p>
                 <p>{t("minSizefile")} : 10 MB</p>
               </div>
