@@ -13,14 +13,22 @@ interface Props {
 
 const className = "ps-[3%]";
 
- function AccountLayout({ children }: Props) {
-
+function AccountLayout({ children }: Props) {
   return (
     <div className="flex flex-1 flex-col">
       <Header />
 
-      <div className={clsx("flex flex-1 flex-col  sm:flex-row mt-[4rem] min-h-auto")}>
-        <div className={clsx("hidden sm:block mt-[18px] h-full bg-beige bg-opacity-20 ps-4",className)}>
+      <div
+        className={clsx(
+          "flex flex-1 flex-col  sm:flex-row mt-[4rem] min-h-auto"
+        )}
+      >
+        <div
+          className={clsx(
+            "hidden sm:block mt-[18px] h-full bg-beige bg-opacity-20 ps-4",
+            className
+          )}
+        >
           <Sidebar />
         </div>
         <div className={clsx(" block  sm:hidden bg-bg3 mt-7", className)}>
@@ -34,4 +42,4 @@ const className = "ps-[3%]";
     </div>
   );
 }
-export default withAuth(AccountLayout)
+export default withAuth(AccountLayout);

@@ -1,81 +1,39 @@
 "use client";
-import Pagination from "@/components/pagination.component";
-import { Table } from "@/components/shared/table";
+
+import TitleComponent from "@/components/shared/title.component";
+import { Tabs } from "@/components/shared/tabs.component";
+import FinancialTransaction from "@/components/payment/financial-transaction";
 import { useTranslation } from "@/translations/clients";
-import { financialTransactions } from "@/utils/data.util";
-import { MdPayments } from "react-icons/md";
-import { useMemo } from "react";
-import { formattedAmount } from "@/utils/money.util";
-import { formatPhoneNumber } from "@/utils/formatNumber";
-import SearchComponent from "@/components/shared/search-component";
-import clsx from "clsx";
+import LoanSummary from "@/components/payment/loan-summary";
+import RepaymentSchedule from "@/components/payment/repayment-schedule";
 
-const FinancialTransaction = () => {
+const FinancialTransactionHistory = () => {
   const { t } = useTranslation();
-  const columns: {
-    title?: string;
-    accessor: string;
-  }[] = [
-    { title: t("transactionID"), accessor: "transactionID" },
-    { title: t("transactionAmount"), accessor: "transactionAmount" },
-    { title: t("transactionDate"), accessor: "transactionDate" },
-    { title: t("transactionType"), accessor: "transactionType" },
-    { title: t("desc"), accessor: "description" },
-    { title: t("paymentMethod"), accessor: "paymentMethod" },
-    { title: t("Name"), accessor: "name" },
-    { title: t("address"), accessor: "address" },
-    { title: t("phoneNum"), accessor: "phone" },
-    { title: t("email"), accessor: "email" },
-  ];
-  const items = useMemo(() => {
-    return financialTransactions?.map((ele) => ({
-      transactionID: ele?.transactionID,
-      transactionAmount: (
-        <div>{formattedAmount({ amount: Number(ele?.transactionAmount) })}</div>
-      ),
-      transactionDate: ele?.transactionDate,
-      transactionType: ele?.transactionType,
-      description: ele?.description,
-      paymentMethod: (
-        <div className="flex gap-x-3 items-center justify-center">
-          <MdPayments />
-        </div>
-      ),
-      name: ele?.senderReceiverInfo?.name,
-      address: ele?.senderReceiverInfo?.address,
-      phone: formatPhoneNumber(
-        Number(ele?.senderReceiverInfo?.phone.replace("+", ""))
-      ),
-      email: ele?.senderReceiverInfo?.email,
-    }));
-  }, [financialTransactions]);
-
+  
   return (
-    <div className={clsx("container mb-8 mt-8 mx-auto ", ``)}>
-      <div className=" flex flex-col gap-y-5 justify-start">
-        <div className=" rounded-md flex flex-col gap-4">
-          <div className="flex justify-between items-center">
-            <h1 className="font-black text-black text-md">
-              {t("financialTransactions")}
-            </h1>
-          </div>
-          <div className="w-full">
-            {" "}
-            <SearchComponent />
-          </div>
-          <Table columns={columns} items={items} />
-
-          <div className="flex items-center justify-end">
-            <Pagination
-              onPageChange={() => {}}
-              pageCount={Math.ceil(financialTransactions?.length / 5)}
-              initialPage={1}
-            />
-          </div>
-        </div>
+    <div className="w-full container">
+      <div className="my-4 flex items-start">
+        <TitleComponent title={t("financialTransactions")} />
       </div>
+      <Tabs
+        tabs={[
+          {
+            title: t("loanSummary"),
+            Component: <LoanSummary/>,
+          },
+          {
+            title: t("repaymentSchedule"),
+            Component: <RepaymentSchedule />,
+          },
+          {
+            title: t("paymentHistory"),
+            Component: <FinancialTransaction />,
+          },
+        ]}
+        activeIndex={0}
+      />
     </div>
   );
 };
 
-export default FinancialTransaction;
+export default FinancialTransactionHistory;

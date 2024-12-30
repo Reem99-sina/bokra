@@ -246,6 +246,7 @@ export const financialTransactions = [
     transactionAmount: "100000",
     transactionDate: "2024-11-15",
     transactionType: "Debit",
+    status:"pending",
     description: "Payment for project development",
     paymentMethod: "",
     senderReceiverInfo: {
@@ -262,6 +263,7 @@ export const financialTransactions = [
     transactionType: "Debit",
     description: "Payment for project development",
     paymentMethod: "",
+    status:"pending",
     senderReceiverInfo: {
       name: "John Doe",
       address: "123 Business Street, City",
@@ -276,6 +278,7 @@ export const financialTransactions = [
     transactionType: "Credit",
     description: "Payment for project development",
     paymentMethod: "",
+    status:"overdue",
     senderReceiverInfo: {
       name: "John Doe",
       address: "123 Business Street, City",

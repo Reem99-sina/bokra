@@ -5,12 +5,16 @@ import React, { FC, useState } from 'react';
 interface Props {
   tabs: {
     title: string;
-    Component: JSX.Element;
+    Component?: JSX.Element;
+    onClick?: () => void;
   }[];
+  activeIndex?: number;
 }
 
-export const Tabs: FC<Props> = ({ tabs }) => {
-  const [activeTabIndex, setActiveTabIndex] = useState(0);
+export const Tabs: FC<Props> = ({ tabs, activeIndex }) => {
+  const [activeTabIndex, setActiveTabIndex] = useState(
+    activeIndex ? activeIndex : 0,
+  );
 
   return (
     <div>
@@ -18,21 +22,24 @@ export const Tabs: FC<Props> = ({ tabs }) => {
         {tabs.map((tab, index) => {
           const textColorClass =
             index === activeTabIndex
-              ? 'text-primeColor'
-              : 'text-[rgba(0,0,0,0.3)]';
+              ? 'text-black font-black'
+              : 'text-[rgba(0,0,0,0.3)] font-normal';
 
           return (
             <div
               className={clsx(
-                'flex cursor-pointer ',
-                index === activeTabIndex ? 'border-b-4 border-primeColor' : '',
+                'flex cursor-pointer px-4  py-5 ml-6 ',
+                index === activeTabIndex ? 'border-b-4 border-black' : '',
               )}
               key={tab.title}
               onClick={() => {
                 setActiveTabIndex(index);
+                if (tab?.onClick) {
+                  tab.onClick();
+                }
               }}
             >
-              <div className={clsx(`h-[50px] self-start rounded-tr-lg  p-3`)}>
+              <div className={clsx(` self-start rounded-tr-lg `)}>
                 <h3
                   className={`text-xs  font-bold sm:text-base ${textColorClass}`}
                 >
