@@ -26,7 +26,7 @@ const PersonalLoanComponent = () => {
   return (
     <div className="container mb-8 mt-5 mx-auto flex flex-col gap-y-5 justify-around ">
       <MainTitleComponent title={t("personalLoans")} />
-      <div className="flex items-center">
+      <div className="flex items-center gap-4">
         <div className="w-full">
           <SearchComponent />
         </div>

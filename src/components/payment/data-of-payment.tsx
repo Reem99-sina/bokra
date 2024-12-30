@@ -1,6 +1,6 @@
 import { useTranslation } from "@/translations/clients";
 import { RadioExample } from "../shared/Radio.component";
-import { FaRegCreditCard } from "react-icons/fa";
+
 import { TextInput } from "../shared/form/text-input.component";
 import { useForm } from "react-hook-form";
 import { formattedAmount } from "@/utils/money.util";
@@ -9,13 +9,19 @@ import { dataLoansDetail } from "@/utils/data.util";
 const DataOfPayment = () => {
   const { t } = useTranslation();
   const formdata = useForm();
+  const paymentMethod = [t("bankTransfer"), t("Cheque"), t("onlinePayment")];
   
   return (
-    <div className="bg-gray-300 p-5 h-full text-black flex flex-col gap-4 container">
-      <h3 className="font-black">{t("payment_detail")}</h3>
-      <div className="flex items-center gap-3">
-        <RadioExample label={t("creditCard")} id="" name="" />
-        <FaRegCreditCard />
+    <div className="bg-bg3 p-5 h-full text-black flex flex-col gap-6 container font-normal">
+      <div>
+        <h3 className="font-bold text-base ">{t("payment_detail")}</h3>
+        <div className="flex items-center gap-4">
+          {paymentMethod.map((ele) => (
+            <div className="flex items-center gap-3" key={ele}>
+              <RadioExample label={ele} id="" name="" />
+            </div>
+          ))}
+        </div>
       </div>
       <div className="min-w-full">
         <TextInput
@@ -59,7 +65,7 @@ const DataOfPayment = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <h3>{t("priceBefore")}</h3>
           <p>

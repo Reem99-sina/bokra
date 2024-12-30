@@ -7,18 +7,18 @@ import { useTranslation } from "@/translations/clients";
 import { dataLoansDetail } from "@/utils/data.util";
 import { formattedAmount } from "@/utils/money.util";
 
-const PaymentPage = () => {
+const PaymentPage = ({onCancel}:{onCancel:()=>void}) => {
   const { t } = useTranslation();
   
   return (
-    <div className=" items-center justify-center flex flex-col p-5 h-full">
+    <div className=" items-center justify-center flex flex-col p-5 h-full min-h-screen bg-beige font-normal">
       <div className="border border-grayLight rounded-md  bg-white">
         <h3 className="text-black font-black text-md text-center p-3">
           {t("payment_detail")}
         </h3>
         <div className="h-[1px] w-full bg-grayLight" />
         <div className="flex  gap-4 sm:flex-nowrap flex-wrap">
-          <div className="flex   my-5 flex-col container pe-2">
+          <div className="flex   mt-3  flex-col container pe-2">
             <DataOfLoan />
             <UserOfLoan />
           </div>
@@ -36,16 +36,17 @@ const PaymentPage = () => {
                 ),
               })}
             </h3>
-            <p className="text-gray-500 font-light">{t("total_paid")}</p>
+            <p className="text-gray-500">{t("total_paid")}</p>
           </div>
           <div className="flex items-center gap-x-2">
             <Button
               text={t("pay_now")}
-              className="!bg-black !text-white !w-auto !text-xs"
+              className="!bg-black !text-white !w-auto !text-xs !py-3 !px-4"
             />
             <Button
               text={t("cancellation")}
-              className="!bg-white !text-black !w-auto !text-xs !border !border-grayLight"
+              className="!bg-white !text-black !w-auto !text-xs !border !border-grayLight  !py-3 !px-4"
+              onClick={onCancel}
             />
           </div>
         </div>

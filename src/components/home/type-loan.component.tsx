@@ -4,11 +4,11 @@ import { useTranslation } from "@/translations/clients";
 import TitleComponent from "../shared/title.component";
 import Slider, { Settings } from "react-slick";
 // import { RefObject, useRef } from "react";
-import { BsArrowLeftSquare, BsArrowRightSquare } from "react-icons/bs";
 import { DataTypeLoans } from "@/utils/data.util";
+import { NextArrow, PrevArrow } from "../shared/arrow-slider";
 
 const TypeLoanComponent = () => {
-  const { t, lang } = useTranslation();
+  const { t } = useTranslation();
   const loans = DataTypeLoans();
   // const sliderRef: RefObject<Slider> = useRef(null);
   const router = useRouter();
@@ -22,18 +22,8 @@ const TypeLoanComponent = () => {
     slidesToScroll: 3,
     arrows: true,
     centerPadding: "0",
-    prevArrow:
-      lang == "ar" ? (
-        <BsArrowRightSquare color="black" />
-      ) : (
-        <BsArrowLeftSquare color="black" />
-      ),
-    nextArrow:
-      lang == "ar" ? (
-        <BsArrowLeftSquare color="black" />
-      ) : (
-        <BsArrowRightSquare color="black" />
-      ),
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
     responsive: [
       {
         breakpoint: 1024,
