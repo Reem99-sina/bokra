@@ -47,7 +47,7 @@ const RepaymentSchedule = () => {
           <p
             className={clsx(
               "px-2 py-[2px] text-[12px] border-2 rounded-sm w-fit",
-              ele?.status == "pending"
+              ele?.status == "upcoming"
                 ? "border-thColor text-thColor"
                 : ele?.status == "paid"
                 ? "border-greenCustom text-greenCustom"

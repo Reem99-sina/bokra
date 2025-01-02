@@ -42,6 +42,7 @@ const Pagination: React.FC<Props> = memo(
               rotate={360}
               className={clsx(lang == "ar" ? "rotate-0" : "rotate-180")}
             />
+
             <p>{t("Prevs")}</p>
           </div>
         }

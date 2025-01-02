@@ -11,7 +11,7 @@ const FinancialTransactionHistory = () => {
   const { t } = useTranslation();
   
   return (
-    <div className="w-full container">
+    <div className="w-full container mx-auto">
       <div className="my-4 flex items-start">
         <TitleComponent title={t("financialTransactions")} />
       </div>

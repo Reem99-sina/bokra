@@ -11,7 +11,7 @@ const LoanSummary = () => {
   const modalRef = useRef<ModalRef>(null);
 
   return (
-    <div className="text-black  flex items-start gap-5">
+    <div className="text-black  flex items-start gap-5  flex-col">
       <CardDetail className="border-grayLight border rounded-md p-5 flex flex-col gap-7">
         <div>
           <h3 className="text-md font-bold">{t("loanSummary")}</h3>
