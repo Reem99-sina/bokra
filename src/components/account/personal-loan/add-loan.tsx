@@ -4,12 +4,14 @@ import { useTranslation } from "@/translations/clients";
 import { addLoanInfo } from "@/types/loan.type";
 import { loanCurreny, technologyType } from "@/utils/data.util";
 import { Checkbox } from "@material-tailwind/react";
-import { Controller, FormProvider, useForm } from "react-hook-form";
-import AddFiles from "./add-files";
+import { Controller, useForm } from "react-hook-form";
+// import  from "./add-files";
 import MainTitleComponent from "@/components/shared/main-title.component";
 import { Button } from "@/components/shared/button.component";
 import BackNavigation from "@/components/shared/back-navigation";
 import { useRouter } from "next/navigation";
+import { UploadFilesVariants } from "@/types/file.type";
+import { UploadFilesInput } from "@/components/shared/upload-files-input.component";
 
 const AddLoan = ({ type }: { type: string }) => {
   const { t } = useTranslation();
@@ -22,20 +24,19 @@ const AddLoan = ({ type }: { type: string }) => {
       businessName: "",
       industryType: "",
       loanPurpose: "",
-      financialStatements: undefined,
+      financialStatements: [],
       annualRevenue: undefined,
       expenses: undefined,
       liabilities: undefined,
-      businessRegCert: undefined,
-      identityDocument: undefined,
+      businessRegCert: [],
+      identityDocument: [],
       loanCurrency: "",
     },
     mode: "onChange",
   });
 
   const loan_currency = formdata.watch("loanCurrency");
- 
-  
+
   const onSubmit = () => {
     // console.log(data, "data");
     router.push("/account/personal-loan");
@@ -272,39 +273,100 @@ const AddLoan = ({ type }: { type: string }) => {
       <MainTitleComponent title={t("docUpload")} />
       <div className=" flex flex-wrap gap-6 my-4">
         <div className="sm:min-w-[280px] min-w-full">
-          <FormProvider {...formdata}>
-            <AddFiles
-              formName="financialStatements"
-              placeholder={t("finStatements")}
-              desc={""}
-              label={t("finStatements")}
-              errorMessage={t("fileType")}
-            />
-          </FormProvider>
+          <Controller
+            control={formdata.control}
+            name="financialStatements"
+            rules={{
+              required: t("fileType"),
+            }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => {
+              return (
+                <>
+                  <UploadFilesInput
+                    id="financialStatements"
+                    text={t("finStatements")}
+                    placeholder={t("finStatements")}
+                    value={value}
+                    onChange={(files) => {
+                      onChange(files);
+                    }}
+                    variant={UploadFilesVariants.INPUT}
+                  />
+
+                  {error?.message && (
+                    <p className="mb-4 text-xs text-red-600 dark:text-red-500">
+                      {error?.message}
+                    </p>
+                  )}
+                </>
+              );
+            }}
+          />
         </div>
         <div className="sm:min-w-[280px] min-w-full">
-          <FormProvider {...formdata}>
-            <AddFiles
-              formName="businessRegCert"
-              placeholder={t("busRegistCert")}
-              desc={""}
-              label={t("busRegistCert")}
-              errorMessage={t("errorbusinessregistration")}
-            />
-          </FormProvider>
+          <Controller
+            control={formdata.control}
+            name="businessRegCert"
+            rules={{
+              required: t("errorbusinessregistration"),
+            }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => {
+              return (
+                <>
+                  <UploadFilesInput
+                    id="businessRegCert"
+                    text={t("busRegistCert")}
+                    placeholder={t("busRegistCert")}
+                    value={value}
+                    onChange={(files) => {
+                      onChange(files);
+                    }}
+                    variant={UploadFilesVariants.INPUT}
+                  />
+
+                  {error?.message && (
+                    <p className="mb-4 text-xs text-red-600 dark:text-red-500">
+                      {error?.message}
+                    </p>
+                  )}
+                </>
+              );
+            }}
+          />
         </div>
         <div className="sm:min-w-[280px] min-w-full">
-          <FormProvider {...formdata}>
-            <AddFiles
-              formName="identityDocument"
-              placeholder={t("identityDocument")}
-              desc={""}
-              label={t("identityDocument")}
-              errorMessage={t("errorId")}
-            />
-          </FormProvider>
+          <Controller
+            control={formdata.control}
+            name="identityDocument"
+            rules={{
+              required: t("errorId"),
+            }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => {
+              return (
+                <>
+                  <UploadFilesInput
+                    id="identityDocument"
+                    text={t("identityDocument")}
+                    placeholder={t("identityDocument")}
+                    value={value}
+                    onChange={(files) => {
+                      onChange(files);
+                    }}
+                    variant={UploadFilesVariants.INPUT}
+                  />
+
+                  {error?.message && (
+                    <p className="mb-4 text-xs text-red-600 dark:text-red-500">
+                      {error?.message}
+                    </p>
+                  )}
+                </>
+              );
+            }}
+          />
         </div>
       </div>
+
       <div className=" flex flex-wrap gap-x-2 my-2 items-center">
         <Checkbox crossOrigin={undefined} />
         <h3 className="text-black font-normal text-xs">{t("question")}</h3>

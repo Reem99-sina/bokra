@@ -1,14 +1,9 @@
 import { useTranslation } from "@/translations/clients";
 import CardDetail from "../shared/card-detail";
 import { CiWarning } from "react-icons/ci";
-import { Button } from "../shared/button.component";
-import { useRef } from "react";
-import { Modal, ModalRef } from "../shared/modal.component";
-import PaymentPage from "@/app/[locale]/payment/page";
 
 const LoanSummary = () => {
   const { t } = useTranslation();
-  const modalRef = useRef<ModalRef>(null);
 
   return (
     <div className="text-black  flex items-start gap-5  flex-col">
@@ -48,18 +43,10 @@ const LoanSummary = () => {
               {t("ipcomingDesc")}
             </p>
           </div>
-          <div>
-            <Button
-              text={t("makePayment")}
-              className="!bg-black !text-white !px-3 !py-2 !text-xs"
-              onClick={() => modalRef.current?.open()}
-            />
-          </div>
+          
         </div>
       </CardDetail>
-      <Modal ref={modalRef}>
-        <PaymentPage onCancel={() => modalRef?.current?.close()} />
-      </Modal>
+     
     </div>
   );
 };

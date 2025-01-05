@@ -1,21 +1,19 @@
 "use client";
-
 import TitleComponent from "@/components/shared/title.component";
-import FinancialTransaction from "@/components/payment/financial-transaction";
 import { useTranslation } from "@/translations/clients";
+import DataLoan from "@/components/account/renewal/data-renewal";
 
-
-const FinancialTransactionHistory = () => {
+const Renew = () => {
   const { t } = useTranslation();
 
   return (
     <div className="w-full container mx-auto">
       <div className="my-4 flex items-start">
-        <TitleComponent title={t("financialTransactions")} />
+        <TitleComponent title={t("loanRenewal")} />
       </div>
-      <FinancialTransaction />
+      <DataLoan />
     </div>
   );
 };
 
-export default FinancialTransactionHistory;
+export default Renew;

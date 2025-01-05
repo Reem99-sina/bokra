@@ -10,13 +10,13 @@ const AddFiles = ({
   label,
   formName,
   desc,
-  errorMessage
+  errorMessage,
 }: {
   placeholder: string;
   label: string;
   formName: string;
   desc?: string;
-  errorMessage?:string
+  errorMessage?: string;
 }) => {
   const refImage = useRef<HTMLInputElement>(null);
   const { t } = useTranslation();
@@ -34,15 +34,16 @@ const AddFiles = ({
         rules={{
           validate: {
             fileType: (files: File[]) => {
-              const invalidFile = files&&Array?.from(files)?.every(
-                (file) =>
+              const invalidFile =
+                files &&
+                Array?.from(files)?.every((file) =>
                   [
                     "application/pdf",
                     "image/png",
                     "image/jpeg",
                     "image/jpg",
                   ].includes(file?.type)
-              );
+                );
 
               return invalidFile ? true : errorMessage;
             },
@@ -84,7 +85,7 @@ const AddFiles = ({
                 accept={"application/pdf,image/png,image/jpeg,image/jpg"}
                 className="placeholder:text-xs placeholder:font-light"
               />
-             {desc&& <p className="text-gray-400 text-[12px] mb-1">{desc}</p>}
+              {desc && <p className="text-gray-400 text-[12px] mb-1">{desc}</p>}
               <div className="flex w-full justify-between text-[10px] text-gray-400 mt-1">
                 <p>{t("filesSupport")} : PDF, JPEG, or PNG</p>
                 <p>{t("minSizefile")} : 10 MB</p>

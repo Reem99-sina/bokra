@@ -14,3 +14,15 @@ export const formatPhoneNumber = (phoneNumber?: number | null) => {
     return phoneNumber;
   }
 };
+export const formattedAmount = ({
+  amount,
+  currency,
+}: {
+  amount: number;
+  currency?: string;
+}) =>
+  new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: currency?currency:"USD",
+    minimumFractionDigits: 0,
+  }).format(amount);

@@ -11,6 +11,6 @@ export const colors = {
   darkGray: "#57585B",
   siderBarColor: "#7B8080",
   thColor: "#595959",
-  greenCustom: '#1F7A49',
-
+  greenCustom: "#1F7A49",
+  yellowDark: "#d08b04",
 };

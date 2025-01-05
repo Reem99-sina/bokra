@@ -38,6 +38,10 @@ export interface IUserRequest {
 export interface IUserForgetRequest {
   email: string;
 }
+export interface RenewpasswordRequest {
+  password: string;
+  repeatPassword: string;
+}
 export interface UserInput {
   name: string;
   street: string;

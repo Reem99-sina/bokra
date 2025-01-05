@@ -4,13 +4,19 @@ import { Table } from "@/components/shared/table";
 import { useTranslation } from "@/translations/clients";
 import { financialTransactions } from "@/utils/data.util";
 import { MdPayments } from "react-icons/md";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import { formattedAmount } from "@/utils/money.util";
 import { formatPhoneNumber } from "@/utils/formatNumber";
 import SearchComponent from "@/components/shared/search-component";
 import clsx from "clsx";
+import { Modal, ModalRef } from "../shared/modal.component";
+
+import PaymentPage from "@/app/[locale]/payment/page";
+import { Button } from "../shared/button.component";
 
 const RepaymentSchedule = () => {
+  const modalRef = useRef<ModalRef>(null);
+
   const { t } = useTranslation();
   const columns: {
     title?: string;
@@ -20,13 +26,13 @@ const RepaymentSchedule = () => {
     { title: t("transactionAmount"), accessor: "transactionAmount" },
     { title: t("transactionDate"), accessor: "transactionDate" },
     { title: t("status"), accessor: "status" },
-
     { title: t("transactionType"), accessor: "transactionType" },
     { title: t("paymentMethod"), accessor: "paymentMethod" },
     { title: t("Name"), accessor: "name" },
     { title: t("address"), accessor: "address" },
     { title: t("phoneNum"), accessor: "phone" },
     { title: t("email"), accessor: "email" },
+    { title: t("action"), accessor: "action" },
   ];
   const items = useMemo(() => {
     return financialTransactions?.map((ele) => ({
@@ -48,7 +54,7 @@ const RepaymentSchedule = () => {
             className={clsx(
               "px-2 py-[2px] text-[12px] border-2 rounded-sm w-fit",
               ele?.status == "upcoming"
-                ? "border-thColor text-thColor"
+                ? "border-yellowDark text-yellowDark"
                 : ele?.status == "paid"
                 ? "border-greenCustom text-greenCustom"
                 : "border-red-500 text-red-500"
@@ -64,6 +70,15 @@ const RepaymentSchedule = () => {
         Number(ele?.senderReceiverInfo?.phone.replace("+", ""))
       ),
       email: ele?.senderReceiverInfo?.email,
+      action: (
+        <div>
+          <Button
+            text={t("makePayment")}
+            className="!bg-black !text-white !px-3 !py-2 !text-xs"
+            onClick={() => modalRef.current?.open()}
+          />
+        </div>
+      ),
     }));
   }, [financialTransactions]);
 
@@ -86,6 +101,9 @@ const RepaymentSchedule = () => {
           </div>
         </div>
       </div>
+      <Modal ref={modalRef}>
+        <PaymentPage onCancel={() => modalRef?.current?.close()} />
+      </Modal>
     </div>
   );
 };

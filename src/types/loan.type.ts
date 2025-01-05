@@ -16,7 +16,7 @@ export interface addLoanInfo {
   industryType: string;
   businessRegNumber: string;
   loanPurpose: string;
-  financialStatements?: File[];
+  financialStatements: File[];
   annualRevenue: number;
   net_profit_margin: string;
   liabilities?: number;
