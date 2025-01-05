@@ -55,7 +55,7 @@ const LinkItemComponent = ({
       {SvgIcon ? (
         <SvgIcon
           className="me-3"
-          stroke={isActive ? "#198897" : "#7B8080"}
+          stroke={isActive ? "#000" : "#7B8080"}
           strokeWidth={isActive ? 2 : 1}
         />
       ) : null}

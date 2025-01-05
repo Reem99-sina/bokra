@@ -217,4 +217,19 @@ export default {
   repaymentAmount: "مبلغ السداد",
   dueDate: "تاريخ الاستحقاق",
   makePayment: "إجراء الدفع",
+  renew: "تجديد كلمة المرور",
+  descriptionRenew: "قم بإنشاء كلمة مرور قوية لحماية حسابك.",
+  supportFiles: "اضف ملفاتك الداعمة",
+  supportingAttachment: "مرفقات داعمة",
+
+  browseFiles: "استعراض الملفات",
+  showesone: "اختر الصور المراد عرضها",
+  Action: "الإجراء",
+  loanRepayment: "سداد القرض",
+  loanRenewal: "تجديد القرض",
+  loanId: "معرف القرض",
+  loanPurpose: "غرض القرض",
+  renewLoan: "تجديد القرض",
+  viewDetails: "عرض التفاصيل",
+  update:"تعديل"
 } as const;

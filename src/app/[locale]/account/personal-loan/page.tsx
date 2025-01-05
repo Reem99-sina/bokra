@@ -26,14 +26,14 @@ const PersonalLoanComponent = () => {
   return (
     <div className="container mb-8 mt-5 mx-auto flex flex-col gap-y-5 justify-around ">
       <MainTitleComponent title={t("personalLoans")} />
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         <div className="w-full">
           <SearchComponent />
         </div>
         <div className="flex max-w-auto justify-end ">
           <Button
             className={clsx(
-              "ml-3 h-10 !w-auto flex-none gap-2 rounded-[4px] bg-black text-white !text-sm"
+              "!ml-0 h-10 !w-auto flex-none gap-2 rounded-[4px] bg-black text-white !text-xs !px-4 !py-3 !font-black"
             )}
             type="submit"
             text={t("search")}

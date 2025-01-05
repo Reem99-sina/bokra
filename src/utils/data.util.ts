@@ -4,7 +4,8 @@ import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { LiaShareAltSolid } from "react-icons/lia";
 import { LuChartNoAxesCombined } from "react-icons/lu";
-import { MdAgriculture, MdOutlineStrikethroughS } from "react-icons/md";
+import { MdAgriculture, MdAutorenew, MdOutlineStrikethroughS } from "react-icons/md";
+import { RiSecurePaymentLine } from "react-icons/ri";
 
 export const LinksData = () => {
   const { t } = useTranslation();
@@ -27,6 +28,16 @@ export const LinksData = () => {
           title: t("financialTransactions"),
           icon: FaMoneyBillTransfer,
           href: "/financial-transaction",
+        },
+        {
+          title: t("loanRepayment"),
+          icon: RiSecurePaymentLine,
+          href: "/repayment",
+        },
+        {
+          title: t("loanRenewal"),
+          icon: MdAutorenew,
+          href: "/renewal",
         },
       ],
     },
@@ -246,7 +257,7 @@ export const financialTransactions = [
     transactionAmount: "100000",
     transactionDate: "2024-11-15",
     transactionType: "Debit",
-    status:"upcoming",
+    status: "upcoming",
     description: "Payment for project development",
     paymentMethod: "",
     senderReceiverInfo: {
@@ -263,7 +274,7 @@ export const financialTransactions = [
     transactionType: "Debit",
     description: "Payment for project development",
     paymentMethod: "",
-    status:"upcoming",
+    status: "upcoming",
     senderReceiverInfo: {
       name: "John Doe",
       address: "123 Business Street, City",
@@ -278,7 +289,7 @@ export const financialTransactions = [
     transactionType: "Credit",
     description: "Payment for project development",
     paymentMethod: "",
-    status:"overdue",
+    status: "overdue",
     senderReceiverInfo: {
       name: "John Doe",
       address: "123 Business Street, City",
@@ -297,6 +308,16 @@ export const typeLoans = [
     value: "loan",
   },
 ];
+export const statusLoans = [
+  {
+    label: "paid",
+    value: "paid",
+  },
+  {
+    label: "unpaid",
+    value: "unpaid",
+  },
+];
 export const FilterLoans = () => {
   const { t } = useTranslation();
 
@@ -308,9 +329,20 @@ export const FilterLoans = () => {
     },
   ];
 };
+export const FilterHistoryLoans = () => {
+  const { t } = useTranslation();
+
+  return [
+    {
+      title: t("status"),
+      type: "select",
+      options: statusLoans,
+    },
+  ];
+};
 export const DataTypeLoans = () => {
   const { t } = useTranslation();
-  
+
   return [
     {
       head: t("partnership"),
@@ -331,3 +363,58 @@ export const DataTypeLoans = () => {
     { head: t("ladder"), desc: t("desc_first_about"), icon: MdAgriculture },
   ];
 };
+export const ApprovalApplicationData = [
+  {
+    loanAmount: 50000, // Amount in USD
+    companyType: 'LLC', // Limited Liability Company
+    businessRegNumber: 'BR12345678', // Business Registration Number
+    businessName: 'Tech Innovators Inc.', // Name of the business
+    industryType: 'Technology', // Industry type
+    loanPurpose: 'Expand office space and purchase new equipment', // Purpose of the loan
+    financialStatements: 'financial-statements.pdf', // Path to uploaded file
+    annualRevenue: 250000, // Annual revenue in USD
+    expenses: 75000, // Annual expenses in USD
+    liabilities: 30000, // Total liabilities in USD,
+    status: 'Approve',
+    repaymentStatus: 'upcoming',
+    businessRegCert: 'business-registration-cert.pdf', // Path to uploaded file
+    identityDocument: 'identity-document.jpeg', // Path to uploaded file
+    loanCurrency: 'EGP', // Currency for the loan
+  },
+  {
+    loanAmount: 50000, // Amount in USD
+    companyType: 'LLC', // Limited Liability Company
+    businessRegNumber: 'BR12345678', // Business Registration Number
+    businessName: 'Tech Innovators Inc.', // Name of the business
+    industryType: 'Technology', // Industry type
+    loanPurpose: 'Expand office space and purchase new equipment', // Purpose of the loan
+    financialStatements: 'financial-statements.pdf', // Path to uploaded file
+    annualRevenue: 250000, // Annual revenue in USD
+    expenses: 75000, // Annual expenses in USD
+    liabilities: 30000, // Total liabilities in USD
+    status: 'Approve',
+    repaymentStatus: 'upcoming',
+
+    businessRegCert: 'business-registration-cert.pdf', // Path to uploaded file
+    identityDocument: 'identity-document.jpeg', // Path to uploaded file
+    loanCurrency: 'USD', // Currency for the loan
+  },
+  {
+    loanAmount: 50000, // Amount in USD
+    companyType: 'LLC', // Limited Liability Company
+    businessRegNumber: 'BR12345678', // Business Registration Number
+    businessName: 'Tech Innovators Inc.', // Name of the business
+    industryType: 'Technology', // Industry type
+    loanPurpose: 'Expand office space and purchase new equipment', // Purpose of the loan
+    financialStatements: 'financial-statements.pdf', // Path to uploaded file
+    annualRevenue: 250000, // Annual revenue in USD
+    expenses: 75000, // Annual expenses in USD
+    liabilities: 30000, // Total liabilities in USD
+    status: 'Approve',
+    repaymentStatus: 'overdue',
+
+    businessRegCert: 'business-registration-cert.pdf', // Path to uploaded file
+    identityDocument: 'identity-document.jpeg', // Path to uploaded file
+    loanCurrency: 'USD', // Currency for the loan
+  },
+];

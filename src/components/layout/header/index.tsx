@@ -28,7 +28,9 @@ import { FaChevronDown } from "react-icons/fa";
 import { FaChevronUp } from "react-icons/fa";
 import { IUser } from "@/types/user.type";
 import { IoIosLogOut } from "react-icons/io";
+import { MdAutorenew } from "react-icons/md";
 import Language from "@/components/shared/language";
+import { RiSecurePaymentLine } from "react-icons/ri";
 
 interface linksProps {
   id: number;
@@ -106,6 +108,18 @@ export const Header = () => {
           },
           {
             id: 4,
+            text: t("loanRepayment"),
+            icon: <RiSecurePaymentLine />,
+            to: "/account/repayment",
+          },
+          {
+            id: 5,
+            text: t("loanRenewal"),
+            icon: <MdAutorenew />,
+            to: "/account/renewal",
+          },
+          {
+            id: 6,
             text: t("logout"),
             icon: <CiLogout />,
             to: "/login",
