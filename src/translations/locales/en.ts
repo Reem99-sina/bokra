@@ -251,5 +251,15 @@ trends. `,
   loanPurpose: "Loan Purpose",
   renewLoan: "Renew Loan",
   viewDetails: "View Details",
-  update:"Update"
+  update:"Update",
+  start_date:"Start Date",
+  payment_term:"Payment Term",
+  end_date:"End Date",
+  monthly_payment:"Monthly Payment",
+  total_payment:"Total Payment",
+  late_payments:"Late Payments",
+  on_time_payment:"On-time Payments",
+  missed_payments:"Missed Payments",
+  confirm_loan_renew:"Confirm Loan Renewal",
+  submit_renewal_request:"Submit Renewal Request"
 } as const;

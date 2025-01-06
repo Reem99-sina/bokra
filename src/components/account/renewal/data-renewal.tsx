@@ -11,12 +11,11 @@ import { Table } from "@/components/shared/table";
 import { useTranslation } from "@/translations/clients";
 import { ApprovalApplicationData, FilterLoans } from "@/utils/data.util";
 import { formattedAmount } from "@/utils/formatNumber";
-import clsx from "clsx";
 import Link from "next/link";
 import { useMemo, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { FaCashRegister } from "react-icons/fa";
-import { IoIosBusiness } from "react-icons/io";
+import ConfirmRenewalLoan from "./confirm-renewal-loan";
 
 const DataLoan = () => {
   const { t } = useTranslation();
@@ -27,12 +26,15 @@ const DataLoan = () => {
     accessor: string;
   }[] = [
     { title: t("loanId"), accessor: "loanId" },
-    { title: t("status"), accessor: "status" },
-    { title: t("loanPurpose"), accessor: "loanPurpose" },
+    { title: t("start_date"), accessor: "start_date" },
+    { title: t("end_date"), accessor: "end_date" },
+    { title: t("payment_term"), accessor: "payment_term" },
+    { title: t("monthly_payment"), accessor: "monthly_payment" },
+    { title: t("total_payment"), accessor: "total_payment" },
+    { title: t("on_time_payment"), accessor: "on_time_payments" },
+    { title: t("late_payments"), accessor: "late_payments" },
+    { title: t("missed_payments"), accessor: "missed_payments" },
     { title: t("loanAmount"), accessor: "loanAmount" },
-    { title: t("Annual_Revenue"), accessor: "annualRevenue" },
-    { title: t("expenses"), accessor: "expenses" },
-    { title: t("total_liabilities"), accessor: "liabilities" },
     { title: t("action"), accessor: "action" },
   ];
   const items = useMemo(() => {
@@ -51,43 +53,19 @@ const DataLoan = () => {
           <p>{ele?.businessRegNumber}</p>
         </div>
       ),
-      businessName: (
+      start_date: (
         <div className="flex items-center gap-2">
-          <IoIosBusiness />
-          <p>{ele?.businessName}</p>
+          <p>Jan 1, 2023</p>
         </div>
       ),
-      industryType: ele?.industryType,
-      status: (
-        <div className="flex justify-center">
-          <p
-            className={clsx(
-              "w-fit rounded-sm border-2 px-2 py-[2px] text-[12px]",
-              ele?.status == "pending"
-                ? "border-yellowDark text-yellowDark"
-                : ele?.status == "Approve"
-                ? "border-greenCustom text-greenCustom"
-                : "border-red-500 text-red-500"
-            )}
-          >
-            {ele?.status}
-          </p>
-        </div>
-      ),
-      loanPurpose: (
+      payment_term: "12 months",
+
+      end_date: (
         <div className="flex items-center justify-center gap-x-3">
-          {ele?.loanPurpose}
+          <p>Dec 31, 2023</p>
         </div>
       ),
-      annualRevenue: (
-        <div>
-          {formattedAmount({
-            amount: Number(ele?.annualRevenue),
-            currency: ele?.loanCurrency,
-          })}
-        </div>
-      ),
-      expenses: (
+      monthly_payment: (
         <div>
           {formattedAmount({
             amount: Number(ele?.expenses),
@@ -95,20 +73,23 @@ const DataLoan = () => {
           })}
         </div>
       ),
-      liabilities: (
+      total_payment: (
         <div>
           {formattedAmount({
-            amount: Number(ele?.liabilities),
+            amount: Number(ele?.annualRevenue),
             currency: ele?.loanCurrency,
           })}
         </div>
       ),
+      on_time_payments: <div className="text-greenCustom">11</div>,
+      late_payments: <div className="text-yellowDark">1</div>,
+      missed_payments: <div className="text-red-600">0</div>,
       action: (
         <div className="flex items-center gap-3">
           <Button
             text={t("renewLoan")}
             className=" bg-black !px-3 !py-2 text-xs text-white rounded-md block"
-            onClick={() => {}}
+            onClick={() => drawerRef.current?.open()}
           />
 
           <Link
@@ -150,22 +131,28 @@ const DataLoan = () => {
       </div>
       <FormDrawer
         ref={drawerRef}
-        title={t("loanRenewal")}
+        title={t("confirm_loan_renew")}
         className="!rounded-lg !bg-[#03787C]"
         Footer={
-          <Button
-            text={t("update")}
-            onClick={formdata.handleSubmit(() => {})}
-            className="!bg-black !text-xs !text-white"
-          />
+          <div className="flex items-center justify-center gap-4">
+            <Button
+              text={t("submit_renewal_request")}
+              onClick={formdata.handleSubmit(() => {})}
+              className="!bg-black !text-xs !text-white !py-2 !px-3 !whitespace-nowrap"
+            />
+            <Button
+              text={t("cancel")}
+              onClick={() => drawerRef?.current?.close()}
+              className="!bg-white !text-xs !text-black !border !py-2 !px-3 !whitespace-nowrap"
+            />
+          </div>
         }
         placement="right"
       >
         <div className=" flex h-screen   w-full flex-col bg-beige p-4">
           <FormProvider {...formdata}>
-            <div></div>
-            {/* <UpdateStatus /> */}
-            </FormProvider>
+            <ConfirmRenewalLoan />
+          </FormProvider>
         </div>
       </FormDrawer>
     </div>
