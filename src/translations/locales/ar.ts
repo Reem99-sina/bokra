@@ -231,5 +231,15 @@ export default {
   loanPurpose: "غرض القرض",
   renewLoan: "تجديد القرض",
   viewDetails: "عرض التفاصيل",
-  update:"تعديل"
+  update: "تعديل",
+  start_date: "تاريخ البدء",
+  payment_term: "مدة الدفع",
+  end_date: "تاريخ النهاية",
+  monthly_payment: "الدفع الشهري",
+  total_payment: "إجمالي الدفع",
+  late_payments: "المدفوعات المتأخرة",
+  on_time_payment: "الدفع في الموعد المحدد",
+  missed_payments: "المدفوعات الفائتة",
+  confirm_loan_renew: "تأكيد تجديد القرض",
+  submit_renewal_request: "إرسال طلب التجديد",
 } as const;
