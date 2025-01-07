@@ -4,7 +4,6 @@ import { Line } from "@/components/shared/line.component";
 import { useTranslation } from "@/translations/clients";
 import { useUser } from "@/hooks/user.hooks";
 import { ModalRef } from "@/components/shared/modal.component";
-import { useSession } from "next-auth/react";
 
 interface Props {
   title?: string;
@@ -32,7 +31,6 @@ export const MobileMenuDrawer = forwardRef<DrawerRef, Props>(
     },
     ref
   ) => {
-    const session = useSession();
     const { user } = useUser();
     const { t } = useTranslation();
 
@@ -52,7 +50,7 @@ export const MobileMenuDrawer = forwardRef<DrawerRef, Props>(
 
           <Line />
 
-          {user || session ? (
+          {user ? (
             <></>
           ) : (
             <div className="mt-6 flex items-center">

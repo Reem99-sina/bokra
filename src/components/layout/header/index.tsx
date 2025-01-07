@@ -14,7 +14,6 @@ import { Button } from "@/components/shared/button.component";
 import { MobileMenuDrawer } from "./mobile-menu";
 import Image from "next/image";
 import { ReactNode, useMemo, useRef, useState } from "react";
-import { signOut, useSession } from "next-auth/react";
 import { ProfileUser } from "@/icon";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/user.hooks";
@@ -54,7 +53,6 @@ export const Header = () => {
   // const pathname = usePathname();
   // const homeVersion = useMemo(() => pathname.endsWith(`/${lang}`), [pathname]);
   const drawerRef = useRef<DrawerRef>(null);
-  const session = useSession();
   const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
 
   const links: linksdropdownProps[] = useMemo(() => {
@@ -82,10 +80,7 @@ export const Header = () => {
       },
       {
         id: 6,
-        text:
-          session?.data?.user?.name ||
-          (user as IUser)?.username ||
-          user?.email?.split("@")[0],
+        text: (user as IUser)?.username || user?.email?.split("@")[0],
         icon: <ProfileUser />,
         dropdownItems: [
           {
@@ -126,13 +121,12 @@ export const Header = () => {
             onClick: () => {
               logout();
               updateUser({ email: "", password: "" });
-              signOut();
             },
           },
         ],
       },
     ];
-  }, [session, user]);
+  }, [user]);
 
   return (
     <>
@@ -168,10 +162,7 @@ export const Header = () => {
             </div>
             <div className="ms-24 hidden  flex-row  gap-x-8 sm:flex">
               {links.map((link) => (
-                <div
-                  key={link.id}
-                  className="flex flex-row items-center font-sans "
-                >
+                <div key={link.id} className="flex flex-row items-center">
                   {link?.dropdownItems ? (
                     <Menu>
                       <MenuHandler>
@@ -205,7 +196,7 @@ export const Header = () => {
                     <Link
                       href={link.to as string}
                       className={clsx(
-                        "relative text-sm font-bold text-white  ",
+                        "relative text-sm  text-white  ",
                         "transition-all duration-300",
                         "scroll-smooth"
                       )}
@@ -215,7 +206,7 @@ export const Header = () => {
                   )}
                 </div>
               ))}
-              {!session?.data?.user && !user?.email && (
+              {!user?.email && (
                 <Button
                   text={t("login")}
                   onClick={() => router.push("/login")}
@@ -223,9 +214,9 @@ export const Header = () => {
                 />
               )}
               <div className="flex items-center gap-4">
-               <Language/>
+                <Language />
 
-                {(session?.data?.user || user?.email) && (
+                {user?.email && (
                   <>
                     <div className="w-[1px] h-full bg-grayLight" />
                     <div
@@ -233,7 +224,6 @@ export const Header = () => {
                       onClick={() => {
                         logout();
                         updateUser({ email: "", password: "" });
-                        signOut();
                       }}
                     >
                       <IoIosLogOut color="white" className="text-xl" />

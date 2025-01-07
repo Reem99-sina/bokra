@@ -1,10 +1,13 @@
 import "react-toastify/dist/ReactToastify.css";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "@/style/globals.css";
 import React from "react";
 import { Providers } from "../providers";
 import { Metadata } from "next";
+
+import { Lato } from "next/font/google";
+import clsx from "clsx";
 
 interface Props {
   children: React.ReactNode;
@@ -13,6 +16,11 @@ interface Props {
   };
 }
 
+const latoFont = Lato({
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
+});
+
 export const metadata: Metadata = {
   title: "bokra",
 };
@@ -20,9 +28,8 @@ export const metadata: Metadata = {
 export const revalidate = 0;
 
 export default function RootLayout({ children, params: { locale } }: Props) {
-  
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} >
+    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <head>
         <link
           rel="stylesheet"
@@ -30,9 +37,7 @@ export default function RootLayout({ children, params: { locale } }: Props) {
         />
       </head>
 
-      <body
-      // className={clsx(locale === 'ar' ? arFont.className : enFont.className)}
-      >
+      <body className={clsx(latoFont.className)}>
         <div className="flex h-screen  w-screen   flex-col  overflow-x-hidden scroll-smooth  relative z-10 bg-white">
           <Providers locale={locale}>{children}</Providers>
         </div>

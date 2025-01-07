@@ -2,7 +2,6 @@
 
 import { MobileTabs } from "@/components/account/mobile-tabs.component";
 import { Sidebar } from "@/components/account/sidebar.component";
-import withAuth from "@/components/account/with-auth";
 import { Footer } from "@/components/layout/footer/footer-component";
 import { Header } from "@/components/layout/header";
 import clsx from "clsx";
@@ -34,7 +33,7 @@ function AccountLayout({ children }: Props) {
         <div className={clsx(" block  sm:hidden bg-bg3 mt-7", className)}>
           <MobileTabs />
         </div>
-        <div className="flex flex-1  bg-white  sm:w-[70%] w-full mt-8">
+        <div className="flex flex-1  bg-white  sm:container w-full mt-8">
           {children}
         </div>
       </div>
@@ -42,4 +41,4 @@ function AccountLayout({ children }: Props) {
     </div>
   );
 }
-export default withAuth(AccountLayout);
+export default AccountLayout;

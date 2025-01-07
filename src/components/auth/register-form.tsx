@@ -9,7 +9,6 @@ import { Button } from "../shared/button.component";
 import toast from "react-hot-toast";
 import { FacebookIcon, GoogleIcon } from "@/icon";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
 import { useUser } from "@/hooks/user.hooks";
 import Image from "next/image";
 import { validateInput } from "@/utils/validate.userName";
@@ -184,7 +183,7 @@ export const RegisterForm: React.FC = () => {
                   type="submit"
                   startIcon={<FacebookIcon className="mx-3" />}
                   text={t("registerwithfacebook")}
-                  onClick={() => signIn("facebook")}
+                  onClick={() => {}}
                 />
               </div>
               <div className="flex w-full">
@@ -193,7 +192,7 @@ export const RegisterForm: React.FC = () => {
                   type="submit"
                   startIcon={<GoogleIcon className="mx-3" />}
                   text={t("registerwithGoogle")}
-                  onClick={() => signIn("google")}
+                  onClick={() => {}}
                 />
               </div>
             </div>

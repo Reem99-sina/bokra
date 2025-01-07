@@ -8,7 +8,6 @@ import { useTranslation } from "@/translations/clients";
 import { Button } from "../shared/button.component";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
 import { FacebookIcon, GoogleIcon } from "@/icon";
 // import { useLoginMutation } from "@/services/profile.service";
 import { useUser } from "@/hooks/user.hooks";
@@ -43,9 +42,7 @@ export const LoginForm: React.FC = () => {
           <div className="flex items-center justify-center  w-full py-4 bg-black rounded-t-md">
             <Image
               src={
-                lang == "ar"
-                  ? "/bokra-gray-arabic.png"
-                  : "/bokra-gray-eng.png"
+                lang == "ar" ? "/bokra-gray-arabic.png" : "/bokra-gray-eng.png"
               }
               width={100}
               height={90}
@@ -137,7 +134,7 @@ export const LoginForm: React.FC = () => {
                   type="submit"
                   startIcon={<FacebookIcon className="mx-3" />}
                   text={t("loginwithfacebook")}
-                  onClick={() => signIn("facebook")}
+                  onClick={() => {}}
                 />
               </div>
               <div className="flex w-full">
@@ -146,7 +143,7 @@ export const LoginForm: React.FC = () => {
                   type="submit"
                   startIcon={<GoogleIcon className="mx-3" />}
                   text={t("loginwithGoogle")}
-                  onClick={() => signIn("google")}
+                  onClick={() => {}}
                 />
               </div>
             </div>
