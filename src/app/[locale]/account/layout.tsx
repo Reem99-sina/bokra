@@ -2,8 +2,6 @@
 
 import { MobileTabs } from "@/components/account/mobile-tabs.component";
 import { Sidebar } from "@/components/account/sidebar.component";
-import { Footer } from "@/components/layout/footer/footer-component";
-import { Header } from "@/components/layout/header";
 import clsx from "clsx";
 
 interface Props {
@@ -15,13 +13,7 @@ const className = "ps-[3%]";
 function AccountLayout({ children }: Props) {
   return (
     <div className="flex flex-1 flex-col">
-      <Header />
-
-      <div
-        className={clsx(
-          "flex flex-1 flex-col  sm:flex-row mt-[4rem] min-h-auto"
-        )}
-      >
+      <div className={clsx("flex flex-1 flex-col  sm:flex-row min-h-auto")}>
         <div
           className={clsx(
             "hidden sm:block mt-[18px] h-full bg-beige bg-opacity-20 ps-4",
@@ -37,7 +29,6 @@ function AccountLayout({ children }: Props) {
           {children}
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

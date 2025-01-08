@@ -60,7 +60,7 @@ export const Header = () => {
       {
         id: 1,
         text: t("home"),
-        to: "/",
+        to: `/${lang}/`,
       },
       {
         id: 2,
@@ -132,8 +132,7 @@ export const Header = () => {
     <>
       <div
         className={clsx(
-          "fixed top-0 z-10   will-change-transform  bg-black ",
-          lang == "ar" ? "left-4 right-0" : "left-0 right-4"
+          "sticky top-0 z-10 will-change-transform  bg-black left-0 right-0"
         )}
       >
         <div

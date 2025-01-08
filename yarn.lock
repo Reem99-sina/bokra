@@ -3238,6 +3238,11 @@ hoist-non-react-statics@^3.3.1, hoist-non-react-statics@^3.3.2:
   dependencies:
     react-is "^16.7.0"
 
+holy-loader@^2.3.11:
+  version "2.3.11"
+  resolved "https://registry.yarnpkg.com/holy-loader/-/holy-loader-2.3.11.tgz#467e136cc3e0615008135f8117805733488f5e4b"
+  integrity sha512-UsXmQQ8umzSRFqV0jcsNNvMtTCL0xHPwcH2e+s1RP3K4KYL2kSugXmD4EjdgY42GPrjMr/m3t64Hr9zanKcHog==
+
 html-parse-stringify@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/html-parse-stringify/-/html-parse-stringify-3.0.1.tgz#dfc1017347ce9f77c8141a507f233040c59c55d2"

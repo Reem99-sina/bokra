@@ -1,13 +1,10 @@
-// import { FacebookIcon, InstagramIcon, TwitterIcon } from "@/icon";
 import { useTranslation } from "@/translations/clients";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 export const FooterCopyright = () => {
   const { lang, t } = useTranslation();
-  const path = usePathname();
   const social = [
     {
       title: "SUPPORT",
@@ -35,12 +32,7 @@ export const FooterCopyright = () => {
   ];
 
   return (
-    <footer
-      className={clsx(
-        "bg-black  shadow  py-6 ",
-        path.includes("account") ? "rounded-tr-xl" : " rounded-t-xl"
-      )}
-    >
+    <footer className={clsx("bg-black  shadow  py-6 ")}>
       <div className=" flex flex-col items-center justify-center container mx-auto">
         <div className="text-start text-white flex  items-center gap-4  w-full">
           {/* <img src="/valoro.png" alt="Logo" className="w-12 h-12 mr-2" /> */}

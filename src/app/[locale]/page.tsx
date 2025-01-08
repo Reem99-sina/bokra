@@ -1,7 +1,5 @@
 "use client";
 
-import { Footer } from "@/components/layout/footer/footer-component";
-import { Header } from "@/components/layout/header";
 import HomeComponent from "@/components/home/home.component";
 import AboutComponent from "@/components/home/about-component";
 import ScrollAnimationExample from "@/components/scroll.compnent";
@@ -10,15 +8,10 @@ import OurSectionComponent from "@/components/home/our-section.component";
 import TypeLoanComponent from "@/components/home/type-loan.component";
 
 export default function Home() {
-
   return (
     <main className="z-0   transition-all bg-beige">
       <div className="flex   w-full   flex-col">
-        <Header />
-        <section
-          className="flex w-full flex-1 flex-col  bg-beige mt-14"
-          id="home"
-        >
+        <section className="flex w-full flex-1 flex-col  bg-beige" id="home">
           <ScrollAnimationExample>
             <HomeComponent />
           </ScrollAnimationExample>
@@ -55,7 +48,6 @@ export default function Home() {
             <StayUpdateComponent />
           </ScrollAnimationExample>
         </section>
-        <Footer />
       </div>
     </main>
   );

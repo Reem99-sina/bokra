@@ -9,6 +9,10 @@ import { Metadata } from "next";
 import { Lato } from "next/font/google";
 import clsx from "clsx";
 
+import HolyLoader from "holy-loader";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer/footer-component";
+
 interface Props {
   children: React.ReactNode;
   params: {
@@ -27,7 +31,9 @@ export const metadata: Metadata = {
 
 export const revalidate = 0;
 
-export default function RootLayout({ children, params: { locale } }: Props) {
+export default async function RootLayout({ children, params }: Props) {
+  const { locale } = await params;
+
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <head>
@@ -38,8 +44,21 @@ export default function RootLayout({ children, params: { locale } }: Props) {
       </head>
 
       <body className={clsx(latoFont.className)}>
+        <HolyLoader
+          color={"white"}
+          speed={250}
+          easing="linear"
+          showSpinner={false}
+        />
+
         <div className="flex h-screen  w-screen   flex-col  overflow-x-hidden scroll-smooth  relative z-10 bg-white">
-          <Providers locale={locale}>{children}</Providers>
+          <Providers locale={locale}>
+            <Header />
+
+            {children}
+
+            <Footer />
+          </Providers>
         </div>
       </body>
     </html>
