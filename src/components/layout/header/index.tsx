@@ -30,6 +30,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { MdAutorenew } from "react-icons/md";
 import Language from "@/components/shared/language";
 import { RiSecurePaymentLine } from "react-icons/ri";
+import { Spinner } from "@/components/shared/spinner.component";
 
 interface linksProps {
   id: number;
@@ -38,24 +39,25 @@ interface linksProps {
   onClick?: () => void;
   icon?: ReactNode;
 }
-interface linksdropdownProps {
+interface LinkItem {
   id: number;
   text?: string;
   to?: string;
   dropdownItems?: linksProps[];
+  isLoading?: boolean;
 }
 
 export const Header = () => {
   const { logout } = useAuth();
   const { lang, t } = useTranslation();
   const router = useRouter();
-  const { user, updateUser } = useUser();
+  const { user, isLoadingUser } = useUser();
   // const pathname = usePathname();
   // const homeVersion = useMemo(() => pathname.endsWith(`/${lang}`), [pathname]);
   const drawerRef = useRef<DrawerRef>(null);
   const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
 
-  const links: linksdropdownProps[] = useMemo(() => {
+  const links: LinkItem[] = useMemo(() => {
     return [
       {
         id: 1,
@@ -82,6 +84,7 @@ export const Header = () => {
         id: 6,
         text: (user as IUser)?.username || user?.email?.split("@")[0],
         icon: <ProfileUser />,
+        isLoading: isLoadingUser,
         dropdownItems: [
           {
             id: 1,
@@ -120,13 +123,12 @@ export const Header = () => {
             to: "/login",
             onClick: () => {
               logout();
-              updateUser({ email: "", password: "" });
             },
           },
         ],
       },
     ];
-  }, [user]);
+  }, [user, isLoadingUser]);
 
   return (
     <>
@@ -160,51 +162,55 @@ export const Header = () => {
               </Link>
             </div>
             <div className="ms-24 hidden  flex-row  gap-x-8 sm:flex">
-              {links.map((link) => (
-                <div key={link.id} className="flex flex-row items-center">
-                  {link?.dropdownItems ? (
-                    <Menu>
-                      <MenuHandler>
-                        <div className="flex items-center gap-x-3 text-white cursor-pointer">
-                          <div>{link?.text && <FaUserCircle />}</div>
-                          <p>{link?.text}</p>
-                        </div>
-                      </MenuHandler>
-                      <MenuList className="p-0 focus:outline-none z-10">
-                        {link?.dropdownItems?.map((item) => (
-                          <Link
-                            href={item.to}
-                            key={item.id}
-                            onClick={item?.onClick}
-                            className="text-xs font-bold text-[#7B8494] focus-visible:outline-none"
-                          >
-                            <MenuItem className="p-4 ">
-                              <div className="flex items-center gap-x-4">
-                                {item?.icon}
-                                <p className="text-black hover:underline">
-                                  {" "}
-                                  {item.text}
-                                </p>
-                              </div>
-                            </MenuItem>
-                          </Link>
-                        ))}
-                      </MenuList>
-                    </Menu>
-                  ) : (
-                    <Link
-                      href={link.to as string}
-                      className={clsx(
-                        "relative text-sm  text-white  ",
-                        "transition-all duration-300",
-                        "scroll-smooth"
-                      )}
-                    >
-                      {link.text}
-                    </Link>
-                  )}
-                </div>
-              ))}
+              {links.map((link) => {
+                return (
+                  <div key={link.id} className="flex flex-row items-center">
+                    {link?.isLoading ? (
+                      <Spinner key={link.id} size="sm" />
+                    ) : link?.dropdownItems ? (
+                      <Menu>
+                        <MenuHandler>
+                          <div className="flex items-center gap-x-3 text-white cursor-pointer">
+                            <div>{link?.text && <FaUserCircle />}</div>
+                            <p>{link?.text}</p>
+                          </div>
+                        </MenuHandler>
+                        <MenuList className="p-0 focus:outline-none z-10">
+                          {link?.dropdownItems?.map((item) => (
+                            <Link
+                              href={item.to}
+                              key={item.id}
+                              onClick={item?.onClick}
+                              className="text-xs font-bold text-[#7B8494] focus-visible:outline-none"
+                            >
+                              <MenuItem className="p-4 ">
+                                <div className="flex items-center gap-x-4">
+                                  {item?.icon}
+                                  <p className="text-black hover:underline">
+                                    {" "}
+                                    {item.text}
+                                  </p>
+                                </div>
+                              </MenuItem>
+                            </Link>
+                          ))}
+                        </MenuList>
+                      </Menu>
+                    ) : (
+                      <Link
+                        href={link.to as string}
+                        className={clsx(
+                          "relative text-sm  text-white  ",
+                          "transition-all duration-300",
+                          "scroll-smooth"
+                        )}
+                      >
+                        {link.text}
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
               {!user?.email && (
                 <Button
                   text={t("login")}
@@ -222,7 +228,6 @@ export const Header = () => {
                       className="cursor-pointer"
                       onClick={() => {
                         logout();
-                        updateUser({ email: "", password: "" });
                       }}
                     >
                       <IoIosLogOut color="white" className="text-xl" />
@@ -239,10 +244,6 @@ export const Header = () => {
               <IoMenu className="" color={"white"} />
             </div>
           </div>
-
-          {/* <Modal ref={modalRef} size='xxl'>
-            <LoginForm />
-          </Modal> */}
         </div>
       </div>
 

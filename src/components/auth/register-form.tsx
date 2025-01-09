@@ -9,15 +9,14 @@ import { Button } from "../shared/button.component";
 import toast from "react-hot-toast";
 import { FacebookIcon, GoogleIcon } from "@/icon";
 import Link from "next/link";
-import { useUser } from "@/hooks/user.hooks";
 import Image from "next/image";
 import { validateInput } from "@/utils/validate.userName";
 import ErrorInputComponent from "../shared/form/error-input.component";
 import PhoneNumber from "../shared/phone-number";
+import { useAuth } from "@/hooks/auth.hook";
 
 export const RegisterForm: React.FC = () => {
   const router = useRouter();
-  const { updateUser } = useUser();
   const {
     register,
     handleSubmit,
@@ -27,9 +26,10 @@ export const RegisterForm: React.FC = () => {
   } = useForm<IUserRegisterRequest>({});
   const password = watch("password");
   const { t, lang } = useTranslation();
+  const { authenticate } = useAuth();
 
-  const onSubmit: SubmitHandler<IUserRegisterRequest> = async (data) => {
-    updateUser(data);
+  const onSubmit: SubmitHandler<IUserRegisterRequest> = async () => {
+    authenticate({ token: "MOCK_TOKEN" });
     router.replace("/login");
     toast.success("register successfully");
   };

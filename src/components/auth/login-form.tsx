@@ -9,14 +9,12 @@ import { Button } from "../shared/button.component";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import { FacebookIcon, GoogleIcon } from "@/icon";
-// import { useLoginMutation } from "@/services/profile.service";
-import { useUser } from "@/hooks/user.hooks";
 import Image from "next/image";
 import { validateInput } from "@/utils/validate.userName";
+import { useAuth } from "@/hooks/auth.hook";
 
 export const LoginForm: React.FC = () => {
   const router = useRouter();
-  const { updateUser } = useUser();
   const {
     register,
     handleSubmit,
@@ -24,9 +22,11 @@ export const LoginForm: React.FC = () => {
   } = useForm<IUserRequest>({});
 
   const { t, lang } = useTranslation();
+  const { authenticate } = useAuth();
 
-  const onSubmit: SubmitHandler<IUserRequest> = async (data) => {
-    updateUser(data);
+  const onSubmit: SubmitHandler<IUserRequest> = async () => {
+    authenticate({ token: "MOCK_TOKEN" });
+
     router.replace("/");
     toast.success("login successfully");
   };

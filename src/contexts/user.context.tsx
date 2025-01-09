@@ -6,11 +6,10 @@ import {
   RefetchOptions,
   RefetchQueryFilters,
 } from "@tanstack/react-query";
-import React, { createContext, useState } from "react";
+import React, { createContext } from "react";
 
 interface UserContextType {
   user: IUser | undefined | null | { email: string; password: string };
-  updateUser: (userData: { email: string; password: string }) => void;
   isLoadingUser: boolean;
   refetchUser: (
     options?: (RefetchOptions & RefetchQueryFilters) | undefined
@@ -27,28 +26,14 @@ export const UserContext = createContext<UserContextType | undefined>(
 
 export const UserProvider: React.FC<Props> = ({ children }) => {
   const { data: userResponse, refetch, isPending } = useUserQuery();
-  const [user, setUser] = useState<{email:string,password:string}|null>(null);
 
-  // Function to update user data
-  const updateUser = (userData:{email:string,password:string}) => {
-    setUser(userData);
-  };
   const contextValue: UserContextType = {
     user: userResponse,
     refetchUser: refetch,
-    updateUser:updateUser,
     isLoadingUser: isPending,
   };
- 
+
   return (
-    <UserContext.Provider
-      value={{
-        ...contextValue,
-        user: contextValue?.user ? contextValue?.user : user,
-        updateUser: updateUser,
-      }}
-    >
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
   );
 };
