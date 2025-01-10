@@ -30,7 +30,7 @@ export const RegisterForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<IUserRegisterRequest> = async () => {
     authenticate({ token: "MOCK_TOKEN" });
-    router.replace("/login");
+    router.replace("/");
     toast.success("register successfully");
   };
 

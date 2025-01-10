@@ -61,7 +61,7 @@ const AuthProvider = ({ children }: Props) => {
   };
 
   const values = {
-    isAuthenticated: Boolean(authData),
+    isAuthenticated: !!authData,
     authData,
     authenticate,
     logout: handleLogout,

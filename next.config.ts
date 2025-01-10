@@ -1,4 +1,3 @@
-const path = require("path");
 const withSvgr = require("next-plugin-svgr");
 
 /** @type {import('next').NextConfig} */

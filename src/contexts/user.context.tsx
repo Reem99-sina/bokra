@@ -25,12 +25,12 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export const UserProvider: React.FC<Props> = ({ children }) => {
-  const { data: userResponse, refetch, isPending } = useUserQuery();
+  const { data: userResponse, refetch, isLoading } = useUserQuery();
 
   const contextValue: UserContextType = {
     user: userResponse,
     refetchUser: refetch,
-    isLoadingUser: isPending,
+    isLoadingUser: isLoading,
   };
 
   return (

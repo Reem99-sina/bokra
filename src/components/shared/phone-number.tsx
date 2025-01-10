@@ -11,10 +11,13 @@ const PhoneNumber = ({
   error?: string;
 }) => {
   const { t, lang } = useTranslation();
-  
+
   return (
     <PhoneInput
-      country={""}
+      country={"sa"}
+      onlyCountries={["sa"]}
+      countryCodeEditable={false}
+      defaultMask=".............."
       value={value}
       onChange={(phone) => onChange(phone)}
       specialLabel={""}
