@@ -257,4 +257,5 @@ export default {
   missed_payments: "المدفوعات المفقودة",
   confirm_loan_renew: "تأكيد تجديد القرض",
   submit_renewal_request: "إرسال طلب التجديد",
+  businessOwner: "صاحب عمل",
 } as const;

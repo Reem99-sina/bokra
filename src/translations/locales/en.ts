@@ -263,4 +263,5 @@ trends. `,
   missed_payments: "Missed Payments",
   confirm_loan_renew: "Confirm Loan Renewal",
   submit_renewal_request: "Submit Renewal Request",
+  businessOwner: "Business Owner",
 } as const;

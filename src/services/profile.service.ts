@@ -1,40 +1,22 @@
+import { useAuth } from "@/hooks/auth.hook";
 import { useAuthenticatedQuery } from "@/hooks/authenticated-query.hook";
 import { useFetch } from "@/hooks/fetch.hooks";
 import { IUser, LoginResponse, RegisterResponse } from "@/types/user.type";
 import { useMutation } from "@tanstack/react-query";
 
 export const useUserQuery = () => {
-  // const { api } = useFetch();
+  const { authData } = useAuth();
 
   return useAuthenticatedQuery<IUser>({
-    queryKey: ["user"],
+    queryKey: ["user", authData?.token],
     queryFn: async () => {
       return new Promise<IUser>((resolve) => {
-        setTimeout(() => {
-          resolve({
-            birthDate: "",
-            id: 1,
-            email: "mustafa@bokra.com",
-            username: "mustafa",
-            status: "active",
-            createdAt: "",
-            updatedAt: "",
-            userType: "employee",
-            val_license: "",
-            street: "",
-            district: "",
-            city: "",
-            nationality: "SA",
-            image: undefined,
-            phone: undefined,
-          });
-        }, 2000);
-      });
-      // const response: {
-      //   data: IUser;
-      // } = await api.get("/user");
+        if (!authData?.user) {
+          throw new Error("User not found");
+        }
 
-      // return response?.data || null;
+        resolve(authData?.user as IUser);
+      });
     },
   });
 };

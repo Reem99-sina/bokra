@@ -29,15 +29,14 @@ export const LoginForm: React.FC = () => {
   const onSubmit: SubmitHandler<IUserRequest> = async (data) => {
     try {
       const response = await mutateAsync({
-        email: data.email,
+        email: data.email?.trim()?.toLowerCase(),
         password: data.password,
       });
 
       if (response.result.token) {
         router.replace("/");
 
-        authenticate({ token: response.result.token });
-
+        authenticate(response.result);
         toast.success("تم تسجيل الدخول بنجاح!");
       } else {
         toast.error("حدث خطأ ما ! ");

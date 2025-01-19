@@ -43,7 +43,7 @@ export const RegisterForm: React.FC = () => {
   };
 
   const industryFieldOptions = [
-    { label: "business owner", value: "business Owner" },
+    { label: t("businessOwner"), value: "business Owner" },
   ];
 
   return (
