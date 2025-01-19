@@ -184,6 +184,8 @@ export default {
   errorFullName: "لا يمكن أن يكون الاسم الكامل فارغًا.",
   errorRepeatPassword: "يجب أن تتطابق كلمة المرور المكررة مع كلمة المرور.",
   errorRepeatRequiredPassword: "لا يمكن أن تكون كلمة المرور المكررة فارغة.",
+  industryField: "مجال الصناعة",
+
   errorPhoneNumber: "لا يمكن أن يكون رقم الهاتف فارغًا.",
   errorPhoneNumberValid: "يرجى إدخال رقم هاتف صالح.",
   typeOfLoan: "نوع القروض:",

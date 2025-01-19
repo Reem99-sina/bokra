@@ -10,10 +10,12 @@ import toast from "react-hot-toast";
 import { FacebookIcon, GoogleIcon } from "@/icon";
 import Link from "next/link";
 import Image from "next/image";
-import { validateInput } from "@/utils/validate.userName";
 import ErrorInputComponent from "../shared/form/error-input.component";
 import PhoneNumber from "../shared/phone-number";
-import { useAuth } from "@/hooks/auth.hook";
+import { useRegisterMutation } from "@/services/profile.service";
+import { UploadFilesInput } from "../shared/upload-files-input.component";
+import { UploadFilesVariants } from "@/types/file.type";
+import { Select } from "../shared/select.component";
 
 export const RegisterForm: React.FC = () => {
   const router = useRouter();
@@ -26,13 +28,23 @@ export const RegisterForm: React.FC = () => {
   } = useForm<IUserRegisterRequest>({});
   const password = watch("password");
   const { t, lang } = useTranslation();
-  const { authenticate } = useAuth();
+  const { mutate } = useRegisterMutation();
 
-  const onSubmit: SubmitHandler<IUserRegisterRequest> = async () => {
-    authenticate({ token: "MOCK_TOKEN" });
-    router.replace("/");
-    toast.success("register successfully");
+  const onSubmit: SubmitHandler<IUserRegisterRequest> = async (data) => {
+    mutate(data, {
+      onSuccess: () => {
+        toast.success("register successfully");
+        router.replace("/login");
+      },
+      onError: (error: { message: string }) => {
+        toast.error(error.message);
+      },
+    });
   };
+
+  const industryFieldOptions = [
+    { label: "business owner", value: "business Owner" },
+  ];
 
   return (
     <div
@@ -84,13 +96,6 @@ export const RegisterForm: React.FC = () => {
                     value: true,
                     message: t("errorLoginUserName"),
                   },
-                  validate: {
-                    value: (value) =>
-                      validateInput({
-                        value: value,
-                        message: t("errorLoginemail"),
-                      }),
-                  },
                 }),
               }}
               className="!font-normal !text-black"
@@ -122,7 +127,7 @@ export const RegisterForm: React.FC = () => {
               inputProps={{
                 type: "password",
                 placeholder: t("repeatPassword"),
-                ...register("repeatPassword", {
+                ...register("repeatePassword", {
                   validate: (value) =>
                     value != password ? t("errorRepeatPassword") : true,
                   required: {
@@ -132,7 +137,7 @@ export const RegisterForm: React.FC = () => {
                 }),
               }}
               className="!font-normal !text-black"
-              errorMessage={errors.repeatPassword?.message}
+              errorMessage={errors.repeatePassword?.message}
             />
             <div className="my-2" />
             <Controller
@@ -140,17 +145,16 @@ export const RegisterForm: React.FC = () => {
               name="phoneNumber"
               rules={{
                 required: t("errorPhoneNumber"),
-                pattern: {
-                  value: /^(05\d{8}|9665\d{8})$/,
-                  message: t("errorPhoneNumberValid"),
-                },
               }}
               render={({ field: { onChange, value } }) => {
                 return (
                   <>
                     <PhoneNumber
                       error={errors?.phoneNumber?.message}
-                      onChange={onChange}
+                      onChange={(phone: string) => {
+                        const sendPhone = `+${phone}`;
+                        onChange(sendPhone);
+                      }}
                       value={value}
                     />
                     {errors?.phoneNumber?.message && (
@@ -162,6 +166,54 @@ export const RegisterForm: React.FC = () => {
                 );
               }}
             />
+            <div>
+              <Controller
+                control={control}
+                name="industryField"
+                rules={{
+                  required: t("industryField"),
+                }}
+                render={({ field: { onChange, value } }) => {
+                  return (
+                    <Select
+                      options={industryFieldOptions}
+                      onChange={onChange}
+                      defaultValue={{
+                        label:
+                          industryFieldOptions?.find(
+                            (item) => item.value === `${value}`
+                          )?.label || "",
+                        value: `${value}`,
+                      }}
+                      placeholder={t("industryField")}
+                      styleCustom={{ width: "full" }}
+                    />
+                  );
+                }}
+              />
+            </div>
+
+            <div>
+              <Controller
+                control={control}
+                name="file"
+                rules={{
+                  required: t("industryField"),
+                }}
+                render={({ field: { onChange, value } }) => {
+                  return (
+                    <>
+                      <UploadFilesInput
+                        id="file"
+                        value={value ? [value] : []}
+                        onChange={(files) => onChange(files[0])}
+                        variant={UploadFilesVariants.INPUT}
+                      />
+                    </>
+                  );
+                }}
+              />
+            </div>
             <div className="mb-2 mt-5 flex flex-col gap-y-3">
               <div className="flex w-full">
                 <Button

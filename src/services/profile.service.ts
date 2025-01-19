@@ -1,7 +1,6 @@
-import { config } from "@/config";
 import { useAuthenticatedQuery } from "@/hooks/authenticated-query.hook";
 import { useFetch } from "@/hooks/fetch.hooks";
-import { IUser, IUserRequest, IUserResponse } from "@/types/user.type";
+import { IUser, LoginResponse, RegisterResponse } from "@/types/user.type";
 import { useMutation } from "@tanstack/react-query";
 
 export const useUserQuery = () => {
@@ -43,10 +42,48 @@ export const useUserQuery = () => {
 export const useLoginMutation = () => {
   const { api } = useFetch();
 
-  return useMutation<IUserResponse, null, IUserRequest>({
+  return useMutation<
+    LoginResponse,
+    { message: string },
+    { email: string; password: string }
+  >({
     mutationFn: (data) => {
-      return api.post("/", data, {
-        baseURL: config.NEXT_PUBLIC_BASE_URL,
+      return api.post("/auth/login", data);
+    },
+  });
+};
+
+export const useRegisterMutation = () => {
+  const { api } = useFetch();
+
+  return useMutation<
+    RegisterResponse,
+    { message: string },
+    {
+      fullName: string;
+      email: string;
+      password: string;
+      repeatePassword: string;
+      phoneNumber: string;
+      file: File;
+      industryField: string;
+    }
+  >({
+    mutationFn: (data) => {
+      const formData = new FormData();
+
+      formData.append("fullName", data.fullName);
+      formData.append("email", data.email);
+      formData.append("password", data.password);
+      formData.append("repeatePassword", data.repeatePassword);
+      formData.append("phoneNumber", data.phoneNumber);
+      formData.append("file", data.file);
+      formData.append("industryField", data.industryField);
+
+      return api.post("/user", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
     },
   });

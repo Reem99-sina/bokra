@@ -25,11 +25,13 @@ export interface IUserResponse {
   };
 }
 export interface IUserRegisterRequest {
-  fullName:string
+  fullName: string;
   email: string;
   password: string;
-  repeatPassword: string;
+  repeatePassword: string;
   phoneNumber: string;
+  file: File;
+  industryField: string;
 }
 export interface IUserRequest {
   email: string;
@@ -53,4 +55,32 @@ export interface UserInput {
   birthDate: Date | string;
   agreeTerms1: boolean;
   agreeTerms2: boolean;
+}
+export interface LoginResponse {
+  message: string;
+  result: {
+    user: IUser;
+    token: string;
+  };
+}
+export interface RegisterResponse {
+  message: string;
+  result: {
+    user: {
+      profileImage: string;
+      status: string;
+      id: number;
+      fullName: string;
+      email: string;
+      phoneNumber: string;
+      password: string;
+      industryField: string;
+      idImage: string;
+      username: string;
+      updatedAt: string;
+      createdAt: string;
+      accessToken: null;
+      refreshToken: null;
+    };
+  };
 }

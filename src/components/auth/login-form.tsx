@@ -12,6 +12,7 @@ import { FacebookIcon, GoogleIcon } from "@/icon";
 import Image from "next/image";
 import { validateInput } from "@/utils/validate.userName";
 import { useAuth } from "@/hooks/auth.hook";
+import { useLoginMutation } from "@/services/profile.service";
 
 export const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -20,15 +21,34 @@ export const LoginForm: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IUserRequest>({});
+  const { mutateAsync } = useLoginMutation();
 
   const { t, lang } = useTranslation();
   const { authenticate } = useAuth();
 
-  const onSubmit: SubmitHandler<IUserRequest> = async () => {
-    authenticate({ token: "MOCK_TOKEN" });
+  const onSubmit: SubmitHandler<IUserRequest> = async (data) => {
+    try {
+      const response = await mutateAsync({
+        email: data.email,
+        password: data.password,
+      });
 
-    router.replace("/");
-    toast.success("login successfully");
+      if (response.result.token) {
+        router.replace("/");
+
+        authenticate({ token: response.result.token });
+
+        toast.success("تم تسجيل الدخول بنجاح!");
+      } else {
+        toast.error("حدث خطأ ما ! ");
+      }
+    } catch (errors) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+
+      const errorMessage = errors.message || "حدث خطأ أثناء تسجيل الدخول.";
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -93,11 +113,6 @@ export const LoginForm: React.FC = () => {
                   required: { value: true, message: t("errorPasswordNotEmty") },
                   minLength: {
                     value: 8,
-                    message: t("errorPasswordPattern"),
-                  },
-                  pattern: {
-                    value:
-                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
                     message: t("errorPasswordPattern"),
                   },
                 }),

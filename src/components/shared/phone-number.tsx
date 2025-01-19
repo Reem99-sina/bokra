@@ -14,8 +14,8 @@ const PhoneNumber = ({
 
   return (
     <PhoneInput
-      country={"sa"}
-      onlyCountries={["sa"]}
+      country={"eg"}
+      onlyCountries={["eg"]}
       countryCodeEditable={false}
       defaultMask=".............."
       value={value}
