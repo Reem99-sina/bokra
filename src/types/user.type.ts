@@ -1,19 +1,18 @@
 export interface IUser {
+  fullName: string;
   id: number;
   email: string;
   username: string;
-  status: "active";
+  password: string;
+  industryField: "IT" | "business Owner";
+  phoneNumber: string;
+  status: "pending";
   createdAt: string;
   updatedAt: string;
-  userType: "admin" | "manager" | "employee";
-  phone: string | undefined;
-  image: string | undefined;
-  val_license: string;
-  street: string;
-  district: string;
-  city: string;
-  nationality: string;
-  birthDate: Date | string;
+  idImage: null;
+  profileImage: null;
+  accessToken: null;
+  refreshToken: null;
 }
 
 export interface IUserResponse {
