@@ -157,7 +157,10 @@ export const LoginForm: React.FC = () => {
                   type="submit"
                   startIcon={<GoogleIcon className="mx-3" />}
                   text={t("loginwithGoogle")}
-                  onClick={() => {}}
+                  onClick={() => {
+                    window.location.href =
+                      process.env.NEXT_PUBLIC_BASE_URL + "/auth/google/login";
+                  }}
                 />
               </div>
             </div>

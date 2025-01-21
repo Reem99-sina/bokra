@@ -3,6 +3,7 @@ import { useAuthenticatedQuery } from "@/hooks/authenticated-query.hook";
 import { useFetch } from "@/hooks/fetch.hooks";
 import { IUser, LoginResponse, RegisterResponse } from "@/types/user.type";
 import { useMutation } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
 export const useUserQuery = () => {
   const { authData } = useAuth();
@@ -68,5 +69,20 @@ export const useRegisterMutation = () => {
         },
       });
     },
+  });
+};
+
+export const useLoginWithSocialMutation = (provider: string) => {
+  const { api } = useFetch();
+  const searchParams = useSearchParams();
+
+  return useMutation<LoginResponse, { message: string }, void>({
+    mutationFn: () =>
+      api.get(`/auth/${provider}/callback`, {
+        withCredentials: true, // Ensure cookies are sent if your backend uses them
+        params: {
+          ...Object.fromEntries(searchParams.entries()),
+        },
+      }),
   });
 };
