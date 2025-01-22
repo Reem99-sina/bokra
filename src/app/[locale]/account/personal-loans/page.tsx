@@ -71,7 +71,7 @@ const PersonalLoanComponent = () => {
   }
 
   return (
-    <div className="container mb-8 mt-5 mx-auto flex flex-col gap-y-5 justify-around ">
+    <div className="container flex flex-col gap-y-5">
       <MainTitleComponent
         title={t("personalLoans")}
         action={
@@ -88,11 +88,12 @@ const PersonalLoanComponent = () => {
         }
       />
 
-      <div className="flex items-center gap-2 f">
+      <div className="flex items-center gap-2">
         <div className="w-full">
           <SearchComponent />
         </div>
       </div>
+
       <FormProvider {...formdata}>
         <div className="flex flex-row gap-4 items-center flex-wrap">
           {filters?.map((ele) => (
@@ -106,17 +107,25 @@ const PersonalLoanComponent = () => {
         </div>
       </FormProvider>
 
-      <div className="flex gap-4 flex-wrap">
-        {data?.result?.map((ele) => (
-          <LoanCard
-            loan={ele}
-            key={ele?.id}
-            onClick={() => {
-              router.push(`/account/personal-loans/${ele?.id}`);
-            }}
-          />
-        ))}
-      </div>
+      {!!data?.result?.length ? (
+        <div className="flex gap-4 flex-wrap">
+          {data?.result?.map((ele) => (
+            <LoanCard
+              loan={ele}
+              key={ele?.id}
+              onClick={() => {
+                router.push(`/account/personal-loans/${ele?.id}`);
+              }}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="flex justify-center items-center flex-1">
+          <h3 className="text-center text-2xl font-bold text-gray-500">
+            {t("noLoansFound")}
+          </h3>
+        </div>
+      )}
 
       <div>
         <Pagination

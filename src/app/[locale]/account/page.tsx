@@ -29,7 +29,7 @@ const AccountComponent = () => {
   });
 
   return (
-    <div className="container mb-8 mt-8 mx-auto">
+    <div className="container">
       <MainTitleComponent title={t("personalData")} />
       <div className=" flex justify-between flex-col h-[92%]">
         <div className="flex items-center  gap-4 sm:flex-row my-4 flex-wrap">
