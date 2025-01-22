@@ -99,25 +99,18 @@ const AddLoan = ({ type }: { type: string }) => {
             }}
             render={({ field: { onChange }, fieldState: { error } }) => {
               return (
-                <>
-                  <Select
-                    label={t("loanCurrency")}
-                    placeholder={t("loanCurrency")}
-                    options={loanCurreny}
-                    onChange={(value) => onChange(value)}
-                    error={Boolean(error?.message)}
-                    styleCustom={{
-                      width: "auto",
-                      backgroundColor: "#fff",
-                      minWidth: "300px",
-                    }}
-                  />
-                  {error?.message && (
-                    <p className="mb-4 text-xs text-red-600 dark:text-red-500">
-                      {error?.message}
-                    </p>
-                  )}
-                </>
+                <Select
+                  label={t("loanCurrency")}
+                  placeholder={t("loanCurrency")}
+                  options={loanCurreny}
+                  onChange={(value) => onChange(value)}
+                  errorMessage={error?.message}
+                  styleCustom={{
+                    width: "auto",
+                    backgroundColor: "#fff",
+                    minWidth: "300px",
+                  }}
+                />
               );
             }}
           />
@@ -175,18 +168,13 @@ const AddLoan = ({ type }: { type: string }) => {
                     placeholder={t("technologyType")}
                     options={technologyType}
                     onChange={(value) => onChange(value)}
-                    error={Boolean(error?.message)}
+                    errorMessage={error?.message}
                     styleCustom={{
                       width: "auto",
                       backgroundColor: "#fff",
                       minWidth: "300px",
                     }}
                   />
-                  {error?.message && (
-                    <p className="mb-4 text-xs text-red-600 dark:text-red-500">
-                      {error?.message}
-                    </p>
-                  )}
                 </>
               );
             }}

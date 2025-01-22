@@ -88,7 +88,9 @@ export const LoginForm: React.FC = () => {
                 ...register("email", {
                   required: {
                     value: true,
-                    message: t("errorLoginUserName"),
+                    message: t("inputRequired", {
+                      inputName: t("id_or_email"),
+                    }),
                   },
                   validate: {
                     value: (value) =>
@@ -109,7 +111,12 @@ export const LoginForm: React.FC = () => {
                 type: "password",
                 placeholder: t("password"),
                 ...register("password", {
-                  required: { value: true, message: t("errorPasswordNotEmty") },
+                  required: {
+                    value: true,
+                    message: t("inputRequired", {
+                      inputName: t("password"),
+                    }),
+                  },
                   minLength: {
                     value: 8,
                     message: t("errorPasswordPattern"),

@@ -65,21 +65,7 @@ export interface LoginResponse {
 export interface RegisterResponse {
   message: string;
   result: {
-    user: {
-      profileImage: string;
-      status: string;
-      id: number;
-      fullName: string;
-      email: string;
-      phoneNumber: string;
-      password: string;
-      industryField: string;
-      idImage: string;
-      username: string;
-      updatedAt: string;
-      createdAt: string;
-      accessToken: null;
-      refreshToken: null;
-    };
+    user: IUser;
+    token: string;
   };
 }
