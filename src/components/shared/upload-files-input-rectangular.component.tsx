@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { toast } from "react-hot-toast";
+import { toast } from "@/lib/toast";
 import { formatFileSize } from "@/utils/file.util";
 import { BsImage } from "react-icons/bs";
 import { RiCloseLine } from "react-icons/ri";

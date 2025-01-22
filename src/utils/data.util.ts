@@ -47,6 +47,7 @@ export const LinksData = () => {
     },
   ];
 };
+
 export const dataLoans = [
   {
     type: "Personal Loan",
@@ -141,27 +142,27 @@ export const dataLoans = [
 ];
 export const technologyType = [
   {
-    label: " education technology ",
-    value: " education technology ",
+    label: "Education Technology",
+    value: "education",
   },
   {
-    label: " logistics technology ",
-    value: " logistics technology ",
+    label: "Logistics Technology",
+    value: "logistics",
   },
   {
-    label: " agreetic technology ",
-    value: " agreetic technology ",
+    label: "Agricultural Technology",
+    value: "agricultural",
   },
   {
-    label: "healthletic technology",
-    value: " healthletic technology ",
+    label: "Health Technology",
+    value: "health",
   },
   {
-    label: "  reatial technology  ",
-    value: " reatial technology ",
+    label: "Retail Technology",
+    value: "retail",
   },
 ];
-export const loanCurreny = [
+export const loanCurrency = [
   {
     label: "EGP",
     value: "EGP",
@@ -255,6 +256,7 @@ export const dataLoansDetail = {
     involvedInLegalCases: "No",
   },
 };
+
 export const financialTransactions = [
   {
     transactionID: "TX123456789",
@@ -302,16 +304,7 @@ export const financialTransactions = [
     },
   },
 ];
-export const typeLoans = [
-  {
-    label: "loan",
-    value: "loan",
-  },
-  {
-    label: "loan",
-    value: "loan",
-  },
-];
+
 export const statusLoans = [
   {
     label: "paid",
@@ -322,17 +315,7 @@ export const statusLoans = [
     value: "unpaid",
   },
 ];
-export const FilterLoans = () => {
-  const { t } = useTranslation();
 
-  return [
-    {
-      title: t("typeOfLoan"),
-      type: "select",
-      options: typeLoans,
-    },
-  ];
-};
 export const FilterHistoryLoans = () => {
   const { t } = useTranslation();
 
@@ -344,6 +327,7 @@ export const FilterHistoryLoans = () => {
     },
   ];
 };
+
 export const DataTypeLoans = () => {
   const { t } = useTranslation();
 
@@ -367,6 +351,7 @@ export const DataTypeLoans = () => {
     { head: t("ladder"), desc: t("desc_first_about"), icon: MdAgriculture },
   ];
 };
+
 export const ApprovalApplicationData = [
   {
     loanAmount: 50000, // Amount in USD

@@ -5,7 +5,7 @@ import { IUserForgetRequest } from "@/types/user.type";
 import { useForm } from "react-hook-form";
 import { TextInput } from "../shared/form/text-input.component";
 import { Button } from "../shared/button.component";
-import toast from "react-hot-toast";
+import { toast } from "@/lib/toast";
 import Link from "next/link";
 import Image from "next/image";
 import { useForgetPasswordMutation } from "@/services/profile.service";
@@ -27,11 +27,7 @@ const ForgetPasswordForm = () => {
         email: data.email,
       });
 
-      if (response.message) {
-        toast.success(response.message);
-      } else {
-        toast.error("حدث خطأ ما! ");
-      }
+      toast.success(response?.message || t("passwordResetLinkSent"));
     } catch (errors) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore

@@ -1,15 +1,13 @@
 "use client";
 
 import Pagination from "@/components/pagination.component";
-// import UpdateStatus from '@/components/repayment/update-status';
 import { Button } from "@/components/shared/button.component";
 import { DrawerRef } from "@/components/shared/drawer.component";
-import FilterComponent from "@/components/shared/filter-component";
 import { FormDrawer } from "@/components/shared/form-drawer.component";
 import SearchComponent from "@/components/shared/search-component";
 import { Table } from "@/components/shared/table";
 import { useTranslation } from "@/translations/clients";
-import { ApprovalApplicationData, FilterLoans } from "@/utils/data.util";
+import { ApprovalApplicationData } from "@/utils/data.util";
 import { formattedAmount } from "@/utils/formatNumber";
 import Link from "next/link";
 import { useMemo, useRef } from "react";
@@ -108,15 +106,6 @@ const DataLoan = () => {
     <div className="w-full">
       <div className="flex flex-col gap-4">
         <SearchComponent />
-
-        {FilterLoans()?.map((ele) => (
-          <FilterComponent
-            title={ele?.title}
-            type={ele?.type}
-            options={ele?.options}
-            key={ele?.title}
-          />
-        ))}
 
         <div className="">
           <Table columns={columns} items={items} />

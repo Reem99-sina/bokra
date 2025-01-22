@@ -5,6 +5,7 @@ import { config } from "@/config";
 import { useAuth } from "@/hooks/auth.hook";
 import axios, { AxiosError, AxiosInstance } from "axios";
 import { createContext, FC, ReactNode, useMemo } from "react";
+import { toast } from "@/lib/toast";
 
 const API_URL = config.NEXT_PUBLIC_BASE_URL;
 interface AuthResponse {
@@ -40,7 +41,7 @@ const createInstance = ({
       };
 
       if (token) {
-        axiosConfig.headers["Authorization"] = `${token}`;
+        axiosConfig.headers["Authorization"] = `Bearer ${token}`;
       }
 
       return axiosConfig;
@@ -53,7 +54,8 @@ const createInstance = ({
       if (error.code === "ERR_NETWORK" || error.code === "ECONNABORTED") {
         // TODO: handle if user offline
 
-        return;
+        toast.error("You are offline");
+        Promise.reject("ERR_NETWORK");
       }
 
       if (error.response?.status === 401) {
@@ -87,7 +89,7 @@ const createInstance = ({
       return await Promise.reject(error?.response?.data);
     }
   );
-  
+
   return instance;
 };
 export const FetchProvider: FC<{ children: ReactNode }> = ({ children }) => {

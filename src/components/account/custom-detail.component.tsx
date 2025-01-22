@@ -219,8 +219,9 @@ export const DataComponents = () => {
       component: (
         <div className=" flex flex-wrap gap-x-3 my-2 items-center">
           <Checkbox crossOrigin={undefined} />
-          <h3 className="text-black font-bold text-sm">{t("question")}</h3>
-        
+          <h3 className="text-black font-bold text-sm">
+            {t("terms_conditions")}
+          </h3>
         </div>
       ),
     },

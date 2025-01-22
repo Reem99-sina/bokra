@@ -6,10 +6,10 @@ import { TextInput } from "@/components/shared/form/text-input.component";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { RenewpasswordRequest } from "@/types/user.type";
 import { useRouter, useSearchParams } from "next/navigation";
-import toast from "react-hot-toast";
 import Image from "next/image";
 import { useState } from "react";
 import { OverflowLoading } from "@/components/shared/overflow-loading";
+import { toast } from "@/lib/toast";
 import { useResetPasswordMutation } from "@/services/profile.service";
 
 export default function ResetPasswordPage() {
