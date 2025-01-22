@@ -25,7 +25,7 @@ export const Button: FC<Props> = ({
   return (
     <button
       className={clsx(
-        "flex w-full items-center justify-center rounded bg-primary  text-white",
+        "flex w-full items-center justify-center rounded bg-primary  text-white bg-black",
         "text-md font-bold",
         "dark:bg-primary-dark dark:text-bg-dark dark:hover:bg-hover-dark",
         "hover:bg-blend-color-burn px-8 py-[15px]",

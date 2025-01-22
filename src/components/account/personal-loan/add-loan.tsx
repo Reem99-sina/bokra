@@ -21,6 +21,7 @@ import { useTranslation } from "@/translations/clients";
 import { UploadFilesVariants } from "@/types/file.type";
 import { LoanForm } from "@/types/loan.type";
 import { loanCurrency, technologyType } from "@/utils/data.util";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AddLoan = () => {
   const { t } = useTranslation();
@@ -60,6 +61,8 @@ const AddLoan = () => {
   const { mutateAsync: addLoanDocuments, isPending: isAddingLoanDocuments } =
     useSubmitLoanDocumentsMutation();
 
+  const queryClient = useQueryClient();
+
   const isPending = isAddingLoan || isAddingLoanDocuments;
 
   const loan_currency = formdata.watch("loanCurrency");
@@ -78,6 +81,8 @@ const AddLoan = () => {
         const loan = await addLoan(data);
         await addLoanDocuments({ ...data, loanId: loan.result.id });
       }
+
+      await queryClient.invalidateQueries({ queryKey: ["my-loans"] });
 
       toast.success(t("loanAddedSuccessfully"));
       router.push("/account/personal-loans");
