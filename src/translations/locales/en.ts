@@ -267,4 +267,6 @@ trends. `,
   passwordsMustMatch: "Passwords must match.",
   passwordResetSuccess: "Password reset successfully",
   somethingWentWrong: "Something went wrong",
+  passwordChangedSuccessfully: "password Changed Successfully",
+  youHaveSuccessfullyLoggedIn: "You have successfully logged in",
 } as const;
