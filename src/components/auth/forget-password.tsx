@@ -2,17 +2,15 @@
 
 import { useTranslation } from "@/translations/clients";
 import { IUserForgetRequest } from "@/types/user.type";
-import { useRouter } from "next/navigation";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { TextInput } from "../shared/form/text-input.component";
 import { Button } from "../shared/button.component";
 import { toast } from "@/lib/toast";
 import Link from "next/link";
 import Image from "next/image";
+import { useForgetPasswordMutation } from "@/services/profile.service";
 
 const ForgetPasswordForm = () => {
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -20,9 +18,22 @@ const ForgetPasswordForm = () => {
   } = useForm<IUserForgetRequest>({});
 
   const { t, lang } = useTranslation();
-  const onSubmit: SubmitHandler<IUserForgetRequest> = () => {
-    router.replace("/dashboard");
-    toast.success("login successfully");
+
+  const { mutateAsync } = useForgetPasswordMutation();
+
+  const onSubmit = async (data: IUserForgetRequest) => {
+    try {
+      const response = await mutateAsync({
+        email: data.email,
+      });
+
+      toast.success(response?.message || t("passwordResetLinkSent"));
+    } catch (errors) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      const errorMessage = errors.message || "حدث خطأ أثناء إرسال البريد.";
+      toast.error(errorMessage);
+    }
   };
 
   return (

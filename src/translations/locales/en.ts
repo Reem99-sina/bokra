@@ -270,4 +270,7 @@ trends. `,
   somethingWentWrong: "Something went wrong",
   loanAddedSuccessfully: "Loan added successfully",
   termsError: "You must agree to the terms and conditions to proceed.",
+  passwordChangedSuccessfully: "password Changed Successfully",
+  youHaveSuccessfullyLoggedIn: "You have successfully logged in",
+  passwordResetLinkSent: "Password reset link sent successfully",
 } as const;

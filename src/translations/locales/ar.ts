@@ -259,4 +259,7 @@ export default {
   confirm_loan_renew: "تأكيد تجديد القرض",
   submit_renewal_request: "إرسال طلب التجديد",
   businessOwner: "صاحب عمل",
+  passwordChangedSuccessfully: "تم تغيير كلمة المرور بنجاح",
+  youHaveSuccessfullyLoggedIn: "تم تسجيل الدخول بنجاح!",
+  somethingWentWrong: "حدث خطأ ما !",
 } as const;

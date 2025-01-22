@@ -86,3 +86,31 @@ export const useLoginWithSocialMutation = (provider: string) => {
       }),
   });
 };
+
+export const useForgetPasswordMutation = () => {
+  const { api } = useFetch();
+
+  return useMutation<LoginResponse, { message: string }, { email: string }>({
+    mutationFn: (data) => {
+      return api.post("/auth/forget-password", data);
+    },
+  });
+};
+
+export const useResetPasswordMutation = (token: string) => {
+  const { api } = useFetch();
+
+  return useMutation<
+    { message: string },
+    { message: string },
+    { newPassword: string; confirmNewPassword: string }
+  >({
+    mutationFn: (data) => {
+      return api.post("/auth/reset-password", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    },
+  });
+};
