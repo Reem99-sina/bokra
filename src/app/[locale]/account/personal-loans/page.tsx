@@ -38,7 +38,7 @@ const PersonalLoanComponent = () => {
             type="submit"
             text={t("search")}
             onClick={() => {
-              router?.push("/account/personal-loan/add");
+              router?.push("/account/personal-loans/add");
             }}
           />
         </div>
@@ -60,24 +60,24 @@ const PersonalLoanComponent = () => {
             loan={ele}
             key={ele?.type}
             onClick={() => {
-              router.push(`/account/personal-loan/detail/${index + 1}`);
+              router.push(`/account/personal-loans/${index + 1}`);
             }}
           />
         ))}
       </div>
       <div className="flex max-w-auto justify-end ">
-          <Button
-            className={clsx(
-              "ml-3 h-10 !w-auto flex-none gap-2 rounded-[4px] bg-black text-white !text-sm"
-            )}
-            type="submit"
-            text={""}
-            onClick={() => {
-              router?.push("/account/personal-loan/add");
-            }}
-            startIcon={<IoAddSharp color={"white"} className="text-md"/>}
-          />
-        </div>
+        <Button
+          className={clsx(
+            "ml-3 h-10 !w-auto flex-none gap-2 rounded-[4px] bg-black text-white !text-sm"
+          )}
+          type="submit"
+          text={""}
+          onClick={() => {
+            router?.push("/account/personal-loans/add");
+          }}
+          startIcon={<IoAddSharp color={"white"} className="text-md" />}
+        />
+      </div>
       <div>
         <Pagination
           pageCount={Math.ceil(dataLoans?.length / 5)}

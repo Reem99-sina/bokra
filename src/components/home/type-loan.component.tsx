@@ -10,10 +10,9 @@ import { NextArrow, PrevArrow } from "../shared/arrow-slider";
 const TypeLoanComponent = () => {
   const { t } = useTranslation();
   const loans = DataTypeLoans();
-  // const sliderRef: RefObject<Slider> = useRef(null);
   const router = useRouter();
   function routerLink() {
-    router.push("/account/personal-loan/add");
+    router.push("/account/personal-loans/add");
   }
   const settings: Settings = {
     dots: false,

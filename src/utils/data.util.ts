@@ -4,7 +4,11 @@ import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { LiaShareAltSolid } from "react-icons/lia";
 import { LuChartNoAxesCombined } from "react-icons/lu";
-import { MdAgriculture, MdAutorenew, MdOutlineStrikethroughS } from "react-icons/md";
+import {
+  MdAgriculture,
+  MdAutorenew,
+  MdOutlineStrikethroughS,
+} from "react-icons/md";
 import { RiSecurePaymentLine } from "react-icons/ri";
 
 export const LinksData = () => {
@@ -22,7 +26,7 @@ export const LinksData = () => {
         {
           title: t("personalLoan"),
           icon: GiTakeMyMoney,
-          href: "/personal-loan",
+          href: "/personal-loans",
         },
         {
           title: t("financialTransactions"),
@@ -366,55 +370,55 @@ export const DataTypeLoans = () => {
 export const ApprovalApplicationData = [
   {
     loanAmount: 50000, // Amount in USD
-    companyType: 'LLC', // Limited Liability Company
-    businessRegNumber: 'BR12345678', // Business Registration Number
-    businessName: 'Tech Innovators Inc.', // Name of the business
-    industryType: 'Technology', // Industry type
-    loanPurpose: 'Expand office space and purchase new equipment', // Purpose of the loan
-    financialStatements: 'financial-statements.pdf', // Path to uploaded file
+    companyType: "LLC", // Limited Liability Company
+    businessRegNumber: "BR12345678", // Business Registration Number
+    businessName: "Tech Innovators Inc.", // Name of the business
+    industryType: "Technology", // Industry type
+    loanPurpose: "Expand office space and purchase new equipment", // Purpose of the loan
+    financialStatements: "financial-statements.pdf", // Path to uploaded file
     annualRevenue: 250000, // Annual revenue in USD
     expenses: 75000, // Annual expenses in USD
     liabilities: 30000, // Total liabilities in USD,
-    status: 'Approve',
-    repaymentStatus: 'upcoming',
-    businessRegCert: 'business-registration-cert.pdf', // Path to uploaded file
-    identityDocument: 'identity-document.jpeg', // Path to uploaded file
-    loanCurrency: 'EGP', // Currency for the loan
+    status: "Approve",
+    repaymentStatus: "upcoming",
+    businessRegCert: "business-registration-cert.pdf", // Path to uploaded file
+    identityDocument: "identity-document.jpeg", // Path to uploaded file
+    loanCurrency: "EGP", // Currency for the loan
   },
   {
     loanAmount: 50000, // Amount in USD
-    companyType: 'LLC', // Limited Liability Company
-    businessRegNumber: 'BR12345678', // Business Registration Number
-    businessName: 'Tech Innovators Inc.', // Name of the business
-    industryType: 'Technology', // Industry type
-    loanPurpose: 'Expand office space and purchase new equipment', // Purpose of the loan
-    financialStatements: 'financial-statements.pdf', // Path to uploaded file
+    companyType: "LLC", // Limited Liability Company
+    businessRegNumber: "BR12345678", // Business Registration Number
+    businessName: "Tech Innovators Inc.", // Name of the business
+    industryType: "Technology", // Industry type
+    loanPurpose: "Expand office space and purchase new equipment", // Purpose of the loan
+    financialStatements: "financial-statements.pdf", // Path to uploaded file
     annualRevenue: 250000, // Annual revenue in USD
     expenses: 75000, // Annual expenses in USD
     liabilities: 30000, // Total liabilities in USD
-    status: 'Approve',
-    repaymentStatus: 'upcoming',
+    status: "Approve",
+    repaymentStatus: "upcoming",
 
-    businessRegCert: 'business-registration-cert.pdf', // Path to uploaded file
-    identityDocument: 'identity-document.jpeg', // Path to uploaded file
-    loanCurrency: 'USD', // Currency for the loan
+    businessRegCert: "business-registration-cert.pdf", // Path to uploaded file
+    identityDocument: "identity-document.jpeg", // Path to uploaded file
+    loanCurrency: "USD", // Currency for the loan
   },
   {
     loanAmount: 50000, // Amount in USD
-    companyType: 'LLC', // Limited Liability Company
-    businessRegNumber: 'BR12345678', // Business Registration Number
-    businessName: 'Tech Innovators Inc.', // Name of the business
-    industryType: 'Technology', // Industry type
-    loanPurpose: 'Expand office space and purchase new equipment', // Purpose of the loan
-    financialStatements: 'financial-statements.pdf', // Path to uploaded file
+    companyType: "LLC", // Limited Liability Company
+    businessRegNumber: "BR12345678", // Business Registration Number
+    businessName: "Tech Innovators Inc.", // Name of the business
+    industryType: "Technology", // Industry type
+    loanPurpose: "Expand office space and purchase new equipment", // Purpose of the loan
+    financialStatements: "financial-statements.pdf", // Path to uploaded file
     annualRevenue: 250000, // Annual revenue in USD
     expenses: 75000, // Annual expenses in USD
     liabilities: 30000, // Total liabilities in USD
-    status: 'Approve',
-    repaymentStatus: 'overdue',
+    status: "Approve",
+    repaymentStatus: "overdue",
 
-    businessRegCert: 'business-registration-cert.pdf', // Path to uploaded file
-    identityDocument: 'identity-document.jpeg', // Path to uploaded file
-    loanCurrency: 'USD', // Currency for the loan
+    businessRegCert: "business-registration-cert.pdf", // Path to uploaded file
+    identityDocument: "identity-document.jpeg", // Path to uploaded file
+    loanCurrency: "USD", // Currency for the loan
   },
 ];

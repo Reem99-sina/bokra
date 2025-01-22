@@ -96,7 +96,7 @@ export const Header = () => {
             id: 2,
             text: t("personalLoan"),
             icon: <GiTakeMyMoney />,
-            to: "/account/personal-loan",
+            to: "/account/personal-loans",
           },
           {
             id: 3,

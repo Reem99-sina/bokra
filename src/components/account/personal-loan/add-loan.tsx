@@ -39,7 +39,7 @@ const AddLoan = ({ type }: { type: string }) => {
 
   const onSubmit = () => {
     // console.log(data, "data");
-    router.push("/account/personal-loan");
+    router.push("/account/personal-loans");
   };
 
   return (

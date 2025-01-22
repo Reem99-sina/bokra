@@ -93,7 +93,7 @@ const DataLoan = () => {
           />
 
           <Link
-            href={"/account/personal-loan/detail/1"}
+            href={"/account/personal-loans/1"}
             className=" bg-white px-3 py-2 text-xs text-black  block border rounded-md"
             target="_parent"
           >

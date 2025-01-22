@@ -57,7 +57,7 @@ const HomeComponent = () => {
           <h3 className="capitalize font-bold text-sm">{t("partnership")}</h3>
           <Link
             className="text-xs text-gray-500 underline"
-            href="/account/personal-loan/add"
+            href="/account/personal-loans/add"
           >
             {t("apply_now")}
           </Link>
@@ -67,7 +67,7 @@ const HomeComponent = () => {
           <h3 className="capitalize font-bold text-sm">{t("speculation")}</h3>
           <Link
             className="text-xs text-gray-500 underline"
-            href="/account/personal-loan/add"
+            href="/account/personal-loans/add"
           >
             {t("apply_now")}
           </Link>
@@ -77,21 +77,11 @@ const HomeComponent = () => {
           <h3 className="capitalize font-bold text-sm">{t("rent")}</h3>
           <Link
             className="text-xs text-gray-500 underline"
-            href="/account/personal-loan/add"
+            href="/account/personal-loans/add"
           >
             {t("apply_now")}
           </Link>
         </CardDetail>
-        {/* <CardDetail className=" text-black items-center shadow-lg  sm:min-w-[20%] min-w-fit">
-          <LuChartNoAxesCombined color="black" size={"40"} />
-          <h3 className="capitalize font-bold text-sm">profitable</h3>
-        <Link className="text-xs text-gray-500 underline" href="/account/personal-loan/add">apply now</Link>
-        </CardDetail>
-        <CardDetail className=" text-black items-center shadow-lg  sm:min-w-[20%] min-w-fit">
-          <MdAgriculture color="black" size={"40"} />
-          <h3 className="capitalize font-bold text-sm">ladder</h3>
-        <Link className="text-xs text-gray-500 underline" href="/account/personal-loan/add">apply now</Link>
-        </CardDetail> */}
       </div>
     </div>
   );
