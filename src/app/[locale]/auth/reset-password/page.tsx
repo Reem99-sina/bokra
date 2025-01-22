@@ -5,13 +5,12 @@ import { Button } from "@/components/shared/button.component";
 import { TextInput } from "@/components/shared/form/text-input.component";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { RenewpasswordRequest } from "@/types/user.type";
-import { useFetch } from "@/hooks/fetch.hooks";
-import { useMutation } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import { useState } from "react";
 import { OverflowLoading } from "@/components/shared/overflow-loading";
+import { useResetPasswordMutation } from "@/services/profile.service";
 
 export default function ResetPasswordPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +18,6 @@ export default function ResetPasswordPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
-  const { api } = useFetch();
 
   const {
     register,
@@ -28,40 +26,28 @@ export default function ResetPasswordPage() {
     getValues,
   } = useForm<RenewpasswordRequest>();
 
-  const { mutate } = useMutation<
-    { message: string },
-    { message: string },
-    { newPassword: string; confirmPassword: string }
-  >({
-    mutationFn: (data) =>
-      api.post("/auth/reset-password", data, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }),
-  });
+  const { mutateAsync } = useResetPasswordMutation(token as string);
 
-  const onSubmit: SubmitHandler<RenewpasswordRequest> = (data) => {
+  const onSubmit: SubmitHandler<RenewpasswordRequest> = async (data) => {
+    if (!token) return;
+
     setIsLoading(true);
-    mutate(
-      {
-        confirmPassword: data.repeatPassword,
+    try {
+      await mutateAsync({
         newPassword: data.password,
-      },
-      {
-        onSuccess: () => {
-          setIsLoading(false);
-          toast.success(t("passwordResetSuccess"));
-          router.push("/login");
-        },
-        onError: (error) => {
-          setIsLoading(false);
-          toast.error(error.message || t("somethingWentWrong"));
-        },
-      }
-    );
+        confirmNewPassword: data.repeatPassword,
+      });
+      toast.success(t("passwordChangedSuccessfully"));
+      router.push("/login");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      const errorMessage =
+        error?.response?.data?.message || t("somethingWentWrong");
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
-
   if (!token) {
     router.push("/login");
 
@@ -112,8 +98,9 @@ export default function ResetPasswordPage() {
                         inputName: t("repeatPassword"),
                       }),
                       validate: (value) =>
-                        value === getValues("password") ||
-                        t("passwordsMustMatch"),
+                        value != getValues("password")
+                          ? t("errorRepeatPassword")
+                          : true,
                     }),
                   }}
                   errorMessage={errors.repeatPassword?.message}

@@ -37,7 +37,7 @@ export const LoginForm: React.FC = () => {
         router.replace("/");
 
         authenticate(response.result);
-        toast.success("تم تسجيل الدخول بنجاح!");
+        toast.success(t("youHaveSuccessfullyLoggedIn"));
       } else {
         toast.error("حدث خطأ ما ! ");
       }
@@ -45,7 +45,7 @@ export const LoginForm: React.FC = () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore
 
-      const errorMessage = errors.message || "حدث خطأ أثناء تسجيل الدخول.";
+      const errorMessage = errors.message || t("somethingWentWrong");
       toast.error(errorMessage);
     }
   };

@@ -2,17 +2,15 @@
 
 import { useTranslation } from "@/translations/clients";
 import { IUserForgetRequest } from "@/types/user.type";
-import { useRouter } from "next/navigation";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { TextInput } from "../shared/form/text-input.component";
 import { Button } from "../shared/button.component";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import Image from "next/image";
+import { useForgetPasswordMutation } from "@/services/profile.service";
 
 const ForgetPasswordForm = () => {
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -20,9 +18,26 @@ const ForgetPasswordForm = () => {
   } = useForm<IUserForgetRequest>({});
 
   const { t, lang } = useTranslation();
-  const onSubmit: SubmitHandler<IUserForgetRequest> = () => {
-    router.replace("/dashboard");
-    toast.success("login successfully");
+
+  const { mutateAsync } = useForgetPasswordMutation();
+
+  const onSubmit = async (data: IUserForgetRequest) => {
+    try {
+      const response = await mutateAsync({
+        email: data.email,
+      });
+
+      if (response.message) {
+        toast.success(response.message);
+      } else {
+        toast.error("حدث خطأ ما! ");
+      }
+    } catch (errors) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      const errorMessage = errors.message || "حدث خطأ أثناء إرسال البريد.";
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -36,9 +51,7 @@ const ForgetPasswordForm = () => {
           <div className="flex items-center justify-center  w-full pb-4 pt-5 bg-black rounded-t-md">
             <Image
               src={
-                lang == "ar"
-                  ? "/bokra-gray-arabic.png"
-                  : "/bokra-gray-eng.png"
+                lang == "ar" ? "/bokra-gray-arabic.png" : "/bokra-gray-eng.png"
               }
               width={100}
               height={90}
