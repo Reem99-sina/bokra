@@ -1,19 +1,18 @@
 export interface IUser {
+  fullName: string;
   id: number;
   email: string;
   username: string;
-  status: "active";
+  password: string;
+  industryField: "IT" | "business Owner";
+  phoneNumber: string;
+  status: "pending";
   createdAt: string;
   updatedAt: string;
-  userType: "admin" | "manager" | "employee";
-  phone: string | undefined;
-  image: string | undefined;
-  val_license: string;
-  street: string;
-  district: string;
-  city: string;
-  nationality: string;
-  birthDate: Date | string;
+  idImage: null;
+  profileImage: null;
+  accessToken: null;
+  refreshToken: null;
 }
 
 export interface IUserResponse {
@@ -25,11 +24,13 @@ export interface IUserResponse {
   };
 }
 export interface IUserRegisterRequest {
-  fullName:string
+  fullName: string;
   email: string;
   password: string;
-  repeatPassword: string;
+  repeatePassword: string;
   phoneNumber: string;
+  file: File;
+  industryField: string;
 }
 export interface IUserRequest {
   email: string;
@@ -53,4 +54,18 @@ export interface UserInput {
   birthDate: Date | string;
   agreeTerms1: boolean;
   agreeTerms2: boolean;
+}
+export interface LoginResponse {
+  message: string;
+  result: {
+    user: IUser;
+    token: string;
+  };
+}
+export interface RegisterResponse {
+  message: string;
+  result: {
+    user: IUser;
+    token: string;
+  };
 }

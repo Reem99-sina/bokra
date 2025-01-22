@@ -4,6 +4,7 @@ import { HideEye, MandatoryIcon, ShowEye } from "@/icon";
 import { useTranslation } from "@/translations/clients";
 import clsx from "clsx";
 import React, { FC, ReactNode, useState } from "react";
+import ErrorInputComponent from "./error-input.component";
 
 interface Props {
   errorMessage?: string;
@@ -31,7 +32,7 @@ export const TextInput: FC<Props> = ({
   children,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const {lang}=useTranslation()
+  const { lang } = useTranslation();
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
@@ -52,7 +53,10 @@ export const TextInput: FC<Props> = ({
 
       <div className="relative flex h-full items-center">
         <div
-          className={clsx("absolute  top-1/2 -translate-y-1/2 transform cursor-pointer p-3",lang=="ar"?"left-0":"right-0")}
+          className={clsx(
+            "absolute  top-1/2 -translate-y-1/2 transform cursor-pointer p-3",
+            lang == "ar" ? "left-0" : "right-0"
+          )}
           onClick={
             inputProps.type === "password"
               ? togglePasswordVisibility
@@ -75,16 +79,13 @@ export const TextInput: FC<Props> = ({
               : "text"
           }
           disabled={disabled}
-          style={{
-            fontFamily: "Verdana",
-          }}
           className={clsx(
             disabled ? "bg-bg3" : "bg-white",
             "block min-h-[40px]  w-full  p-2.5 text-sm font-black text-secondary3 py-0",
             `border ${
               errorMessage ? "border-error" : "border-[#E2E2E2]"
             } rounded-md `,
-            "placeholder:!text-xs placeholder:!font-light",
+            "placeholder:!text-xs placeholder:!font-normal",
             `${
               className ? className : "rounded-lg  px-4"
             } focus-visible:outline-0`
@@ -92,11 +93,8 @@ export const TextInput: FC<Props> = ({
         />
       </div>
       {children}
-      {errorMessage && (
-        <p className="min-h-2 text-xs text-red-600 dark:text-red-500 whitespace-normal break-words">
-          {errorMessage}
-        </p>
-      )}
+
+      {errorMessage && <ErrorInputComponent errorMessage={errorMessage} />}
     </div>
   );
 };

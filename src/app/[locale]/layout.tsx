@@ -55,7 +55,7 @@ export default async function RootLayout({ children, params }: Props) {
           <Providers locale={locale}>
             <Header />
 
-            {children}
+            <div className="flex flex-col flex-1">{children}</div>
 
             <Footer />
           </Providers>

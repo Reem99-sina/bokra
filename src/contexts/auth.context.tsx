@@ -2,6 +2,7 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { IUser } from "@/types/user.type";
 
 type Props = {
   children: ReactNode;
@@ -9,6 +10,7 @@ type Props = {
 
 type AuthData = {
   token: string;
+  user: IUser;
 };
 
 type AuthValuesType = {

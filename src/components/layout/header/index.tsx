@@ -82,7 +82,7 @@ export const Header = () => {
       },
       {
         id: 6,
-        text: (user as IUser)?.username || user?.email?.split("@")[0],
+        text: (user as IUser)?.fullName?.slice(0, 20),
         icon: <ProfileUser />,
         isLoading: isLoadingUser,
         dropdownItems: [
@@ -139,15 +139,15 @@ export const Header = () => {
       >
         <div
           className={clsx(
-            "flex  flex-1  justify-center overflow-x-hidden   bg-mainColor  py-7 sm:w-screen "
+            "flex  flex-1  justify-center overflow-x-hidden   bg-mainColor  py-7 md:w-screen "
           )}
         >
           <div
             className={clsx(
-              " flex   w-screen flex-row items-center justify-between self-center overflow-x-hidden px-3 text-sm font-bold lg:container "
+              " flex gap-x-4 w-screen flex-row items-center justify-between self-center overflow-x-hidden px-3 text-sm font-bold lg:container "
             )}
           >
-            <div className="flex w-[200px]  items-center justify-start gap-28 ">
+            <div className="flex w-[200px]  items-center justify-start">
               <Link href={`/${lang}/`}>
                 <Image
                   src={
@@ -161,7 +161,7 @@ export const Header = () => {
                 />
               </Link>
             </div>
-            <div className="ms-24 hidden  flex-row  gap-x-8 sm:flex">
+            <div className="hidden  flex-row  gap-x-8 md:flex">
               {links.map((link) => {
                 return (
                   <div key={link.id} className="flex flex-row items-center">
@@ -171,8 +171,10 @@ export const Header = () => {
                       <Menu>
                         <MenuHandler>
                           <div className="flex items-center gap-x-3 text-white cursor-pointer">
-                            <div>{link?.text && <FaUserCircle />}</div>
-                            <p>{link?.text}</p>
+                            {!!link?.text && <FaUserCircle />}
+                            <p className="truncate line-clamp-1 capitalize">
+                              {link?.text}
+                            </p>
                           </div>
                         </MenuHandler>
                         <MenuList className="p-0 focus:outline-none z-10">
@@ -202,7 +204,7 @@ export const Header = () => {
                         className={clsx(
                           "relative text-sm  text-white  ",
                           "transition-all duration-300",
-                          "scroll-smooth"
+                          "scroll-smooth hover:text-gray-300 truncate line-clamp-1"
                         )}
                       >
                         {link.text}
@@ -238,10 +240,10 @@ export const Header = () => {
             </div>
 
             <div
-              className="flex cursor-pointer sm:hidden"
+              className="flex cursor-pointer md:hidden"
               onClick={() => drawerRef.current?.open()}
             >
-              <IoMenu className="" color={"white"} />
+              <IoMenu className="w-8 h-8" color={"white"} />
             </div>
           </div>
         </div>

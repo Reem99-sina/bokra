@@ -12,6 +12,7 @@ import { FacebookIcon, GoogleIcon } from "@/icon";
 import Image from "next/image";
 import { validateInput } from "@/utils/validate.userName";
 import { useAuth } from "@/hooks/auth.hook";
+import { useLoginMutation } from "@/services/profile.service";
 
 export const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -20,15 +21,33 @@ export const LoginForm: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IUserRequest>({});
+  const { mutateAsync } = useLoginMutation();
 
   const { t, lang } = useTranslation();
   const { authenticate } = useAuth();
 
-  const onSubmit: SubmitHandler<IUserRequest> = async () => {
-    authenticate({ token: "MOCK_TOKEN" });
+  const onSubmit: SubmitHandler<IUserRequest> = async (data) => {
+    try {
+      const response = await mutateAsync({
+        email: data.email?.trim()?.toLowerCase(),
+        password: data.password,
+      });
 
-    router.replace("/");
-    toast.success("login successfully");
+      if (response.result.token) {
+        router.replace("/");
+
+        authenticate(response.result);
+        toast.success("تم تسجيل الدخول بنجاح!");
+      } else {
+        toast.error("حدث خطأ ما ! ");
+      }
+    } catch (errors) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+
+      const errorMessage = errors.message || "حدث خطأ أثناء تسجيل الدخول.";
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -69,7 +88,9 @@ export const LoginForm: React.FC = () => {
                 ...register("email", {
                   required: {
                     value: true,
-                    message: t("errorLoginUserName"),
+                    message: t("inputRequired", {
+                      inputName: t("id_or_email"),
+                    }),
                   },
                   validate: {
                     value: (value) =>
@@ -90,14 +111,14 @@ export const LoginForm: React.FC = () => {
                 type: "password",
                 placeholder: t("password"),
                 ...register("password", {
-                  required: { value: true, message: t("errorPasswordNotEmty") },
+                  required: {
+                    value: true,
+                    message: t("inputRequired", {
+                      inputName: t("password"),
+                    }),
+                  },
                   minLength: {
                     value: 8,
-                    message: t("errorPasswordPattern"),
-                  },
-                  pattern: {
-                    value:
-                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
                     message: t("errorPasswordPattern"),
                   },
                 }),
@@ -143,7 +164,10 @@ export const LoginForm: React.FC = () => {
                   type="submit"
                   startIcon={<GoogleIcon className="mx-3" />}
                   text={t("loginwithGoogle")}
-                  onClick={() => {}}
+                  onClick={() => {
+                    window.location.href =
+                      process.env.NEXT_PUBLIC_BASE_URL + "/auth/google/login";
+                  }}
                 />
               </div>
             </div>

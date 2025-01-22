@@ -8,10 +8,11 @@ import { UploadFilesVariants } from "@/types/file.type";
 import { useTranslation } from "@/translations/clients";
 import { IoDocumentAttach } from "react-icons/io5";
 import { FaRegWindowClose } from "react-icons/fa";
+import ErrorInputComponent from "./form/error-input.component";
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
 
-const allowedFileTypesRegex = /^(image\/|application\/pdf|video\/)/;
+const allowedFileTypesRegex = /^(image\/|application\/pdf\/)/;
 
 interface Props {
   value: File[];
@@ -21,6 +22,8 @@ interface Props {
   placeholder?: string;
   id: string;
   className?: string;
+  isMultiple?: boolean;
+  errorMessage?: string;
 }
 
 export const UploadFilesInput: FC<Props> = ({
@@ -31,9 +34,12 @@ export const UploadFilesInput: FC<Props> = ({
   placeholder,
   id,
   className,
+  isMultiple,
+  errorMessage,
 }) => {
   const [isDraggingOver, setIsDraggingOver] = useState(false);
   const { t } = useTranslation();
+
   const removeFile = (index: number) => {
     const newFiles = [...value];
 
@@ -58,29 +64,21 @@ export const UploadFilesInput: FC<Props> = ({
         continue;
       }
 
-      if (file.type.startsWith("video")) {
-        const videoFound = [...value, ...validFiles].find((file) =>
-          file.type.startsWith("video")
-        );
-
-        if (videoFound) {
-          toast.error("لا يمكنك إضافة اكثر من ملف فيديو");
-
-          continue;
-        }
-      }
-
       validFiles.push(file);
     }
 
-    onChange([...value, ...validFiles]);
+    onChange(isMultiple ? [...value, ...validFiles] : validFiles);
   };
 
   return (
     <div>
       {variant === UploadFilesVariants.INPUT ? (
         <label
-          className={clsx("mb-2 block text-xs font-bold text-black", className)}
+          className={clsx(
+            "mb-2 block text-xs font-bold text-black",
+            errorMessage && "text-red-600",
+            className
+          )}
         >
           {text ? text : t("supportingAttachment")}
         </label>
@@ -90,7 +88,7 @@ export const UploadFilesInput: FC<Props> = ({
         type="file"
         id={id}
         hidden
-        multiple
+        multiple={isMultiple}
         onChange={(e) => {
           e.target.files ? onAddingFiles(e.target.files) : null;
         }}
@@ -118,6 +116,7 @@ export const UploadFilesInput: FC<Props> = ({
             className={clsx(
               "flex cursor-pointer flex-row justify-between rounded-lg border border-[#E2E2E2]  ",
               "px-4 py-2 text-xs font-normal text-gray-400",
+              errorMessage && "border-red-600",
               isDraggingOver && "border-solid border-primary"
             )}
           >
@@ -138,11 +137,11 @@ export const UploadFilesInput: FC<Props> = ({
             {/* <AddImageIcon /> */}
 
             <span className="text-sm font-bold text-[#595959]">
-              {t('showesone')}
+              {t("showesone")}
             </span>
 
             <span className="self-center text-center text-xs font-normal text-gray-400">
-              {t('filesSupport')} : JPG,JIF, PNG - {t("minSizefile")} : 2 MB
+              {t("filesSupport")} : JPG,JIF, PNG - {t("minSizefile")} : 2 MB
             </span>
 
             <span className="border border-black p-3 text-xs font-bold text-black">
@@ -155,8 +154,13 @@ export const UploadFilesInput: FC<Props> = ({
       {variant === UploadFilesVariants.INPUT ? (
         <>
           <div className="mt-2" />
-          <div className="flex flex-row justify-between text-[10px] font-normal text-gray-400">
-            <span>{t("filesSupport")} : Pdf, Image, Video</span>
+          <div
+            className={clsx(
+              "flex flex-row justify-between text-[10px] font-normal text-gray-400",
+              errorMessage && "text-red-600"
+            )}
+          >
+            <span>{t("filesSupport")} : Pdf, Image</span>
             <span>{t("minSizefile")} : 2 MB</span>
           </div>
         </>
@@ -183,12 +187,13 @@ export const UploadFilesInput: FC<Props> = ({
             </div>
 
             <FaRegWindowClose
-              className='cursor-pointer self-center'
+              className="cursor-pointer self-center"
               onClick={() => removeFile(index)}
             />
           </div>
         </div>
       ))}
+      {errorMessage && <ErrorInputComponent errorMessage={errorMessage} />}
     </div>
   );
 };
