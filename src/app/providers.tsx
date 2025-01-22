@@ -3,11 +3,11 @@
 import { FetchProvider } from "@/contexts/fetch.context";
 import ThemeProvider from "@/theme/mui-theme-providers";
 import { UserProvider } from "@/contexts/user.context";
-import { Toaster } from "react-hot-toast";
+import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "../contexts/auth.context";
 import dynamic from "next/dynamic";
-import { Spinner } from "@/components/shared/spinner.component";
+import { ScreenLoader } from "@/components/shared/screen-loader";
 
 const I18nProviderClient = dynamic(
   () => import("../translations/clients").then((mod) => mod.I18nProviderClient),
@@ -34,11 +34,12 @@ export const Providers = ({ children, locale }: Props) => {
       locale={locale}
       fallback={
         <div className="flex h-screen w-screen items-center justify-center bg-white">
-          <Spinner />
+          <ScreenLoader />
         </div>
       }
     >
-      <Toaster position="bottom-center" />
+      <ToastContainer position="top-left" />
+
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <FetchProvider>

@@ -1,11 +1,38 @@
+import { IUser } from "./user.type";
+
+interface BusinessInformation {
+  id: number;
+  businessName: string;
+  businessRegNumber: string;
+  industryType: string;
+  loanRequestId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface FinancialInformation {
+  id: number;
+  loanRequestId: number;
+  annualRevenue: number;
+  liabilities: number;
+  expenses: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface PersonalLoan {
-  type: string; // Type of loan (e.g., Personal Loan, Business Loan, etc.)
-  industry: string; // Industry associated with the loan (e.g., Real Estate, Education, etc.)
-  purpose: string; // Purpose of the loan
-  expectedGain: string; // Expected benefit from taking the loan
-  problems: string; // Potential problems or risks
-  duration: string; // Duration of the loan (e.g., 1-5 years)
-  amount: string;
+  id: number;
+  loanAmount: number;
+  loanCurrency: string;
+  loanPurpose: string;
+  status: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  businessInformation: BusinessInformation;
+  financialInformation: FinancialInformation;
+  supportingDocuments: [];
+  user: IUser;
 }
 
 export interface addLoanInfo {

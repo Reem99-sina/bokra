@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { toast } from "react-toastify";
+import { toast } from "@/lib/toast";
 import { formatFileSize } from "@/utils/file.util";
 import { DragEvent, FC, useState } from "react";
 import { UploadFilesVariants } from "@/types/file.type";

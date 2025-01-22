@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { TextInput } from "../shared/form/text-input.component";
 import { useTranslation } from "@/translations/clients";
 import { Button } from "../shared/button.component";
-import toast from "react-hot-toast";
+import { toast } from "@/lib/toast";
 import Link from "next/link";
 import { FacebookIcon, GoogleIcon } from "@/icon";
 import Image from "next/image";

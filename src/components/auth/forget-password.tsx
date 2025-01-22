@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { TextInput } from "../shared/form/text-input.component";
 import { Button } from "../shared/button.component";
-import toast from "react-hot-toast";
+import { toast } from "@/lib/toast";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -36,9 +36,7 @@ const ForgetPasswordForm = () => {
           <div className="flex items-center justify-center  w-full pb-4 pt-5 bg-black rounded-t-md">
             <Image
               src={
-                lang == "ar"
-                  ? "/bokra-gray-arabic.png"
-                  : "/bokra-gray-eng.png"
+                lang == "ar" ? "/bokra-gray-arabic.png" : "/bokra-gray-eng.png"
               }
               width={100}
               height={90}

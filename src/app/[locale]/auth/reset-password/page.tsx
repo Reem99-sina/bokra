@@ -8,10 +8,10 @@ import { RenewpasswordRequest } from "@/types/user.type";
 import { useFetch } from "@/hooks/fetch.hooks";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
-import toast from "react-hot-toast";
 import Image from "next/image";
 import { useState } from "react";
 import { OverflowLoading } from "@/components/shared/overflow-loading";
+import { toast } from "@/lib/toast";
 
 export default function ResetPasswordPage() {
   const [isLoading, setIsLoading] = useState(false);

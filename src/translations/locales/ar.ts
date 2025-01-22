@@ -227,6 +227,7 @@ export default {
   ipcomingPayment: "الدفعة القادمة",
   ipcomingDesc: "دفعتك التالية بقيمة 2,200.00 دولار مستحقة في 30 يونيو 2023.",
   status: "الحالة",
+  type: "النوع",
   bankTransfer: "التحويل البنكي",
   onlinePayment: "الدفع عبر الإنترنت",
   Cheque: "الشيك",
