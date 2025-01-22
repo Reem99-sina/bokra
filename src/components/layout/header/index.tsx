@@ -120,7 +120,7 @@ export const Header = () => {
             id: 6,
             text: t("logout"),
             icon: <CiLogout />,
-            to: "/login",
+            to: "/auth/login",
             onClick: () => {
               logout();
             },
@@ -216,7 +216,7 @@ export const Header = () => {
               {!user?.email && (
                 <Button
                   text={t("login")}
-                  onClick={() => router.push("/login")}
+                  onClick={() => router.push("/auth/login")}
                   className="!w-auto !bg-white !p-3 !text-xs !text-black"
                 />
               )}

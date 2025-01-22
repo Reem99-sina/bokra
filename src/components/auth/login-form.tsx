@@ -136,13 +136,13 @@ export const LoginForm: React.FC = () => {
               <div className="flex  items-center justify-between">
                 <Link
                   className="text-center text-gray-500 underline my-2 text-xs"
-                  href={"/register"}
+                  href={"/auth/register"}
                 >
                   {t("dontHaveAccount")}
                 </Link>
                 <Link
                   className="text-center text-gray-500 underline my-2 text-xs"
-                  href={"/forget-password"}
+                  href={"/auth/forget-password"}
                 >
                   {t("forgetPassword")}
                 </Link>

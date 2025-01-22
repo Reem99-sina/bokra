@@ -23,7 +23,7 @@ const GoogleCallbackHandler: React.FC = () => {
     if (!searchParams) return;
 
     if (!providers.includes(provider as string)) {
-      router.push("/login");
+      router.push("/auth/login");
 
       return;
     }
@@ -41,7 +41,7 @@ const GoogleCallbackHandler: React.FC = () => {
         throw new Error("Failed to login with social");
       }
     } catch (error) {
-      router.push("/login");
+      router.push("/auth/login");
     }
   };
 

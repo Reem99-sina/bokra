@@ -38,7 +38,7 @@ export default function ResetPasswordPage() {
         confirmNewPassword: data.repeatPassword,
       });
       toast.success(t("passwordChangedSuccessfully"));
-      router.push("/login");
+      router.push("/auth/login");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const errorMessage =
@@ -49,7 +49,7 @@ export default function ResetPasswordPage() {
     }
   };
   if (!token) {
-    router.push("/login");
+    router.push("/auth/login");
 
     return null;
   }

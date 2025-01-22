@@ -85,7 +85,7 @@ const ForgetPasswordForm = () => {
               <div className="flex  items-center justify-center">
                 <Link
                   className="my-2 text-center  text-sm text-black"
-                  href={"/login"}
+                  href={"/auth/login"}
                 >
                   {t("login")}
                 </Link>

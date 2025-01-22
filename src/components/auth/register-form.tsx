@@ -272,7 +272,7 @@ export const RegisterForm: React.FC = () => {
                 </div>
                 <Link
                   className="text-center text-gray-500 underline"
-                  href={"/login"}
+                  href={"/auth/login"}
                 >
                   {t("alreadyHaveAccount")}
                 </Link>
