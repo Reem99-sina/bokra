@@ -79,7 +79,6 @@ export const useLoginWithSocialMutation = (provider: string) => {
   return useMutation<LoginResponse, { message: string }, void>({
     mutationFn: () =>
       api.get(`/auth/${provider}/callback`, {
-        withCredentials: true, // Ensure cookies are sent if your backend uses them
         params: {
           ...Object.fromEntries(searchParams.entries()),
         },
