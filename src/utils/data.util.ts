@@ -142,27 +142,27 @@ export const dataLoans = [
 ];
 export const technologyType = [
   {
-    label: " education technology ",
-    value: " education technology ",
+    label: "Education Technology",
+    value: "education",
   },
   {
-    label: " logistics technology ",
-    value: " logistics technology ",
+    label: "Logistics Technology",
+    value: "logistics",
   },
   {
-    label: " agreetic technology ",
-    value: " agreetic technology ",
+    label: "Agricultural Technology",
+    value: "agricultural",
   },
   {
-    label: "healthletic technology",
-    value: " healthletic technology ",
+    label: "Health Technology",
+    value: "health",
   },
   {
-    label: "  reatial technology  ",
-    value: " reatial technology ",
+    label: "Retail Technology",
+    value: "retail",
   },
 ];
-export const loanCurreny = [
+export const loanCurrency = [
   {
     label: "EGP",
     value: "EGP",

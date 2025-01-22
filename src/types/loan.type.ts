@@ -20,6 +20,17 @@ interface FinancialInformation {
   updatedAt: string;
 }
 
+interface SupportingDocument {
+  id: number;
+  loanRequestId: number;
+  documentType: string;
+  filePath: string;
+  fileType: string;
+  fileSize: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface PersonalLoan {
   id: number;
   loanAmount: number;
@@ -31,24 +42,26 @@ export interface PersonalLoan {
   updatedAt: string;
   businessInformation: BusinessInformation;
   financialInformation: FinancialInformation;
-  supportingDocuments: [];
+  supportingDocuments: SupportingDocument[];
   user: IUser;
 }
 
-export interface addLoanInfo {
+export interface AddLoanRequest {
   loanAmount: number;
   loanCurrency: string;
-  companyType: string;
-  businessName: string;
-  industryType: string;
-  businessRegNumber: string;
   loanPurpose: string;
-  financialStatements: File[];
+  businessName: string;
+  businessRegNumber: string;
+  industryType: string;
   annualRevenue: number;
-  net_profit_margin: string;
-  liabilities?: number;
+  liabilities: number;
   expenses: number;
-  revenue_projections: string;
-  businessRegCert: File[];
-  identityDocument: File[];
 }
+
+export interface LoanDocumentsRequest {
+  financialStatement: File;
+  businessRegCert: File;
+  identityDocument: File;
+}
+
+export type LoanForm = AddLoanRequest & LoanDocumentsRequest;

@@ -10,7 +10,6 @@ import { LoanCard } from "@/components/account/personal-loan/loan-card";
 import Pagination from "@/components/pagination.component";
 import { Button } from "@/components/shared/button.component";
 import FilterComponent from "@/components/shared/filter-component";
-import { Line } from "@/components/shared/line.component";
 import MainTitleComponent from "@/components/shared/main-title.component";
 import SearchComponent from "@/components/shared/search-component";
 import { useMyLoansQuery } from "@/services/loan.service";
@@ -73,26 +72,27 @@ const PersonalLoanComponent = () => {
 
   return (
     <div className="container mb-8 mt-5 mx-auto flex flex-col gap-y-5 justify-around ">
-      <MainTitleComponent title={t("personalLoans")} />
-      <div className="flex items-center gap-2">
-        <div className="w-full">
-          <SearchComponent />
-        </div>
-        <div className="flex max-w-auto justify-end ">
+      <MainTitleComponent
+        title={t("personalLoans")}
+        action={
           <Button
             className={clsx(
-              "!ml-0 h-10 !w-auto flex-none gap-2 rounded-[4px] bg-black text-white !text-xs !px-4 !py-3 !font-black"
+              "ml-3 h-10 !w-auto flex-none gap-2 rounded-[4px] bg-black text-white !text-sm"
             )}
-            type="submit"
-            text={t("search")}
+            text={t("addLoan")}
             onClick={() => {
               router?.push("/account/personal-loans/add");
             }}
+            startIcon={<IoAddSharp color={"white"} className="text-md" />}
           />
+        }
+      />
+
+      <div className="flex items-center gap-2 f">
+        <div className="w-full">
+          <SearchComponent />
         </div>
       </div>
-      <Line />
-
       <FormProvider {...formdata}>
         <div className="flex flex-row gap-4 items-center flex-wrap">
           {filters?.map((ele) => (
@@ -117,19 +117,7 @@ const PersonalLoanComponent = () => {
           />
         ))}
       </div>
-      <div className="flex max-w-auto justify-end ">
-        <Button
-          className={clsx(
-            "ml-3 h-10 !w-auto flex-none gap-2 rounded-[4px] bg-black text-white !text-sm"
-          )}
-          type="submit"
-          text={""}
-          onClick={() => {
-            router?.push("/account/personal-loans/add");
-          }}
-          startIcon={<IoAddSharp color={"white"} className="text-md" />}
-        />
-      </div>
+
       <div>
         <Pagination
           pageCount={Math.ceil(data?.result?.length / 5)}
