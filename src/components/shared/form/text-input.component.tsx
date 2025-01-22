@@ -81,7 +81,7 @@ export const TextInput: FC<Props> = ({
           disabled={disabled}
           className={clsx(
             disabled ? "bg-bg3" : "bg-white",
-            "block min-h-[40px]  w-full  p-2.5 text-sm font-normal text-secondary3 py-0",
+            "block min-h-[40px] text-black w-full  p-2.5 text-sm font-normal text-secondary3 py-0",
             `border ${
               errorMessage ? "border-error" : "border-[#E2E2E2]"
             } rounded-md `,
