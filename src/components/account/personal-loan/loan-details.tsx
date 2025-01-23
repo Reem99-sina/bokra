@@ -14,18 +14,16 @@ import {
   AccordionHeader,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import { LoanRequestResponse } from "@/types/loan.type";
+import { PersonalLoan } from "@/types/loan.type";
 
 interface loanProps {
-  GetLoanById: LoanRequestResponse;
+  loan: PersonalLoan;
 }
 
-const LoanDetails: React.FC<loanProps> = ({ GetLoanById }) => {
+export const LoanDetails: React.FC<loanProps> = ({ loan }) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(t("companyInformation"));
   const handleOpen = (value: string) => setOpen(open === value ? "" : value);
-
-  const LoanById = GetLoanById.result;
 
   return (
     <div className="flex flex-col gap-y-2  text-black ">
@@ -80,7 +78,7 @@ const LoanDetails: React.FC<loanProps> = ({ GetLoanById }) => {
           </div>
         </div>
         <div className="flex-1">
-          {getLoanDetailsItems({ loanId: LoanById, t })?.map((ele) => (
+          {getLoanDetailsItems({ loanDetails: loan, t })?.map((ele) => (
             <div key={ele?.title}>
               <Accordion open={ele?.title == open}>
                 <AccordionHeader onClick={() => handleOpen(ele?.title)}>
@@ -95,5 +93,3 @@ const LoanDetails: React.FC<loanProps> = ({ GetLoanById }) => {
     </div>
   );
 };
-
-export default LoanDetails;

@@ -1,15 +1,17 @@
 "use client";
-import LoanDetails from "@/components/account/personal-loan/loan-details";
+import { LoanDetails } from "@/components/account/personal-loan/loan-details";
 import { Spinner } from "@/components/shared/spinner.component";
-import { useGetLoanRequestIdQuery } from "@/services/loan.service";
+import { useGetLoanByIdQuery } from "@/services/loan.service";
 import { useParams } from "next/navigation";
 
-const DetailPage = () => {
+const LoanDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { data } = useGetLoanRequestIdQuery(id);
+  const { data } = useGetLoanByIdQuery(id);
 
-  if (!data) {
+  const loan = data?.result;
+
+  if (!loan) {
     return (
       <div className="flex flex-1 items-center justify-center">
         <Spinner />
@@ -19,9 +21,9 @@ const DetailPage = () => {
 
   return (
     <div className="container mb-8 mt-3 mx-auto flex flex-col gap-y-5 ">
-      <LoanDetails GetLoanById={data} />
+      <LoanDetails loan={loan} />
     </div>
   );
 };
 
-export default DetailPage;
+export default LoanDetailsPage;

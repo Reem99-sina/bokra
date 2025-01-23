@@ -65,9 +65,3 @@ export interface LoanDocumentsRequest {
 }
 
 export type LoanForm = AddLoanRequest & LoanDocumentsRequest;
-
-export interface LoanRequestResponse {
-  status: number;
-  result: PersonalLoan;
-  message: string;
-}

@@ -1,7 +1,7 @@
 import { useAuthenticatedQuery } from "@/hooks/authenticated-query.hook";
 import { useFetch } from "@/hooks/fetch.hooks";
 import { IResponse } from "@/types/common.type";
-import { LoanForm, LoanRequestResponse, PersonalLoan } from "@/types/loan.type";
+import { LoanForm, PersonalLoan } from "@/types/loan.type";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useMyLoansQuery = () => {
@@ -63,10 +63,10 @@ export const useSubmitLoanDocumentsMutation = () => {
   });
 };
 
-export const useGetLoanRequestIdQuery = (loanRequestId: string) => {
+export const useGetLoanByIdQuery = (loanRequestId: string) => {
   const { api } = useFetch();
 
-  return useQuery<LoanRequestResponse>({
+  return useQuery<IResponse<PersonalLoan>>({
     queryKey: ["loanRequestId", loanRequestId],
     queryFn: () => {
       return api.get(`/loan/${loanRequestId}`);

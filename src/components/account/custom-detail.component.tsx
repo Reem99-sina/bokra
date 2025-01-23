@@ -8,10 +8,10 @@ import { Checkbox } from "@material-tailwind/react";
 import { PersonalLoan } from "@/types/loan.type";
 
 export const getLoanDetailsItems = ({
-  loanId,
+  loanDetails,
   t,
 }: {
-  loanId: PersonalLoan;
+  loanDetails: PersonalLoan;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   t: any;
 }) => {
@@ -23,27 +23,27 @@ export const getLoanDetailsItems = ({
           <div className="flex flex-col flex-1 p-3 rounded gap-y-3">
             <DisplayDataComponent
               title={t("companyName")}
-              value={loanId.businessInformation?.businessName}
+              value={loanDetails.businessInformation?.businessName}
             />
             <DisplayDataComponent
               title={t("IndustryPartnername")}
-              value={loanId.businessInformation?.industryType}
+              value={loanDetails.businessInformation?.industryType}
             />
             <DisplayDataComponent
               title={t("companyType")}
-              value={loanId.businessInformation?.businessRegNumber}
+              value={loanDetails.businessInformation?.businessRegNumber}
             />
             <DisplayDataComponent
               title={t("busRegistNumber")}
-              value={loanId.businessInformation?.businessRegNumber}
+              value={loanDetails.businessInformation?.businessRegNumber}
             />
             <DisplayDataComponent
               title={t("datOfEst")}
-              value={loanId.createdAt}
+              value={loanDetails.createdAt}
             />
             <DisplayDataComponent
               title={t("technologyType")}
-              value={loanId.businessInformation?.industryType}
+              value={loanDetails.businessInformation?.industryType}
             />
             <DisplayDataComponent
               title={t("companyWebAddress")}
@@ -58,7 +58,7 @@ export const getLoanDetailsItems = ({
             </div>
             <DisplayDataComponent
               title={t("problem")}
-              value={loanId.financialInformation?.liabilities}
+              value={loanDetails.financialInformation?.liabilities}
             />
             <DisplayDataComponent
               title={t("timelines")}
@@ -90,13 +90,16 @@ export const getLoanDetailsItems = ({
           />
           <DisplayDataComponent
             title={t("datOfEst")}
-            value={loanId.createdAt}
+            value={loanDetails.createdAt}
           />
           <DisplayDataComponent
             title={t("phoneNum")}
-            value={loanId.user.phoneNumber}
+            value={loanDetails.user.phoneNumber}
           />
-          <DisplayDataComponent title={t("email")} value={loanId.user.email} />
+          <DisplayDataComponent
+            title={t("email")}
+            value={loanDetails.user.email}
+          />
         </div>
       ),
     },
@@ -105,7 +108,7 @@ export const getLoanDetailsItems = ({
       component: (
         <div className="flex flex-col  flex-1 p-3 rounded gap-y-3">
           <h3 className="font-black">{t("legalDoc")}</h3>
-          {loanId.supportingDocuments.map((doc) => (
+          {loanDetails.supportingDocuments.map((doc) => (
             <DocumnetReview
               key={doc.id}
               url={doc.filePath}
@@ -116,7 +119,7 @@ export const getLoanDetailsItems = ({
             <DisplayDataComponent
               title={t("loan_amount_requested")}
               value={formattedAmount({
-                amount: Number(loanId.loanAmount),
+                amount: Number(loanDetails.loanAmount),
               })}
             />
             <DisplayDataComponent
@@ -137,7 +140,7 @@ export const getLoanDetailsItems = ({
         <div className="flex flex-col  flex-1 p-3 rounded gap-y-3">
           <DisplayDataComponent
             title={t("Annual_Revenue")}
-            value={loanId.financialInformation?.annualRevenue?.toString()}
+            value={loanDetails.financialInformation?.annualRevenue?.toString()}
           />
           <DisplayDataComponent
             title={t("net_profit_margin")}
