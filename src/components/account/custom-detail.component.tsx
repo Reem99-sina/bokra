@@ -1,46 +1,49 @@
 import { ReactNode } from "react";
 import DisplayDataComponent from "../shared/display-data.component";
-import { useTranslation } from "@/translations/clients";
 import { dataLoansDetail } from "@/utils/data.util";
 import DocumnetReview from "../shared/documnet-review";
 import { formattedAmount } from "@/utils/money.util";
 import clsx from "clsx";
 import { Checkbox } from "@material-tailwind/react";
+import { PersonalLoan } from "@/types/loan.type";
 
-export const DataComponents = () => {
-  const { t } = useTranslation();
-
+export const getLoanDetailsItems = ({
+  loanDetails,
+  t,
+}: {
+  loanDetails: PersonalLoan;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  t: any;
+}) => {
   return [
     {
       title: t("companyInformation"),
       component: (
         <>
-          <div className="flex flex-col  flex-1 p-3 rounded gap-y-3">
+          <div className="flex flex-col flex-1 p-3 rounded gap-y-3">
             <DisplayDataComponent
               title={t("companyName")}
-              value={dataLoansDetail?.companyInformation?.companyName}
+              value={loanDetails.businessInformation?.businessName}
             />
             <DisplayDataComponent
               title={t("IndustryPartnername")}
-              value={dataLoansDetail?.companyInformation?.industryPartner}
+              value={loanDetails.businessInformation?.industryType}
             />
             <DisplayDataComponent
               title={t("companyType")}
-              value={dataLoansDetail?.companyInformation?.companyType}
+              value={loanDetails.businessInformation?.businessRegNumber}
             />
             <DisplayDataComponent
               title={t("busRegistNumber")}
-              value={
-                dataLoansDetail?.companyInformation?.businessRegistrationNumber
-              }
+              value={loanDetails.businessInformation?.businessRegNumber}
             />
             <DisplayDataComponent
               title={t("datOfEst")}
-              value={dataLoansDetail?.companyInformation?.dateOfEstablishment}
+              value={loanDetails.createdAt}
             />
             <DisplayDataComponent
               title={t("technologyType")}
-              value={dataLoansDetail?.companyInformation?.industrySector}
+              value={loanDetails.businessInformation?.industryType}
             />
             <DisplayDataComponent
               title={t("companyWebAddress")}
@@ -55,7 +58,7 @@ export const DataComponents = () => {
             </div>
             <DisplayDataComponent
               title={t("problem")}
-              value={dataLoansDetail?.businessPlan?.businessGrowthStrategy}
+              value={loanDetails.financialInformation?.liabilities}
             />
             <DisplayDataComponent
               title={t("timelines")}
@@ -87,15 +90,15 @@ export const DataComponents = () => {
           />
           <DisplayDataComponent
             title={t("datOfEst")}
-            value={dataLoansDetail?.companyInformation?.dateOfEstablishment}
+            value={loanDetails.createdAt}
           />
           <DisplayDataComponent
             title={t("phoneNum")}
-            value={dataLoansDetail?.contactInformation?.phoneNumber}
+            value={loanDetails.user.phoneNumber}
           />
           <DisplayDataComponent
             title={t("email")}
-            value={dataLoansDetail?.contactInformation?.emailAddress}
+            value={loanDetails.user.email}
           />
         </div>
       ),
@@ -105,17 +108,18 @@ export const DataComponents = () => {
       component: (
         <div className="flex flex-col  flex-1 p-3 rounded gap-y-3">
           <h3 className="font-black">{t("legalDoc")}</h3>
-          <DocumnetReview
-            url={dataLoansDetail?.legalDocuments?.commercialRegistration}
-            style={{ borderRadius: "4px" }}
-          />
+          {loanDetails.supportingDocuments.map((doc) => (
+            <DocumnetReview
+              key={doc.id}
+              url={doc.filePath}
+              style={{ borderRadius: "4px" }}
+            />
+          ))}
           <div className="flex flex-col  flex-1 p-3 rounded gap-y-3">
             <DisplayDataComponent
               title={t("loan_amount_requested")}
               value={formattedAmount({
-                amount: Number(
-                  dataLoansDetail?.loanDetails?.loanAmountRequested
-                ),
+                amount: Number(loanDetails.loanAmount),
               })}
             />
             <DisplayDataComponent
@@ -136,19 +140,7 @@ export const DataComponents = () => {
         <div className="flex flex-col  flex-1 p-3 rounded gap-y-3">
           <DisplayDataComponent
             title={t("Annual_Revenue")}
-            value={
-              formattedAmount({
-                amount: Number(
-                  dataLoansDetail?.financials?.annualRevenue?.currentYear
-                ),
-              }) +
-              " - " +
-              formattedAmount({
-                amount: Number(
-                  dataLoansDetail?.financials?.annualRevenue?.previousYear
-                ),
-              })
-            }
+            value={loanDetails.financialInformation?.annualRevenue?.toString()}
           />
           <DisplayDataComponent
             title={t("net_profit_margin")}
@@ -227,6 +219,7 @@ export const DataComponents = () => {
     },
   ];
 };
+
 export const BorderBg3 = ({
   children,
   className,

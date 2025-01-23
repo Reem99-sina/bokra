@@ -6,7 +6,7 @@ import React from "react";
 import { Providers } from "../providers";
 import { Metadata } from "next";
 
-import { Lato } from "next/font/google";
+import { Lato, Cairo } from "next/font/google";
 import clsx from "clsx";
 
 import HolyLoader from "holy-loader";
@@ -23,6 +23,11 @@ interface Props {
 const latoFont = Lato({
   subsets: ["latin"],
   weight: ["300", "400", "700", "900"],
+});
+
+const cairoFont = Cairo({
+  subsets: ["arabic"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -43,7 +48,11 @@ export default async function RootLayout({ children, params }: Props) {
         />
       </head>
 
-      <body className={clsx(latoFont.className)}>
+      <body
+        className={clsx(
+          locale === "ar" ? cairoFont.className : latoFont.className
+        )}
+      >
         <HolyLoader
           color={"white"}
           speed={250}

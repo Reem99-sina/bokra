@@ -67,7 +67,7 @@ const ForgetPasswordForm = () => {
             <div className="my-3" />
             <TextInput
               inputProps={{
-                placeholder: t("id_or_email"),
+                placeholder: t("user_name_or_email"),
                 ...register("email"),
               }}
               errorMessage={errors.email?.message}

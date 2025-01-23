@@ -121,9 +121,9 @@ const PersonalLoanComponent = () => {
         </div>
       ) : (
         <div className="flex justify-center items-center flex-1">
-          <h3 className="text-center text-2xl font-bold text-gray-500">
+          <h6 className="text-center text-2xl font-bold text-gray-500">
             {t("noLoansFound")}
-          </h3>
+          </h6>
         </div>
       )}
 

@@ -6,7 +6,7 @@ const DisplayDataComponent = ({
   icon,
 }: {
   title: string;
-  value: string;
+  value: string | number;
   icon?: ReactNode;
 }) => {
   return (

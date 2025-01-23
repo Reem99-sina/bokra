@@ -11,7 +11,7 @@ const providers = ["google", "facebook", "apple"];
 const GoogleCallbackHandler: React.FC = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { provider } = useParams();
+  const { provider } = useParams<{ provider: string }>();
   const { authenticate } = useAuth();
 
   const { mutateAsync: loginWithSocial } = useLoginWithSocialMutation(

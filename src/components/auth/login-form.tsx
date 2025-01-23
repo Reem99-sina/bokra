@@ -71,7 +71,7 @@ export const LoginForm: React.FC = () => {
             </p>
 
             <span className="text-center text-xs font-black leading-5 text-gray-500">
-              {t("use_email_or_phone")}
+              {t("use_email_or_user_name")}
             </span>
             <span className="text-center text-xs font-black leading-5 text-gray-500">
               {t("access_system")}
@@ -80,12 +80,12 @@ export const LoginForm: React.FC = () => {
             <div className="my-3" />
             <TextInput
               inputProps={{
-                placeholder: t("id_or_email"),
+                placeholder: t("user_name_or_email"),
                 ...register("email", {
                   required: {
                     value: true,
                     message: t("inputRequired", {
-                      inputName: t("id_or_email"),
+                      inputName: t("user_name_or_email"),
                     }),
                   },
                   validate: {

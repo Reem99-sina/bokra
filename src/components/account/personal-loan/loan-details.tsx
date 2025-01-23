@@ -2,7 +2,7 @@
 
 import MainTitleComponent from "@/components/shared/main-title.component";
 import { MdWork } from "react-icons/md";
-import { BorderBg3, DataComponents } from "../custom-detail.component";
+import { BorderBg3, getLoanDetailsItems } from "../custom-detail.component";
 import { useTranslation } from "@/translations/clients";
 import BackNavigation from "@/components/shared/back-navigation";
 import Image from "next/image";
@@ -14,8 +14,13 @@ import {
   AccordionHeader,
 } from "@material-tailwind/react";
 import { useState } from "react";
+import { PersonalLoan } from "@/types/loan.type";
 
-const DetailLona = () => {
+interface loanProps {
+  loan: PersonalLoan;
+}
+
+export const LoanDetails: React.FC<loanProps> = ({ loan }) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(t("companyInformation"));
   const handleOpen = (value: string) => setOpen(open === value ? "" : value);
@@ -73,7 +78,7 @@ const DetailLona = () => {
           </div>
         </div>
         <div className="flex-1">
-          {DataComponents()?.map((ele) => (
+          {getLoanDetailsItems({ loanDetails: loan, t })?.map((ele) => (
             <div key={ele?.title}>
               <Accordion open={ele?.title == open}>
                 <AccordionHeader onClick={() => handleOpen(ele?.title)}>
@@ -88,5 +93,3 @@ const DetailLona = () => {
     </div>
   );
 };
-
-export default DetailLona;
