@@ -1,16 +1,20 @@
 import { ReactNode } from "react";
 import DisplayDataComponent from "../shared/display-data.component";
-import { useTranslation } from "@/translations/clients";
 import { dataLoansDetail } from "@/utils/data.util";
 import DocumnetReview from "../shared/documnet-review";
 import { formattedAmount } from "@/utils/money.util";
 import clsx from "clsx";
 import { Checkbox } from "@material-tailwind/react";
-import { LoanRequest } from "@/types/loan.type";
+import { PersonalLoan } from "@/types/loan.type";
 
-export const DataComponents = ({ loanId }: { loanId: LoanRequest }) => {
-  const { t } = useTranslation();
-
+export const getLoanDetailsItems = ({
+  loanId,
+  t,
+}: {
+  loanId: PersonalLoan;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  t: any;
+}) => {
   return [
     {
       title: t("companyInformation"),
@@ -212,6 +216,7 @@ export const DataComponents = ({ loanId }: { loanId: LoanRequest }) => {
     },
   ];
 };
+
 export const BorderBg3 = ({
   children,
   className,

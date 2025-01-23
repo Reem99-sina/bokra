@@ -9,22 +9,16 @@ const DocumnetReview = ({
 }) => {
   return (
     <div className="">
-    <a
-      href={
-        ""
-      }
-      download={url}
-      target="_blank"
-    >
-      <Image
-        src={"/rectangle.png"}
-        width={200}
-        height={50}
-        alt="document icon"
-        style={style}
-      />
-    </a>
-  </div>
+      <a href={url} download target="_blank" rel="noopener noreferrer">
+        <Image
+          src={"/rectangle.png"}
+          width={200}
+          height={50}
+          alt="document icon"
+          style={style}
+        />
+      </a>
+    </div>
   );
 };
 

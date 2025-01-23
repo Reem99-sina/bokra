@@ -63,7 +63,7 @@ export const useSubmitLoanDocumentsMutation = () => {
   });
 };
 
-export const useGetLoanRequestIdQuery = (loanRequestId: number) => {
+export const useGetLoanRequestIdQuery = (loanRequestId: string) => {
   const { api } = useFetch();
 
   return useQuery<LoanRequestResponse>({

@@ -82,6 +82,12 @@ const AddLoan = () => {
         await addLoanDocuments({ ...data, loanId: loan.result.id });
       }
 
+      await new Promise<void>((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, 1000);
+      });
+
       await queryClient.invalidateQueries({ queryKey: ["my-loans"] });
 
       toast.success(t("loanAddedSuccessfully"));

@@ -2,7 +2,7 @@
 
 import MainTitleComponent from "@/components/shared/main-title.component";
 import { MdWork } from "react-icons/md";
-import { BorderBg3, DataComponents } from "../custom-detail.component";
+import { BorderBg3, getLoanDetailsItems } from "../custom-detail.component";
 import { useTranslation } from "@/translations/clients";
 import BackNavigation from "@/components/shared/back-navigation";
 import Image from "next/image";
@@ -80,7 +80,7 @@ const LoanDetails: React.FC<loanProps> = ({ GetLoanById }) => {
           </div>
         </div>
         <div className="flex-1">
-          {DataComponents({ loanId: LoanById })?.map((ele) => (
+          {getLoanDetailsItems({ loanId: LoanById, t })?.map((ele) => (
             <div key={ele?.title}>
               <Accordion open={ele?.title == open}>
                 <AccordionHeader onClick={() => handleOpen(ele?.title)}>

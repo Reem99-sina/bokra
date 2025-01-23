@@ -2,11 +2,12 @@
 import LoanDetails from "@/components/account/personal-loan/loan-details";
 import { Spinner } from "@/components/shared/spinner.component";
 import { useGetLoanRequestIdQuery } from "@/services/loan.service";
+import { useParams } from "next/navigation";
 
-const DetailPage = ({ params }: { params: { id: string } }) => {
-  const loanRequestId = Number(params.id);
+const DetailPage = () => {
+  const { id } = useParams<{ id: string }>();
 
-  const { data } = useGetLoanRequestIdQuery(loanRequestId);
+  const { data } = useGetLoanRequestIdQuery(id);
 
   if (!data) {
     return (
