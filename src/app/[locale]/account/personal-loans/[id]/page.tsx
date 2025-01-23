@@ -1,19 +1,24 @@
 "use client";
-import DetailLona from "@/components/account/personal-loan/detail-lona";
-// import { dataLoans } from "@/utils/data.util";
-// import { useParams } from "next/navigation";
-// import { useMemo } from "react";
+import LoanDetails from "@/components/account/personal-loan/loan-details";
+import { Spinner } from "@/components/shared/spinner.component";
+import { useGetLoanRequestIdQuery } from "@/services/loan.service";
 
-const DetailPage = () => {
-//   const { id } = useParams();
-//   const detailId = useMemo(() => {
+const DetailPage = ({ params }: { params: { id: string } }) => {
+  const loanRequestId = Number(params.id);
 
-//     return dataLoans.find((ele, index) => index + 1 == Number(id));
-//   }, [id, dataLoans]);
-  
+  const { data } = useGetLoanRequestIdQuery(loanRequestId);
+
+  if (!data) {
+    return (
+      <div className="flex flex-1 items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
+
   return (
     <div className="container mb-8 mt-3 mx-auto flex flex-col gap-y-5 ">
-      <DetailLona />
+      <LoanDetails GetLoanById={data} />
     </div>
   );
 };

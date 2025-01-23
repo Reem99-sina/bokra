@@ -65,3 +65,24 @@ export interface LoanDocumentsRequest {
 }
 
 export type LoanForm = AddLoanRequest & LoanDocumentsRequest;
+
+export interface LoanRequestResponse {
+  status: number;
+  result: LoanRequest;
+  message: string;
+}
+
+export interface LoanRequest {
+  id: number;
+  loanAmount: number;
+  loanCurrency: string;
+  loanPurpose: string;
+  status: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+  businessInformation: BusinessInformation;
+  financialInformation: FinancialInformation;
+  supportingDocuments: SupportingDocument[];
+  user: IUser;
+}
