@@ -6,13 +6,14 @@ import { useMutation } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 
 export const useUserQuery = () => {
-  const { authData } = useAuth();
+  const { authData, logout } = useAuth();
 
   return useAuthenticatedQuery<IUser>({
     queryKey: ["user", authData?.token],
     queryFn: async () => {
       return new Promise<IUser>((resolve) => {
         if (!authData?.user) {
+          logout();
           throw new Error("User not found");
         }
 
