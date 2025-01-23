@@ -1,9 +1,9 @@
 export default {
   login: "تسجيل الدخول",
   logout: "تسجيل الخروج",
-  use_email_or_phone: "يمكنك استخدام بريدك الإلكتروني أو رقم هاتفك المحمول",
+  use_email_or_user_name: "يمكنك استخدام بريدك الإلكتروني أو اسم المستخدم  ",
   access_system: "للوصول إلى النظام",
-  id_or_email: "رقم الهاتف / البريد الإلكتروني",
+  user_name_or_email: "اسم المستخدم/ البريد الإلكتروني",
   password: "كلمة المرور",
   welcome: "مرحباً!",
   not_allowed: "غير مسموح",

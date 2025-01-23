@@ -93,7 +93,7 @@ export const RegisterForm: React.FC = () => {
             </span>
 
             <span className="text-center text-xs font-normal leading-5 text-gray-500">
-              {t("use_email_or_phone")}
+              {t("use_email_or_user_name")}
             </span>
             <span className="text-center text-xs font-normal leading-5 text-gray-500">
               {t("access_system")}

@@ -1,9 +1,9 @@
 export default {
   login: "Login",
   logout: "Logout",
-  use_email_or_phone: "You can use your email or mobile number",
+  use_email_or_user_name: "You can use your email or user name",
   access_system: "to access the system",
-  id_or_email: "Phone number / Email",
+  user_name_or_email: "User name / Email",
   password: "Password",
   welcome: "Welcome!",
   not_allowed: "Not allowed",
