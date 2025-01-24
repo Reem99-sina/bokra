@@ -37,7 +37,7 @@ const ForgetPasswordForm = () => {
   };
 
   return (
-    <div className={`mt-2 flex h-screen w-full items-center justify-center `}>
+    <div className={`mt-2 flex  w-full items-center justify-center `}>
       <div className="rounded-md border border-[#DCDFE4]">
         <div
           // onSubmit={handleSubmit(onSubmit)}

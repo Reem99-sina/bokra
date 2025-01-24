@@ -21,6 +21,9 @@ import { Select } from "../shared/select.component";
 import { useAuth } from "@/hooks/auth.hook";
 import { useState } from "react";
 import { OverflowLoading } from "../shared/overflow-loading";
+import { Checkbox } from "@material-tailwind/react";
+import clsx from "clsx";
+import ErrorInputComponent from "../shared/form/error-input.component";
 
 export const RegisterForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,12 +41,24 @@ export const RegisterForm: React.FC = () => {
     },
   });
   const { authenticate } = useAuth();
+  const [termsCheckedState, setTermsCheckedState] = useState<{
+    checked: boolean;
+    error: string | null;
+  }>({
+    checked: false,
+    error: null,
+  });
 
   const { t, lang } = useTranslation();
   const { mutate } = useRegisterMutation();
   const { mutateAsync: login } = useLoginMutation();
 
   const onSubmit: SubmitHandler<IUserRegisterRequest> = async (data) => {
+    if (!termsCheckedState.checked) {
+      setTermsCheckedState({ checked: false, error: t("termsError") });
+
+      return;
+    }
     setIsLoading(true);
     mutate(
       { ...data, phoneNumber: `+${data.phoneNumber}` },
@@ -260,14 +275,48 @@ export const RegisterForm: React.FC = () => {
                     );
                   }}
                 />
+
+                <div
+                  className=" flex flex-wrap gap-x-1 items-center"
+                  onClick={() => {
+                    setTermsCheckedState({
+                      checked: !termsCheckedState.checked,
+                      error: null,
+                    });
+                  }}
+                >
+                  <Checkbox
+                    crossOrigin={undefined}
+                    checked={termsCheckedState.checked}
+                    onChange={(e) => {
+                      setTermsCheckedState({
+                        checked: e.target.checked,
+                        error: null,
+                      });
+                    }}
+                  />
+                  <h3
+                    className={clsx(
+                      "text-black font-normal text-xs cursor-pointer"
+                    )}
+                  >
+                    {t("terms_and_conditions")}
+                  </h3>
+                </div>
+                {termsCheckedState.error && (
+                  <ErrorInputComponent errorMessage={termsCheckedState.error} />
+                )}
               </div>
 
               <div className="mb-2 flex flex-col gap-y-3">
                 <div className="flex w-full">
                   <Button
-                    className="w-full justify-center rounded bg-black !px-3 !py-2 !font-bold "
+                    className={
+                      "w-full justify-center rounded bg-black !px-3 !py-2 !font-bold "
+                    }
                     type="submit"
                     text={t("register")}
+                    disabled={!!termsCheckedState.error}
                   />
                 </div>
                 <Link
@@ -291,7 +340,10 @@ export const RegisterForm: React.FC = () => {
                     type="submit"
                     startIcon={<GoogleIcon className="mx-3" />}
                     text={t("registerwithGoogle")}
-                    onClick={() => {}}
+                    onClick={() => {
+                      window.location.href =
+                        process.env.NEXT_PUBLIC_BASE_URL + "/auth/google/login";
+                    }}
                   />
                 </div>
               </div>

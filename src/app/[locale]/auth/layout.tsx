@@ -23,5 +23,5 @@ export default function AuthLayout({
     return <ScreenLoader />;
   }
 
-  return <>{children}</>;
+  return children;
 }
