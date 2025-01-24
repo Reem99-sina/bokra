@@ -22,18 +22,18 @@ function AccountLayout({ children }: Props) {
   }, [user, isLoadingUser]);
 
   return (
-    <div className="flex flex-1 flex-col">
-      <div className={clsx("flex flex-1 flex-col  sm:flex-row min-h-auto")}>
-        <div
-          className={clsx("hidden sm:block h-full bg-beige bg-opacity-20 ps-4")}
-        >
-          <Sidebar />
-        </div>
-        <div className={clsx(" block  sm:hidden bg-bg3")}>
-          <MobileTabs />
-        </div>
-        <div className="flex flex-1 pb-8  bg-white  sm:container w-full mt-8">
-          {children}
+    <div className="flex flex-1 flex-col bg-bg3">
+      <div className="container mx-auto flex-1 flex flex-col">
+        <div className={clsx("flex flex-1 flex-col  sm:flex-row")}>
+          <div className={clsx("hidden sm:block h-full bg-opacity-20")}>
+            <Sidebar />
+          </div>
+          <div className={clsx(" block  sm:hidden bg-bg3")}>
+            <MobileTabs />
+          </div>
+          <div className="container  flex  flex-1  bg-white pt-8 overflow-hidden">
+            {children}
+          </div>
         </div>
       </div>
     </div>
