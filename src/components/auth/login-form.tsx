@@ -51,7 +51,7 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="mt-3">
+    <div>
       <div className="rounded-md border border-[#DCDFE4]">
         <div className="flex  max-w-[568px] sm:w-[568px] flex-col rounded-xl bg-white ">
           <div className="flex items-center justify-center  w-full py-4 bg-black rounded-t-md">
