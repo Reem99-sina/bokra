@@ -23,19 +23,15 @@ function AccountLayout({ children }: Props) {
 
   return (
     <div className="flex flex-1 flex-col bg-bg3">
-      <div className="container mx-auto">
-        <div className={clsx("flex flex-1 flex-col  sm:flex-row min-h-auto ")}>
-          <div
-            className={clsx(
-              "hidden sm:block h-full bg-opacity-20 ps-4"
-            )}
-          >
+      <div className="container mx-auto flex-1 flex flex-col">
+        <div className={clsx("flex flex-1 flex-col  sm:flex-row")}>
+          <div className={clsx("hidden sm:block h-full bg-opacity-20")}>
             <Sidebar />
           </div>
           <div className={clsx(" block  sm:hidden bg-bg3")}>
             <MobileTabs />
           </div>
-          <div className="container  flex w-[70%] flex-1  bg-white pt-8">
+          <div className="container  flex  flex-1  bg-white pt-8 overflow-hidden">
             {children}
           </div>
         </div>
