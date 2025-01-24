@@ -277,7 +277,7 @@ export const RegisterForm: React.FC = () => {
                 />
 
                 <div
-                  className=" flex flex-wrap gap-x-1 my-2 items-center"
+                  className=" flex flex-wrap gap-x-1 items-center"
                   onClick={() => {
                     setTermsCheckedState({
                       checked: !termsCheckedState.checked,
@@ -340,7 +340,10 @@ export const RegisterForm: React.FC = () => {
                     type="submit"
                     startIcon={<GoogleIcon className="mx-3" />}
                     text={t("registerwithGoogle")}
-                    onClick={() => {}}
+                    onClick={() => {
+                      window.location.href =
+                        process.env.NEXT_PUBLIC_BASE_URL + "/auth/google/login";
+                    }}
                   />
                 </div>
               </div>
