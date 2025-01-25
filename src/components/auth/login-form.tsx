@@ -50,7 +50,7 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="flex  max-w-[568px] sm:w-[568px] flex-col ">
+    <div className="flex  w-full flex-col">
       <div className="h-[1px] w-full bg-grayLight"></div>
       <div className="px-14 pb-6 pt-6 flex flex-col">
         <p className="mb-4 text-center text-2xl font-black text-black justify-self-center w-full">

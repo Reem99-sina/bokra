@@ -41,7 +41,9 @@ export default function AuthLayout({
               className="py-4"
             />
           </div>
-          <div>{children}</div>
+          <div className="flex max-w-[568px] sm:w-[568px] flex-col">
+            {children}
+          </div>
         </div>
       </div>
     </>
