@@ -35,8 +35,6 @@ export const FooterCopyright = () => {
     <footer className={clsx("bg-black  shadow  py-6 ")}>
       <div className=" flex flex-col items-center justify-center container mx-auto">
         <div className="text-start text-white flex  items-center gap-4  w-full">
-          {/* <img src="/valoro.png" alt="Logo" className="w-12 h-12 mr-2" /> */}
-
           <div className="  flex justify-between w-full flex-wrap gap-5">
             {social.map(({ title, child }) => (
               <div key={title} className="flex items-center gap-3">
