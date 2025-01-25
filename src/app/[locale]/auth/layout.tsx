@@ -28,9 +28,9 @@ export default function AuthLayout({
 
   return (
     <>
-      <div className="flex  justify-center items-center flex-1 bg-beige  ">
-        <div className="border flex flex-col  border-[#DCDFE4] justify-center rounded-lg !bg-white">
-          <div className="flex items-center justify-center  w-full  bg-black rounded-t-lg ">
+      <div className="flex  justify-center items-center flex-1 sm:bg-beige  py-10 bg-[url('/auth-bg.jpg')] bg-cover bg-left">
+        <div className="sm:border flex flex-col  sm:border-[#DCDFE4] justify-center rounded-lg sm:!bg-white ">
+          <div className="sm:flex items-center justify-center  w-full  bg-black rounded-t-lg hidden">
             <Image
               src={
                 lang == "ar" ? "/bokra-gray-arabic.png" : "/bokra-gray-eng.png"
