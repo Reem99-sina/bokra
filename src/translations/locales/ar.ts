@@ -13,7 +13,7 @@ export default {
   registerwithfacebook: "التسجيل عبر فيسبوك",
   registerwithGoogle: "التسجيل عبر جوجل",
   alreadyHaveAccount: "لديك حساب بالفعل",
-  dontHaveAccount: "ليس لديك حساب",
+  dontHaveAccount: "ليس لديك حساب ؟",
   forgetPassword: "نسيت كلمة المرور",
   loginwithfacebook: "المتابعة باستخدام فيسبوك",
   loginwithGoogle: "المتابعة باستخدام جوجل",

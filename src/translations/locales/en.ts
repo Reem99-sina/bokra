@@ -13,7 +13,7 @@ export default {
   registerwithfacebook: "Sign up with facebook",
   registerwithGoogle: "Sign up with google",
   alreadyHaveAccount: "Already have account",
-  dontHaveAccount: "Don't have account",
+  dontHaveAccount: "Don't have account ?",
   forgetPassword: "Forget password",
   loginwithfacebook: "Continue with facebook",
   loginwithGoogle: "Continue with google",

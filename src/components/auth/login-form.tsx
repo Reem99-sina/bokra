@@ -8,10 +8,10 @@ import { useTranslation } from "@/translations/clients";
 import { Button } from "../shared/button.component";
 import { toast } from "@/lib/toast";
 import Link from "next/link";
-import { FacebookIcon, GoogleIcon } from "@/icon";
 import { validateInput } from "@/utils/validate.userName";
 import { useAuth } from "@/hooks/auth.hook";
 import { useLoginMutation } from "@/services/profile.service";
+import { SocialButtons } from "./social-buttons";
 
 export const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -134,27 +134,7 @@ export const LoginForm: React.FC = () => {
               {t("forgetPassword")}
             </Link>
           </div>
-          <div className="flex w-full">
-            <Button
-              className="w-full justify-center rounded bg-white border !text-black !text-base !px-3 !py-2 !font-bold"
-              type="submit"
-              startIcon={<FacebookIcon className="mx-3" />}
-              text={t("loginwithfacebook")}
-              onClick={() => {}}
-            />
-          </div>
-          <div className="flex w-full">
-            <Button
-              className="w-full justify-center rounded bg-white border !text-black !text-base !px-3 !py-2 !font-bold"
-              type="submit"
-              startIcon={<GoogleIcon className="mx-3" />}
-              text={t("loginwithGoogle")}
-              onClick={() => {
-                window.location.href =
-                  process.env.NEXT_PUBLIC_BASE_URL + "/auth/google/login";
-              }}
-            />
-          </div>
+          <SocialButtons />
         </div>
 
         <div className="mb-1 mt-3 flex w-full items-center justify-evenly text-xs font-bold text-gray-500">

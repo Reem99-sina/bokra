@@ -7,7 +7,7 @@ import { TextInput } from "../shared/form/text-input.component";
 import { useTranslation } from "@/translations/clients";
 import { Button } from "../shared/button.component";
 import { toast } from "@/lib/toast";
-import { FacebookIcon, GoogleIcon } from "@/icon";
+
 import Link from "next/link";
 import PhoneNumber from "../shared/phone-number";
 import {
@@ -23,6 +23,7 @@ import { OverflowLoading } from "../shared/overflow-loading";
 import { Checkbox } from "@material-tailwind/react";
 import clsx from "clsx";
 import ErrorInputComponent from "../shared/form/error-input.component";
+import { SocialButtons } from "./social-buttons";
 
 export const RegisterForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -311,24 +312,8 @@ export const RegisterForm: React.FC = () => {
             >
               {t("alreadyHaveAccount")}
             </Link>
-            <div className="flex w-full">
-              <Button
-                className="w-full justify-center rounded bg-white border !text-black !text-base !px-3 !py-2 !font-bold"
-                type="submit"
-                startIcon={<FacebookIcon className="mx-3" />}
-                text={t("registerwithfacebook")}
-                onClick={() => {}}
-              />
-            </div>
-            <div className="flex w-full">
-              <Button
-                className="w-full justify-center rounded bg-white border !text-black !text-base !px-3 !py-2 !font-bold"
-                type="submit"
-                startIcon={<GoogleIcon className="mx-3" />}
-                text={t("registerwithGoogle")}
-                onClick={() => {}}
-              />
-            </div>
+
+            <SocialButtons />
           </div>
         </form>
 
