@@ -31,7 +31,7 @@ function AccountLayout({ children }: Props) {
           <div className={clsx(" block  sm:hidden bg-bg3")}>
             <MobileTabs />
           </div>
-          <div className="container  flex  flex-1  bg-white pt-8 overflow-hidden">
+          <div className="container  flex  flex-1  bg-white py-8 overflow-hidden">
             {children}
           </div>
         </div>
