@@ -23,7 +23,8 @@ const DataLoan = () => {
     title?: string;
     accessor: string;
   }[] = [
-    { title: t("loanId"), accessor: "loanId" },
+    { title: t("loanName"), accessor: "loanId" },
+    { title: t("loanAmount"), accessor: "loanAmount" },
     { title: t("start_date"), accessor: "start_date" },
     { title: t("end_date"), accessor: "end_date" },
     { title: t("payment_term"), accessor: "payment_term" },
@@ -32,7 +33,6 @@ const DataLoan = () => {
     { title: t("on_time_payment"), accessor: "on_time_payments" },
     { title: t("late_payments"), accessor: "late_payments" },
     { title: t("missed_payments"), accessor: "missed_payments" },
-    { title: t("loanAmount"), accessor: "loanAmount" },
     { title: t("action"), accessor: "action" },
   ];
   const items = useMemo(() => {
@@ -48,7 +48,13 @@ const DataLoan = () => {
       loanId: (
         <div className="flex items-center gap-2">
           <FaCashRegister />
-          <p>{ele?.businessRegNumber}</p>
+          <Link
+            href={`/account/personal-loans/1`}
+            target="_parent"
+            className="hover:underline cursor-pointer"
+          >
+            {t("loanName")}
+          </Link>
         </div>
       ),
       start_date: (
@@ -89,14 +95,6 @@ const DataLoan = () => {
             className=" bg-black !px-3 !py-2 text-xs text-white rounded-md block"
             onClick={() => drawerRef.current?.open()}
           />
-
-          <Link
-            href={"/account/personal-loans/1"}
-            className=" bg-white px-3 py-2 text-xs text-black  block border rounded-md"
-            target="_parent"
-          >
-            {t("viewDetails")}
-          </Link>
         </div>
       ),
     }));

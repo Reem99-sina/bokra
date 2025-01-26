@@ -1,11 +1,11 @@
 "use client";
-import { Button } from "@/components/shared/button.component";
+// import { Button } from "@/components/shared/button.component";
 import { TextInput } from "@/components/shared/form/text-input.component";
 import MainTitleComponent from "@/components/shared/main-title.component";
 import { useUser } from "@/hooks/user.hooks";
 import { useTranslation } from "@/translations/clients";
 import { IUser, UserInput } from "@/types/user.type";
-import clsx from "clsx";
+// import clsx from "clsx";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -123,7 +123,7 @@ const AccountComponent = () => {
             />
           </div>
         </div>
-        <div className="">
+        {/* <div className="">
           <div className="flex max-w-[1300px] justify-end p-4 gap-x-4">
             <Button
               className={clsx(
@@ -142,7 +142,7 @@ const AccountComponent = () => {
               type="button"
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

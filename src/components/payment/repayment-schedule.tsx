@@ -13,6 +13,7 @@ import { Modal, ModalRef } from "../shared/modal.component";
 
 import PaymentPage from "@/app/[locale]/payment/page";
 import { Button } from "../shared/button.component";
+import Link from "next/link";
 
 const RepaymentSchedule = () => {
   const modalRef = useRef<ModalRef>(null);
@@ -22,20 +23,28 @@ const RepaymentSchedule = () => {
     title?: string;
     accessor: string;
   }[] = [
+    { title: t("loanName"), accessor: "loanName" },
+
     { title: t("transactionID"), accessor: "transactionID" },
     { title: t("transactionAmount"), accessor: "transactionAmount" },
     { title: t("transactionDate"), accessor: "transactionDate" },
     { title: t("status"), accessor: "status" },
-    { title: t("transactionType"), accessor: "transactionType" },
-    { title: t("paymentMethod"), accessor: "paymentMethod" },
-    { title: t("Name"), accessor: "name" },
-    { title: t("address"), accessor: "address" },
-    { title: t("phoneNum"), accessor: "phone" },
-    { title: t("email"), accessor: "email" },
+
     { title: t("action"), accessor: "action" },
   ];
   const items = useMemo(() => {
     return financialTransactions?.map((ele) => ({
+      loanName: (
+        <div>
+          <Link
+            href={`/account/personal-loans/1`}
+            target="_parent"
+            className="hover:underline cursor-pointer"
+          >
+            {t("loanName")}
+          </Link>
+        </div>
+      ),
       transactionID: ele?.transactionID,
       transactionAmount: (
         <div>{formattedAmount({ amount: Number(ele?.transactionAmount) })}</div>
