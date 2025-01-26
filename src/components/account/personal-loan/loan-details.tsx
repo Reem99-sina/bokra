@@ -48,7 +48,7 @@ export const LoanDetails: React.FC<loanProps> = ({ loan }) => {
             <BorderBg3>
               <DisplayDataComponent
                 title={t("technologyType")}
-                value={dataLoansDetail?.companyInformation?.industrySector}
+                value={loan.businessInformation?.industryType}
               />
             </BorderBg3>
             <BorderBg3>
