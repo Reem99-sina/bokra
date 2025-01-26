@@ -4,8 +4,8 @@ import { dataLoansDetail } from "@/utils/data.util";
 import DocumnetReview from "../shared/documnet-review";
 import { formattedAmount } from "@/utils/money.util";
 import clsx from "clsx";
-import { Checkbox } from "@material-tailwind/react";
 import { PersonalLoan } from "@/types/loan.type";
+import moment from "moment";
 
 export const getLoanDetailsItems = ({
   loanDetails,
@@ -27,11 +27,11 @@ export const getLoanDetailsItems = ({
             />
             <DisplayDataComponent
               title={t("IndustryPartnername")}
-              value={loanDetails.businessInformation?.industryType}
+              value={loanDetails.user.fullName}
             />
             <DisplayDataComponent
               title={t("companyType")}
-              value={loanDetails.businessInformation?.businessRegNumber}
+              value={dataLoansDetail.companyInformation.companyType}
             />
             <DisplayDataComponent
               title={t("busRegistNumber")}
@@ -39,20 +39,15 @@ export const getLoanDetailsItems = ({
             />
             <DisplayDataComponent
               title={t("datOfEst")}
-              value={loanDetails.createdAt}
+              value={moment(
+                dataLoansDetail.companyInformation.dateOfEstablishment
+              ).format("YYYY / MM / DD")}
             />
             <DisplayDataComponent
               title={t("technologyType")}
               value={loanDetails.businessInformation?.industryType}
             />
-            <DisplayDataComponent
-              title={t("companyWebAddress")}
-              value={dataLoansDetail?.companyInformation?.companyWebsite}
-            />
-            <DisplayDataComponent
-              title={t("companyLinkedin")}
-              value={dataLoansDetail?.companyInformation?.companyLinkedIn}
-            />
+
             <div>
               <h3 className="font-black">{t("business_plan")}</h3>
             </div>
@@ -86,12 +81,9 @@ export const getLoanDetailsItems = ({
           />
           <DisplayDataComponent
             title={t("personName")}
-            value={dataLoansDetail?.contactInformation?.contactPerson}
+            value={loanDetails.user.fullName}
           />
-          <DisplayDataComponent
-            title={t("datOfEst")}
-            value={loanDetails.createdAt}
-          />
+
           <DisplayDataComponent
             title={t("phoneNum")}
             value={loanDetails.user.phoneNumber}
@@ -108,13 +100,15 @@ export const getLoanDetailsItems = ({
       component: (
         <div className="flex flex-col  flex-1 p-3 rounded gap-y-3">
           <h3 className="font-black">{t("legalDoc")}</h3>
-          {loanDetails.supportingDocuments.map((doc) => (
-            <DocumnetReview
-              key={doc.id}
-              url={doc.filePath}
-              style={{ borderRadius: "4px" }}
-            />
-          ))}
+          <div className="flex gap-1">
+            {loanDetails.supportingDocuments.map((doc) => (
+              <DocumnetReview
+                key={doc.id}
+                url={doc.filePath}
+                style={{ borderRadius: "4px", width: "100px", height: "100px" }}
+              />
+            ))}
+          </div>
           <div className="flex flex-col  flex-1 p-3 rounded gap-y-3">
             <DisplayDataComponent
               title={t("loan_amount_requested")}
@@ -182,7 +176,7 @@ export const getLoanDetailsItems = ({
             url={
               "https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44678.pdf"
             }
-            style={{ borderRadius: "7px" }}
+            style={{ borderRadius: "4px", width: "100px", height: "100px" }}
           />
         </div>
       ),
@@ -203,17 +197,6 @@ export const getLoanDetailsItems = ({
             title={t("marketTrends")}
             value={dataLoansDetail?.industryAnalysis?.marketTrends}
           />
-        </div>
-      ),
-    },
-    {
-      title: t("additional_information"),
-      component: (
-        <div className=" flex flex-wrap gap-x-3 my-2 items-center">
-          <Checkbox crossOrigin={undefined} />
-          <h3 className="text-black font-bold text-sm">
-            {t("terms_conditions")}
-          </h3>
         </div>
       ),
     },
