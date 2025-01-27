@@ -274,4 +274,5 @@ trends. `,
   youHaveSuccessfullyLoggedIn: "You have successfully logged in",
   passwordResetLinkSent: "Password reset link sent successfully",
   noLoansFound: "No loans found",
+  loanName:"Loan Name"
 } as const;

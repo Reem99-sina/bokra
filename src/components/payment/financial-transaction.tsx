@@ -6,34 +6,42 @@ import { FilterHistoryLoans, financialTransactions } from "@/utils/data.util";
 import { MdPayments } from "react-icons/md";
 import { useMemo } from "react";
 import { formattedAmount } from "@/utils/money.util";
-import { formatPhoneNumber } from "@/utils/formatNumber";
 import SearchComponent from "@/components/shared/search-component";
 import clsx from "clsx";
 import { FormProvider, useForm } from "react-hook-form";
 import { Line } from "../shared/line.component";
 import FilterComponent from "../shared/filter-component";
 import { Button } from "../shared/button.component";
+import Link from "next/link";
 
 const FinancialTransaction = () => {
   const { t } = useTranslation();
-  const formdata=useForm()
+  const formdata = useForm();
   const columns: {
     title?: string;
     accessor: string;
   }[] = [
+    { title: t("loanName"), accessor: "loanName" },
     { title: t("transactionID"), accessor: "transactionID" },
     { title: t("transactionAmount"), accessor: "transactionAmount" },
     { title: t("transactionDate"), accessor: "transactionDate" },
     { title: t("transactionType"), accessor: "transactionType" },
     { title: t("status"), accessor: "status" },
     { title: t("paymentMethod"), accessor: "paymentMethod" },
-    { title: t("Name"), accessor: "name" },
-    { title: t("address"), accessor: "address" },
-    { title: t("phoneNum"), accessor: "phone" },
-    { title: t("email"), accessor: "email" },
   ];
   const items = useMemo(() => {
     return financialTransactions?.map((ele) => ({
+      loanName: (
+        <div>
+          <Link
+            href={`/account/personal-loans/1`}
+            target="_parent"
+            className="hover:underline cursor-pointer"
+          >
+            {t("loanName")}
+          </Link>
+        </div>
+      ),
       transactionID: ele?.transactionID,
       transactionAmount: (
         <div>{formattedAmount({ amount: Number(ele?.transactionAmount) })}</div>
@@ -57,12 +65,7 @@ const FinancialTransaction = () => {
           </p>
         </div>
       ),
-      name: ele?.senderReceiverInfo?.name,
-      address: ele?.senderReceiverInfo?.address,
-      phone: formatPhoneNumber(
-        Number(ele?.senderReceiverInfo?.phone.replace("+", ""))
-      ),
-      email: ele?.senderReceiverInfo?.email,
+     
     }));
   }, [financialTransactions]);
 
