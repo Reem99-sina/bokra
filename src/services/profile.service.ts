@@ -1,24 +1,19 @@
-import { useAuth } from "@/hooks/auth.hook";
 import { useAuthenticatedQuery } from "@/hooks/authenticated-query.hook";
 import { useFetch } from "@/hooks/fetch.hooks";
+import { IResponse } from "@/types/common.type";
 import { IUser, LoginResponse, RegisterResponse } from "@/types/user.type";
 import { useMutation } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 
 export const useUserQuery = () => {
-  const { authData, logout } = useAuth();
+  const { api } = useFetch();
 
   return useAuthenticatedQuery<IUser>({
-    queryKey: ["user", authData?.token],
+    queryKey: ["user"],
     queryFn: async () => {
-      return new Promise<IUser>((resolve) => {
-        if (!authData?.user) {
-          logout();
-          throw new Error("User not found");
-        }
+      const response: IResponse<{ user: IUser }> = await api.get("/user");
 
-        resolve(authData?.user as IUser);
-      });
+      return response.result?.user;
     },
   });
 };
