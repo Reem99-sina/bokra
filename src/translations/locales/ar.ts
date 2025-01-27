@@ -273,4 +273,8 @@ export default {
   noLoansFound: "لم يتم العثور على قروض",
   loanName: "اسم القرض",
   contactPersonName: "اسم الشخصي ",
+  establishmentDate: "تاريخ التأسيس",
+  industrySector: "قطاع الصناعة",
+  webSiteAddress: "عنوان الموقع الإلكتروني",
+  linkedInLink: "رابط لينكدإن",
 } as const;

@@ -1,5 +1,5 @@
 import { useFetch } from "@/hooks/fetch.hooks";
-import { PersonalInfo, PersonalInfoResponse } from "@/types/user.type";
+import { CompanyInfo, CompanyInfoResponse, PersonalInfo, PersonalInfoResponse } from "@/types/user.type";
 import { useMutation } from "@tanstack/react-query";
 
 export const usePersonalInfoMutation = () => {
@@ -11,3 +11,12 @@ export const usePersonalInfoMutation = () => {
     },
   });
 };
+export const useCompanyInfoMutation = () => {
+    const { api } = useFetch();
+  
+    return useMutation<CompanyInfoResponse, { message: string,statusCode:number }, CompanyInfo>({
+      mutationFn: (data) => {
+        return api.post("/user/company-information", data);
+      },
+    });
+  };

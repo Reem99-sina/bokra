@@ -6,7 +6,7 @@ export interface IUser {
   password: string;
   industryField: "IT" | "business Owner";
   phoneNumber: string;
-  status: "pending";
+  status: "pending"|"apply-personal-info"|"apply-company-info";
   createdAt: string;
   updatedAt: string;
   idImage: null;
@@ -89,5 +89,25 @@ export interface PersonalInfoResponse {
 }
 export interface PresonalError {
   message: string;
+  status: number;
+}
+
+export interface CompanyInfo {
+  name: string;
+  type: string;
+  businessRegistrationNumber: string;
+  establishmentDate: string;
+  industrySector: string;
+  webSiteAddress: string;
+  linkedInLink: string;
+}
+export interface CompanyInfoResponse {
+  message: string;
+  result: CompanyInfo & {
+    userId: number;
+    updatedAt: string;
+    createdAt: string;
+    id: number;
+  };
   status: number;
 }

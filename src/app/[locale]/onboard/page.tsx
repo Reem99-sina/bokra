@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { Stepper, Step } from "@material-tailwind/react";
 
 import {
@@ -12,9 +12,21 @@ import {
 } from "react-icons/fa";
 import { WelcomeStep } from "@/components/onboard/welcome-step.component";
 import PersonalInformationComponent from "@/components/onboard/personal-information.component";
+import CompanyInformationComponent from "@/components/onboard/company-information.component";
+import { useUser } from "@/hooks/user.hooks";
+import { IUser } from "@/types/user.type";
 
 export default function Onboard() {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const { user } = useUser();
+  const initialStep = useMemo(() => {
+    return (user as IUser)?.status == "apply-personal-info"
+      ? 2
+      :(user as IUser)?.status == "apply-company-info"?3: 0;
+  }, [user]);
+  const [activeStep, setActiveStep] = React.useState(initialStep);
+  React.useEffect(() => {
+    setActiveStep(initialStep);
+  }, [initialStep]);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -38,12 +50,12 @@ export default function Onboard() {
     {
       title: "Company Information",
       Icon: FaBuilding,
-      Component: <div onClick={handlePrev}>Company Details</div>,
+      Component: <CompanyInformationComponent onNext={handleNext} />,
     },
     {
       title: "Document Upload",
       Icon: FaFile,
-      Component: <div>Document Upload</div>,
+      Component: <div onClick={handlePrev}>Document Upload</div>,
     },
   ];
 

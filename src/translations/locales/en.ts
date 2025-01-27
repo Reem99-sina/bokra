@@ -275,5 +275,9 @@ trends. `,
   passwordResetLinkSent: "Password reset link sent successfully",
   noLoansFound: "No loans found",
   loanName:"Loan Name",
-  contactPersonName:"Contact Person Name"
+  contactPersonName:"Contact Person Name",
+  establishmentDate:"establishment Date",
+  industrySector:"industry Sector",
+  webSiteAddress:"Web Site Address",
+  linkedInLink:"linkedIn Link"
 } as const;

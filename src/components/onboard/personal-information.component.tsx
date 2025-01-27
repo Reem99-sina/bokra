@@ -17,10 +17,12 @@ const PersonalInformationComponent = ({ onNext }: { onNext: () => void }) => {
   const { t } = useTranslation();
   const { register, control, handleSubmit, formState } =
     useForm<PersonalInfo>();
+
   const { contactPersonName, phoneNumber, city, address, governorate } =
     useMemo(() => {
       return formState.errors;
     }, [formState.errors]);
+    
   const onSubmit = async (data: PersonalInfo) => {
     setIsLoading(true);
     try {
