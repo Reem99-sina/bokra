@@ -13,4 +13,5 @@ export const colors = {
   thColor: "#595959",
   greenCustom: "#1F7A49",
   yellowDark: "#f1d12a",
+  primary: "#000000",
 };
