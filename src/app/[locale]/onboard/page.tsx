@@ -11,6 +11,7 @@ import {
   FaHandshake,
 } from "react-icons/fa";
 import { WelcomeStep } from "@/components/onboard/welcome-step.component";
+import PersonalInformationComponent from "@/components/onboard/personal-information.component";
 
 export default function Onboard() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -32,12 +33,12 @@ export default function Onboard() {
     {
       title: "Personal Information",
       Icon: FaUser,
-      Component: <div onClick={handlePrev}>Personal Details</div>,
+      Component: <PersonalInformationComponent onNext={handleNext} />,
     },
     {
       title: "Company Information",
       Icon: FaBuilding,
-      Component: <div>Company Details</div>,
+      Component: <div onClick={handlePrev}>Company Details</div>,
     },
     {
       title: "Document Upload",

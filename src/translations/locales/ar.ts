@@ -271,5 +271,6 @@ export default {
   youHaveSuccessfullyLoggedIn: "تم تسجيل دخولك بنجاح",
   passwordResetLinkSent: "تم إرسال رابط إعادة تعيين كلمة المرور بنجاح",
   noLoansFound: "لم يتم العثور على قروض",
-  loanName:"اسم القرض"
+  loanName: "اسم القرض",
+  contactPersonName: "اسم الشخصي ",
 } as const;

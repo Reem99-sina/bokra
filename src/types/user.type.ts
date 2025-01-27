@@ -69,3 +69,25 @@ export interface RegisterResponse {
     token: string;
   };
 }
+
+export interface PersonalInfo {
+  contactPersonName: string;
+  phoneNumber: string;
+  governorate: string;
+  city: string;
+  address: string;
+}
+export interface PersonalInfoResponse {
+  message: string;
+  result: PersonalInfo & {
+    userId: number;
+    updatedAt: string;
+    createdAt: string;
+    id: number;
+  };
+  status: number;
+}
+export interface PresonalError {
+  message: string;
+  status: number;
+}
