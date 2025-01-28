@@ -14,6 +14,7 @@ const CompanyInformationComponent = ({ onNext }: { onNext: () => void }) => {
   const { mutateAsync } = useCompanyInfoMutation();
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, formState } = useForm<CompanyInfo>();
+  
   const {
     name,
     type,
@@ -25,6 +26,7 @@ const CompanyInformationComponent = ({ onNext }: { onNext: () => void }) => {
   } = useMemo(() => {
     return formState.errors;
   }, [formState.errors]);
+
   const onSubmit = async (data: CompanyInfo) => {
     setIsLoading(true);
     try {
@@ -51,7 +53,7 @@ const CompanyInformationComponent = ({ onNext }: { onNext: () => void }) => {
     <form onSubmit={handleSubmit(onSubmit)} className="container">
       <MainTitleComponent title={t("personalData")} />
       <div className=" flex justify-between flex-col">
-        <div className="flex items-center  gap-4 sm:flex-row my-4 flex-wrap">
+        <div className="flex items-start  gap-4 sm:flex-row my-4 flex-wrap">
           <div className="md:min-w-[500px] min-w-full">
             <TextInput
               inputProps={{

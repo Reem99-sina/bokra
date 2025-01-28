@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React from "react";
 import { Stepper, Step } from "@material-tailwind/react";
 
 import {
@@ -12,21 +12,19 @@ import {
 } from "react-icons/fa";
 import { WelcomeStep } from "@/components/onboard/welcome-step.component";
 import PersonalInformationComponent from "@/components/onboard/personal-information.component";
-import CompanyInformationComponent from "@/components/onboard/company-information.component";
 import { useUser } from "@/hooks/user.hooks";
-import { IUser } from "@/types/user.type";
+import { IUser, UserStatus } from "@/types/user.type";
+import { useTranslation } from "@/translations/clients";
+import CompanyInformationComponent from "@/components/onboard/company-information.component";
+import DocumentUploadComponent from "@/components/onboard/document-upload.component";
 
 export default function Onboard() {
   const { user } = useUser();
-  const initialStep = useMemo(() => {
-    return (user as IUser)?.status == "apply-personal-info"
-      ? 2
-      :(user as IUser)?.status == "apply-company-info"?3: 0;
-  }, [user]);
-  const [activeStep, setActiveStep] = React.useState(initialStep);
-  React.useEffect(() => {
-    setActiveStep(initialStep);
-  }, [initialStep]);
+  const { t } = useTranslation();
+
+  const [activeStep, setActiveStep] = React.useState(
+    (user as IUser)?.status === UserStatus.VERIFY_EMAIL ? 0 : 2
+  );
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -38,24 +36,24 @@ export default function Onboard() {
 
   const steps = [
     {
-      title: "Welcome",
+      title: t("onboard.welcome"),
       Icon: FaHandshake,
       Component: <WelcomeStep onNext={handleNext} />,
     },
     {
-      title: "Personal Information",
+      title: t("onboard.personal_information"),
       Icon: FaUser,
       Component: <PersonalInformationComponent onNext={handleNext} />,
     },
     {
-      title: "Company Information",
+      title: t("onboard.company_information"),
       Icon: FaBuilding,
       Component: <CompanyInformationComponent onNext={handleNext} />,
     },
     {
       title: "Document Upload",
       Icon: FaFile,
-      Component: <div onClick={handlePrev}>Document Upload</div>,
+      Component: <DocumentUploadComponent onNext={handleNext}/>,
     },
   ];
 

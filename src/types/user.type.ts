@@ -1,3 +1,10 @@
+export enum UserStatus {
+  PENDING = "pending",
+  VERIFY_EMAIL = "verify-email",
+  APPLY_PERSONAL_INFO = "apply-personal-info",
+  APPLY_COMPANY_INFO = "apply-company-info",
+}
+
 export interface IUser {
   fullName: string;
   id: number;
@@ -6,7 +13,7 @@ export interface IUser {
   password: string;
   industryField: "IT" | "business Owner";
   phoneNumber: string;
-  status: "pending"|"apply-personal-info"|"apply-company-info";
+  status: UserStatus;
   createdAt: string;
   updatedAt: string;
   idImage: null;
